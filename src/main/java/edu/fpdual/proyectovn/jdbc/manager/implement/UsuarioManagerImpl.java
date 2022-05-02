@@ -9,18 +9,10 @@ import java.util.Set;
 
 public class UsuarioManagerImpl implements UsuarioManager {
 
-  @Override
-  public Set<Usuario> todosUsuarios(Connection con) {
+  public ResultSet todosUsuarios(Connection con) throws SQLException {
     try (Statement s = con.createStatement()) {
       ResultSet result = s.executeQuery("SELECT * FROM usuario ");
-
-      Set<Usuario> usuarioSet = new HashSet<>();
-      //result.beforeFirst();
-      while (result.next()) {
-        Usuario usuarios = new Usuario(result);
-        usuarioSet.add(usuarios);
-      }
-      return usuarioSet;
+      return result;
     } catch (SQLException e) {
       e.printStackTrace();
       return null;

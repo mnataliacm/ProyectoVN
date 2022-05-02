@@ -7,8 +7,8 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mi Jardin - Inicio</title>
-  <link rel="shortcut icon" href="./imagenes/iconoflor.png" type="image/x-icon">
+  <title>VayaplaN</title>
+  <link rel="shortcut icon" href="images/icons/logo.ico" type="image/x-icon">
   <!-- CSS bootstrap -->
   <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
@@ -18,15 +18,15 @@
   <!-- ICONOS bootstrap -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
   <!-- CSS mio -->
-  <link rel="stylesheet" href="./estilo/style.css">
+  <link rel="stylesheet" href="style/style.css">
   <!-- javascript para reutilizar navbar -->
   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
-<body class="bg-success">
+<body>
 <!-- fondo que lleva a iniciar sesion -->
 <div class="container-flex position-relative">
-  <img src="./imagenes/marco.png" class="img-flex vh-100 w-100" role="button" alt="marco">
-  <a  href="usuarios.jsp">
+  <img src="./images/marco.png" class="img-flex vh-100 w-100" role="button" alt="marco">
+  <a  href="ciudades.jsp">
  </div>
 
 <div id="wrapper" class="container-fluid position-absolute top-50 start-50 translate-middle">
@@ -65,6 +65,6 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
 <!-- JS mio -->
-<script src="./js/javascript.js"></script>
+<script src="javascript/javascript.js"></script>
 </body>
 </html>
