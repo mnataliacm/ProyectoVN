@@ -1,10 +1,10 @@
-<%@page import="java.sql.ResultSet" %>
-<%@page import="java.sql.Connection" %>
-<%@ page import="java.sql.DriverManager" %>
-<%@ page import="java.sql.Statement" %>
+<%@ page import="edu.fpdual.proyectovn.jdbc.connector.Connector" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="edu.fpdual.proyectovn.jdbc.manager.enumeration.CiudadEnum" %>
 
 <%--
     Author     : Natalia Castillo
+    Author     : Verónica González
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
@@ -32,108 +32,53 @@
   <!--Barra navegacion-->
   <div id="nav-placeholder"></div>
   <%-- enlace con la base de datos --%>
-  <% // TODO: 01/05/2022 Intentar conectar con JDBC
-    Class.forName("com.mysql.cj.jdbc.Driver");
-    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3307/proyectovn", "root", "root");
-    request.setCharacterEncoding("UTF-8");
-    Statement s = con.createStatement();
+  // TODO: 01/05/2022 Intentar conectar con JDBC
 
-    ResultSet listado = s.executeQuery("SELECT * FROM categoria");
+  <%-- enlace con la base de datos --%>
+  <%
+    Connector connector = new Connector();
+    Connection con = connector.getConnection();
+    // TODO: 03/05/2022 cambiar cuando hayamos creado dao y cya
+    Statement s = con.createStatement();
+    request.setCharacterEncoding("UTF-8");
+    ResultSet sub = null;
+    try {
+      sub = s.executeQuery("SELECT c.NomCat FROM categoria c "
+          + " INNER JOIN subcategoria s ON s.IDcat = s.IDcat"
+          + " INNER JOIN actividad a ON s.IDsub = a.IDsub"
+          + " INNER JOIN ciudad ci ON a.IDciu = ci.IDciu"
+          + " WHERE ci.NomCiu LIKE " + session.getAttribute(ciudad));
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
   %>
 
   <div id="container" class="container-flex text-center m-auto p-5 d-flex h-auto">
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-auto m-auto">
 
-      <div class="col m-auto p-2">
-      <div class="card" style="width: 18rem;">
-        <img src="images/icons/icon-museum-25.png" class="card-img-top" alt="logo VN">
-        <div class="card-body">
-          <h5 class="card-title">Exposición</h5>
-          <p class="card-text"></p>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">An item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
-        </ul>
-        <div class="card-body">
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
-        </div>
-      </div>
-    </div> <!-- fin de col 1-->
-    <div class="col m-auto p-2">
-      <div class="card" style="width: 18rem;">
-        <img src="images/icons/ciudad.png" class="card-img-top" alt="logo VN">
-        <div class="card-body">
-          <h5 class="card-title">Turismo</h5>
-          <p class="card-text"></p>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">An item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
-        </ul>
-        <div class="card-body">
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
-        </div>
-      </div>
-    </div> <!-- fin de col 2-->
-    <div class="col m-auto p-2">
-      <div class="card" style="width: 18rem;">
-        <img src="images/icons/zapatilla.png" class="card-img-top" alt="logo VN">
-        <div class="card-body">
-          <h5 class="card-title">Deporte</h5>
-          <p class="card-text"></p>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">An item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
-        </ul>
-        <div class="card-body">
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
-        </div>
-      </div>
-    </div> <!-- fin de col 3-->
-    <div class="col m-auto p-2">
-      <div class="card" style="width: 18rem;">
-        <img src="images/icons/location-icon.png" class="card-img-top" alt="logo VN">
-        <div class="card-body">
-          <h5 class="card-title">Visitar</h5>
-          <p class="card-text"></p>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">An item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
-        </ul>
-        <div class="card-body">
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
-        </div>
-      </div>
-    </div> <!-- fin de col 4-->
-    <div class="col m-auto p-2">
-      <div class="card" style="width: 18rem;">
-        <img src="images/icons/mono-gnome-question.png" class="card-img-top" alt="logo VN">
-        <div class="card-body">
-          <h5 class="card-title">Entretenimiento</h5>
-          <p class="card-text"></p>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">An item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
-        </ul>
-        <div class="card-body">
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
-        </div>
-      </div>
-    </div> <!-- fin de col 5-->
+      <%
+        while (sub.next()) {
+
+        out.println();
+        out.println("<div class=\"col m-auto p-2\">");
+        out.println("<div class=\"card\" >");
+        out.println("<img src=\"images/icons/icon-museum-25.png\" class=\"card-img-top\" alt=\"logo VN\">");
+        out.println("<div class=\"card-body\">");
+        out.println("<h5 class=\"card-title\">" + sub.getString("NomCat") + "</h5>");
+        out.println("<p class=\"card-text\"></p>");
+        out.println("</div>");
+        out.println("<ul class=\"list-group list-group-flush\">");
+        out.println("<li class=\"list-group-item\">Ciudad elegida</li>");
+        out.println("<li class=\"list-group-item\">"+ session.getAttribute("ciudad") + "</li>");
+        out.println("<li class=\"list-group-item\"></li>");
+        out.println("</ul>");
+        out.println("<div class=\"card-body\">");
+        out.println("<a href=\"subcategoria.jsp\" class=\"card-link\">Actividades</a>");
+        out.println("</div>");
+        out.println("</div>");
+        out.println("</div>");
+    }
+    %>
 
   </div> <!-- fin del row -->
 </div> <!-- fin container -->
