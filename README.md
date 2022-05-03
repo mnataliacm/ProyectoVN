@@ -24,3 +24,9 @@ Funcionando WEBAPP
 #### Revisar o añadir:
 * Crear resto dao, manager, implement.
 * 
+
+### SQL
+#### Cambios
+Cambio en subcategoría obra por teatro, revisa por si ves algo mas a cambiar
+
+
