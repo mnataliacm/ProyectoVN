@@ -1,0 +1,46 @@
+html,
+body {
+    height: 100%;
+    background: linear-gradient(to bottom, #cc00ff 0%, #00cc00 100%);
+}
+
+.bg-verde,
+.table-verde,
+.btn-verde,
+.text-verde {
+    background-color: #cae752;
+}
+.bg-verdoso {
+    background-color: #5caa18;
+}
+.bg-tostado {
+    background-color: #fba00f;
+}
+.bg-fondo {
+    background: linear-gradient(to bottom, #cc00ff 0%, #00cc00 100%);
+}
+.bg-indigo {
+    background-color: #6610f2;
+}
+.bg-amarillo {
+    background-color: #ffc107;
+}
+.bg-naranja {
+    background-color: #fd7e14;
+}
+.bg-rojo {
+    background-color: #dc3545;
+}
+.bg-turquesa,
+.btn-turquesa {
+    background-color: #20c997;
+}
+
+.andalucia {
+    background-image: url("../images/andalucia.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: relative;
+
+}
