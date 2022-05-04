@@ -43,9 +43,7 @@
         <h5 class="card-title">Disfruta de tu tiempo libre</h5>
 <<<<<<<<< Temporary merge branch 1
         <p class="card-text">Registrate y obtén descuentos !!!!probando github 2022!!!</p>
-=========
-        <p class="card-text">Registrate y obtén descuentos !!!!probando github 2022 fpdual!!!</p>
->>>>>>>>> Temporary merge branch 2
+
 
       </div>
     </div>
