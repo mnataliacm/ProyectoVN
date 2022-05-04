@@ -32,45 +32,57 @@
   <!--Barra navegacion-->
   <div id="nav-placeholder"></div>
   <%-- enlace con la base de datos --%>
+<<<<<<< HEAD
   <% // TODO: 01/05/2022 añadir control login que solo admin pueda ver e intentar conectar con JDBC
+=======
+  <%-- // TODO: 01/05/2022 añadir control login que solo admin pueda ver e intentar conectar con JDBC
+>>>>>>> d9402ab (actualizo rama ncm)
     Class.forName("com.mysql.cj.jdbc.Driver");
     Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3307/proyectovn", "root", "root");
     request.setCharacterEncoding("UTF-8");
     Statement s = con.createStatement();
 
     ResultSet listado = s.executeQuery("SELECT * FROM usuario");
+  --%>
+  <%
+
   %>
+
   <div class="container-flex m-auto mt-5 p-5 w-75 h-75 andalucia">
     <div class="container-fluid w-50 h-50 m-auto text-center ">
       <div class="panel w-75 m-auto pt-5 mt-5">
         <h2 class="panel-heading text-center bg-turquesa">Selecciona una ciudad</h2>
       </div>
+      <form method="post" action="categorias.jsp">
       <div class="row justify-content-around align-items-center gy-5 row-cols-lg-4 mt-5">
-        <div class="col">
-          <button class="btn btn-primary btn-lg" type="button">Huelva</button>
+
+      <div class="col">
+
+          <button class="btn btn-primary btn-lg" type="submit" name="IDciu" value="21">Huelva</button>
         </div>
         <div class="col">
-          <button class="btn btn-primary btn-lg" type="button">Sevilla</button>
+          <button class="btn btn-primary btn-lg" type="submit" name="IDciu" value="41">Sevilla</button>
         </div>
         <div class="col">
-          <button class="btn btn-primary btn-lg" type="button">Córdoba</button>
+          <button class="btn btn-primary btn-lg" type="submit" name="IDciu" value="14">Córdoba</button>
         </div>
         <div class="col">
-          <button class="btn btn-primary btn-lg" type="button">Jaén</button>
+          <button class="btn btn-primary btn-lg" type="submit" name="IDciu" value="23">Jaén</button>
         </div>
         <div class="col">
-          <button class="btn btn-primary btn-lg" type="button">Cádiz</button>
+          <button class="btn btn-primary btn-lg" type="submit" name="IDciu" value="11">Cádiz</button>
         </div>
         <div class="col">
-          <button class="btn btn-primary btn-lg" type="button">Málaga</button>
+          <button class="btn btn-primary btn-lg" type="submit" name="IDciu" value="29">Málaga</button>
         </div>
         <div class="col">
-          <button class="btn btn-primary btn-lg" type="button">Granada</button>
+          <button class="btn btn-primary btn-lg" type="submit" name="IDciu" value="18">Granada</button>
         </div>
         <div class="col">
-          <button class="btn btn-primary btn-lg" type="button">Almeria</button>
+          <button class="btn btn-primary btn-lg" type="submit" name="IDciu" value="4">Almeria</button>
         </div>
       </div> <!-- fin row -->
+      </form>
     </div> <!-- fin container 2 -->
   </div> <!--  fin container 1 -->
 </div> <!-- fin wrapper img-->
