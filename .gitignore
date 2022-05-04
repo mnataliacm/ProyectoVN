@@ -25,7 +25,10 @@ target
 hs_err_pid*
 
 #mios
+*.iml
 target/
 out/
 edu/fpdual/proyectovn/webapp/
+README.md
+
 

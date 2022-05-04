@@ -41,16 +41,15 @@
     // TODO: 03/05/2022 cambiar cuando hayamos creado dao y cya
     Statement s = con.createStatement();
     request.setCharacterEncoding("UTF-8");
-    ResultSet sub = null;
-    try {
-      sub = s.executeQuery("SELECT c.NomCat FROM categoria c "
+
+    int IDciu = Integer.parseInt(request.getParameter("IDciu"));
+    String ciudad = (s.executeQuery("SELECT NomCiu FROM ciudad WHERE IDciu = " + IDciu)).toString();
+    ResultSet  sub = s.executeQuery("SELECT DISTINCT NomCat FROM categoria c "
           + " INNER JOIN subcategoria s ON s.IDcat = s.IDcat"
           + " INNER JOIN actividad a ON s.IDsub = a.IDsub"
           + " INNER JOIN ciudad ci ON a.IDciu = ci.IDciu"
-          + " WHERE ci.NomCiu LIKE " + session.getAttribute(ciudad));
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
+          + " WHERE ci.IDciu = " + IDciu);
+
   %>
 
   <div id="container" class="container-flex text-center m-auto p-5 d-flex h-auto">
@@ -69,11 +68,11 @@
         out.println("</div>");
         out.println("<ul class=\"list-group list-group-flush\">");
         out.println("<li class=\"list-group-item\">Ciudad elegida</li>");
-        out.println("<li class=\"list-group-item\">"+ session.getAttribute("ciudad") + "</li>");
-        out.println("<li class=\"list-group-item\"></li>");
+        out.println("<li class=\"list-group-item\">"+ ciudad + "</li>");
+        out.println("<li class=\"list-group-item\"> " + IDciu + "</li>");
         out.println("</ul>");
         out.println("<div class=\"card-body\">");
-        out.println("<a href=\"subcategoria.jsp\" class=\"card-link\">Actividades</a>");
+        out.println("<a href=\"actividades.jsp\" class=\"card-link\">Lista de Actividades</a>");
         out.println("</div>");
         out.println("</div>");
         out.println("</div>");
