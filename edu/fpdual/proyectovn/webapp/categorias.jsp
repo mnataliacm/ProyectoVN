@@ -35,24 +35,19 @@
   <!--Barra navegacion-->
   <div id="nav-placeholder"></div>
   <%-- enlace con la base de datos --%>
-  // TODO: 01/05/2022 Intentar conectar con JDBC
-
-  <%-- enlace con la base de datos --%>
   <%
     Connector connector = new Connector();
     Connection con = connector.getConnection();
-    // TODO: 03/05/2022 cambiar cuando hayamos creado dao y cya
-    Statement s = con.createStatement();
-    request.setCharacterEncoding("UTF-8");
-
-    int IDciu = Integer.parseInt(request.getParameter("IDciu"));
-    String ciudad = (s.executeQuery("SELECT NomCiu FROM ciudad WHERE IDciu = " + IDciu)).toString();
-    ResultSet  sub = s.executeQuery("SELECT DISTINCT NomCat FROM categoria c "
-          + " INNER JOIN subcategoria s ON s.IDcat = s.IDcat"
-          + " INNER JOIN actividad a ON s.IDsub = a.IDsub"
-          + " INNER JOIN ciudad ci ON a.IDciu = ci.IDciu"
-          + " WHERE ci.IDciu = " + IDciu);
-
+    int idCiu = Integer.parseInt(request.getParameter("IDciu"));
+    //try (Statement s = con.createStatement()) {
+      Statement s = con.createStatement();
+      ResultSet categoria = new CategoriasManagerImpl().CatConAct(con, idCiu);
+      //categoria.first();
+      String ciudad = new CiudadManagerImpl().CiudadPorID(con, idCiu);
+      // TODO: 04/05/2022 cambiar por manager cuando este hecho
+      ResultSet totalActividades = new CategoriasManagerImpl().CatConAct(con, idCiu);
+      //totalActividades.next();
+    categoria.first();
   %>
   <div id="container" class="container-fluid text-center m-auto p-5 h-auto">
     <div class="row row-cols-md-2 row-cols-xl-6 m-auto">
