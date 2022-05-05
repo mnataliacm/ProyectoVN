@@ -15,6 +15,7 @@ import java.sql.SQLException;
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
+
 public class Usuario {
 
   private int id;

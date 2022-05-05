@@ -1,11 +1,9 @@
 package edu.fpdual.proyectovn.jdbc.manager.implement;
 
-import edu.fpdual.proyectovn.jdbc.dao.Usuario;
+
 import edu.fpdual.proyectovn.jdbc.manager.UsuarioManager;
 
 import java.sql.*;
-import java.util.HashSet;
-import java.util.Set;
 
 public class UsuarioManagerImpl implements UsuarioManager {
 

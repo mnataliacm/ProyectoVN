@@ -32,11 +32,7 @@
   <!--Barra navegacion-->
   <div id="nav-placeholder"></div>
   <%-- enlace con la base de datos --%>
-<<<<<<< HEAD
-  <% // TODO: 01/05/2022 añadir control login que solo admin pueda ver e intentar conectar con JDBC
-=======
   <%-- // TODO: 01/05/2022 añadir control login que solo admin pueda ver e intentar conectar con JDBC
->>>>>>> d9402ab (actualizo rama ncm)
     Class.forName("com.mysql.cj.jdbc.Driver");
     Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3307/proyectovn", "root", "root");
     request.setCharacterEncoding("UTF-8");
