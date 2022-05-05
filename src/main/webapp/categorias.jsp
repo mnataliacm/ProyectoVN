@@ -47,6 +47,7 @@
       // TODO: 04/05/2022 cambiar por manager cuando este hecho
       ResultSet totalActividades = new CategoriasManagerImpl().CatConAct(con, idCiu);
       //totalActividades.next();
+    categoria.first();
   %>
   <div id="container" class="container-fluid text-center m-auto p-5 h-auto">
     <div class="row row-cols-md-2 row-cols-xl-6 m-auto">

@@ -1,6 +1,9 @@
 <%@ page import="edu.fpdual.proyectovn.jdbc.connector.Connector" %>
 <%@ page import="java.sql.*" %>
-<%@ page import="edu.fpdual.proyectovn.jdbc.manager.enumeration.CiudadEnum" %>
+<%@ page import="java.beans.PropertyEditorSupport" %>
+<%@ page import="edu.fpdual.proyectovn.jdbc.manager.CiudadManager" %>
+<%@ page import="edu.fpdual.proyectovn.jdbc.manager.implement.CiudadManagerImpl" %>
+<%@ page import="edu.fpdual.proyectovn.jdbc.manager.implement.CategoriasManagerImpl" %>
 
 <%--
     Author     : Natalia Castillo
@@ -51,36 +54,41 @@
           + " WHERE ci.IDciu = " + IDciu);
 
   %>
-
-  <div id="container" class="container-flex text-center m-auto p-5 d-flex h-auto">
-    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-auto m-auto">
-
+  <div id="container" class="container-fluid text-center m-auto p-5 h-auto">
+    <div class="row row-cols-md-2 row-cols-xl-6 m-auto">
       <%
-        while (sub.next()) {
+        while (categoria.next()) {
+      %>
+      <div class="col m-auto p-2">
+        <div class="card">
+          <img src="images/icons/icon-museum-25.png" class="card-img-top img-responsive" alt="icono museo\">
+          <div class="card-body">
+            <h5 class="card-title"><%=categoria.getString("NomCat")%>
+            </h5>
+            <p class="card-text"></p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Ciudad elegida</li>
+            <li class="list-group-item">" + ciudad + "</li>
+            <li class="list-group-item"><%=categoria.getInt("total")%>
+            </li>
+          </ul>
+          <div class="card-body">");
+            <a href="actividades.jsp" class="card-link">Lista de Actividades</a>
+          </div>
+        </div>
+      </div>
+      <%
+          }
+        %>
+        <%--} catch (Exception e) {
 
-        out.println();
-        out.println("<div class=\"col m-auto p-2\">");
-        out.println("<div class=\"card\" >");
-        out.println("<img src=\"images/icons/icon-museum-25.png\" class=\"card-img-top\" alt=\"logo VN\">");
-        out.println("<div class=\"card-body\">");
-        out.println("<h5 class=\"card-title\">" + sub.getString("NomCat") + "</h5>");
-        out.println("<p class=\"card-text\"></p>");
-        out.println("</div>");
-        out.println("<ul class=\"list-group list-group-flush\">");
-        out.println("<li class=\"list-group-item\">Ciudad elegida</li>");
-        out.println("<li class=\"list-group-item\">"+ ciudad + "</li>");
-        out.println("<li class=\"list-group-item\"> " + IDciu + "</li>");
-        out.println("</ul>");
-        out.println("<div class=\"card-body\">");
-        out.println("<a href=\"actividades.jsp\" class=\"card-link\">Lista de Actividades</a>");
-        out.println("</div>");
-        out.println("</div>");
-        out.println("</div>");
-    }
-    %>
+        }
+// TODO: 04/05/2022 aqui creo que podemos implementar un control de excepciones para que si no hay actividades en la ciudad muestre un error
+      --%>
 
-  </div> <!-- fin del row -->
-</div> <!-- fin container -->
+    </div> <!-- fin del row -->
+  </div> <!-- fin container -->
 </div> <!-- fin wrapper -->
 <!-- JS bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
