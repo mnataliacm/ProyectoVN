@@ -18,7 +18,7 @@ public class UsuarioManagerImpl implements UsuarioManager {
   }
     public ResultSet ModificarUsuario (Connection con, String nom, String ape, String email, String pass, String movil, int id ) throws SQLException {
       try (Statement s = con.createStatement()) {
-        ResultSet result = s.executeQuery("UPDATE usuarios SET "
+        ResultSet result = s.executeQuery("UPDATE usuario SET "
                 + "NomUsu = '" + nom
                 + "', ApeUsu = '" + ape
                 + "', PassUsu = '" + pass
