@@ -1,14 +1,21 @@
 package edu.fpdual.proyectovn.jdbc.manager.implement;
 
-import edu.fpdual.proyectovn.jdbc.manager.CategoriasManager;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class CategoriasManagerImpl implements CategoriasManager {
+public class CategoriaManagerImpl {
 
+  public ResultSet TodasCategorias(Connection con) throws SQLException {
+   try (Statement s = con.createStatement()) {
+    ResultSet result = s.executeQuery("SELECT * FROM categoria ");
+    return result;
+  } catch (SQLException e) {
+    e.printStackTrace();
+    return null;
+  }
+}
   public ResultSet CatConAct(Connection con, int id) throws SQLException{
     try (Statement s = con.createStatement()) {
       ResultSet result = s.executeQuery("SELECT DISTINCT NomCat, COUNT(a.NomAct) AS total FROM categoria c"
@@ -21,5 +28,6 @@ public class CategoriasManagerImpl implements CategoriasManager {
       throw new RuntimeException(e);
     }
   }
+
 
 }
