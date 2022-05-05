@@ -24,7 +24,6 @@ public class Usuario {
   private String email;
   private String pass;
   private String movil;
-  private int ciudad;
 
   public Usuario(ResultSet result) throws SQLException {
     setId(result.getInt("IDusu"));
@@ -33,6 +32,5 @@ public class Usuario {
     setEmail(result.getString("Email"));
     setPass(result.getString("PassUsu"));
     setMovil(result.getString("Movil"));
-    setCiudad(result.getInt("IDciu"));
   }
 }

@@ -34,7 +34,7 @@
   <%-- enlace con la base de datos --%>
   <% // TODO: 01/05/2022 añadir control login que solo admin pueda ver e intentar conectar con JDBC
     Class.forName("com.mysql.cj.jdbc.Driver");
-    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3307/proyectovn","root", "root");
+    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyectovn","root", "Proyecto.VN");
     request.setCharacterEncoding("UTF-8");
     Statement s = con.createStatement();
 
@@ -55,7 +55,6 @@
           <td><%=listado.getString("NomUsu")%></td>
           <td><%=listado.getString("ApeUsu")%></td>
           <td><%=listado.getString("Email")%></td>
-          <td><%=listado.getString("IDciu")%></td>
           <!-- modificar -->
           <td>
             <div class="row">
@@ -64,7 +63,6 @@
                   <input type="hidden" name="NomUsu" value="<%=listado.getString("NomUsu") %>">
                   <input type="hidden" name="ApeUsu" value="<%=listado.getString("ApeUsu") %>">
                   <input type="hidden" name="Email" value="<%=listado.getString("Email") %>">
-                  <input type="hidden" name="IDciu" value="<%=listado.getString("IDciu") %>">
                   <button type="submit"  class="btn btn-info"><span class="bi bi-pencil-fill"> </span> Editar</button>
                 </form>
               </div>

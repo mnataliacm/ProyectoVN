@@ -24,7 +24,7 @@ public class Main {
     //UsuarioController usuarioController = new UsuarioController(new UsuarioManagerImpl());
     //System.out.println(usuarioController.todosUsuarios(connection));
     //System.out.println(new UsuarioManagerImpl().todosUsuarios(connection));
-    ResultSet usuarios = new UsuarioManagerImpl().todosUsuarios(con);
+    ResultSet usuarios = new UsuarioManagerImpl().TodosUsuarios(con);
 
     System.out.println(usuarios);
     //System.out.println(usuarios.stream().findFirst());

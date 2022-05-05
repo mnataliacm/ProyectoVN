@@ -12,6 +12,12 @@ public interface UsuarioManager {
    * @param con conexión a BBDD
    * @return {@code Set} of {@code Usuario}
    */
-  public ResultSet todosUsuarios(Connection con) throws SQLException;
+  public ResultSet TodosUsuarios(Connection con) throws SQLException;
 
+  /**
+   * Busca todos los usuarios
+   * @param con conexión a BBDD
+   * @return {@code Set} of {@code Usuario}
+   */
+  public ResultSet ModificarUsuario(Connection con, String nom, String ape, String email, String pass, String movil, int id) throws SQLException;
 }

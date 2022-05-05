@@ -7,7 +7,7 @@
 --%>
 <%
   Class.forName("com.mysql.jdbc.Driver");
-  Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/proyectovn","root", "root");
+  Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyectovn","root", "Proyecto.VN");
   Statement s = conexion.createStatement();
   
   request.setCharacterEncoding("UTF-8");
@@ -33,7 +33,7 @@
   } else {
     session.setAttribute("usuario", usuario);
     session.setAttribute("codigo", codigo);
-    response.sendRedirect("buscador.jsp");
+    response.sendRedirect("ciudades.jsp");
   }
     
 } else {

@@ -56,7 +56,7 @@
       //si todo OK introduzco datos
       } else {     
           String insertar = "INSERT INTO usuarios (usuario, password, email) VALUES ('"
-          + request.getParameter("usuario")
+          + request.getParameter("NomUsu")
           + "', '" + request.getParameter("password")
           + "', '" + request.getParameter("email") + "')";
 

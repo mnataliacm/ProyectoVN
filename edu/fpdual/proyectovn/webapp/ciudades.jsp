@@ -32,14 +32,23 @@
   <!--Barra navegacion-->
   <div id="nav-placeholder"></div>
   <%-- enlace con la base de datos --%>
-  <%-- // TODO: 01/05/2022 añadir control login que solo admin pueda ver e intentar conectar con JDBC
+  <%-- // TODO: 01/05/2022 intentar que solo se muestren las ciudades con actividades o habilitar error que no me sale
     Class.forName("com.mysql.cj.jdbc.Driver");
-    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3307/proyectovn", "root", "root");
+    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3307/proyectovn", "root", "Proyecto.VN");
     request.setCharacterEncoding("UTF-8");
     Statement s = con.createStatement();
-
-    ResultSet listado = s.executeQuery("SELECT * FROM usuario");
+    String activar = "";
+    ResultSet sub = s.executeQuery("SELECT COUNT(*) FROM actividad a "
+        + " INNER JOIN subcategoria s ON a.IDsub = s.IDsub"
+        + " INNER JOIN categoria c ON s.IDcat = c.IDcat"
+        + " INNER JOIN ciudad ci ON a.IDciu = ci.IDciu");
+    String activar = "";
+    if (!sub.next()) {
+      activar = "disabled";
+    }
   --%>
+
+
   <div class="container-flex m-auto mt-5 p-5 w-75 h-75 andalucia">
     <div class="container-fluid w-50 h-50 m-auto text-center ">
       <div class="panel w-75 m-auto pt-5 mt-5">
