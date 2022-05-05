@@ -37,7 +37,7 @@
           } else if (user.equals("Colaborador")) {
               response.sendRedirect("buscadorColab.jsp");
           } else {
-              response.sendRedirect("tuJardin.jsp");
+              response.sendRedirect("ciudades.jsp");
           }
         }
       %>
