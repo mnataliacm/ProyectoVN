@@ -26,7 +26,7 @@
   </head>
   <body>
 
-  <%--
+  <%  
     String user = (String) session.getAttribute("usuario");
     String enlace = "index.jsp";
     String mensaje = "";    
@@ -43,10 +43,6 @@
         session.setAttribute("error", "No tienes sesión iniciada");
         response.sendRedirect("formularioLogin.jsp");
     }      
-  --%>
-  <%
-    String enlace = "ciudades.jsp";
-    String mensaje = "";
   %>
 
   <div id="wraper" class="container-flex vh-100 pt-5"> 

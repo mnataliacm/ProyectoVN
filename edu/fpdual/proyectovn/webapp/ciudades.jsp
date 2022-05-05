@@ -40,10 +40,6 @@
 
     ResultSet listado = s.executeQuery("SELECT * FROM usuario");
   --%>
-  <%
-
-  %>
-
   <div class="container-flex m-auto mt-5 p-5 w-75 h-75 andalucia">
     <div class="container-fluid w-50 h-50 m-auto text-center ">
       <div class="panel w-75 m-auto pt-5 mt-5">
