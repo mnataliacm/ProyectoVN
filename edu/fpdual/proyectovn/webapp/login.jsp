@@ -15,13 +15,13 @@
   String usuario = request.getParameter("usuario");
   String password = request.getParameter("password");
   
-  ResultSet consultar = s.executeQuery("(SELECT * FROM usuario WHERE usuario='" + usuario + "')");
+  ResultSet consultar = s.executeQuery("(SELECT * FROM usuario WHERE NomUsu ='" + usuario + "')");
   
   consultar.next();
   
-  String user = consultar.getString("usuario");
-  String pass = consultar.getString("password");
-  int codigo = consultar.getInt("codusu");
+  String user = consultar.getString("NomUsu");
+  String pass = consultar.getString("PassUsu");
+  int codigo = consultar.getInt("IDusu");
   
  if (usuario.equals(user) && (password.equals(pass))) {
   if ((usuario.equals("Admin")) && password.equals("Admin")) {
