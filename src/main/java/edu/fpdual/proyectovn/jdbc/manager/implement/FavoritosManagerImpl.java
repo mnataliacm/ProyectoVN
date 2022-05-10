@@ -1,8 +1,10 @@
 package edu.fpdual.proyectovn.jdbc.manager.implement;
 
+import edu.fpdual.proyectovn.jdbc.manager.FavoritosManager;
+
 import java.sql.*;
 
-public class FavoritosManagerImpl {
+public class FavoritosManagerImpl implements FavoritosManager {
 
   public int CiudadFavorita(Connection con, int id) throws SQLException {
     try (PreparedStatement ps = (PreparedStatement) con.createStatement()) {

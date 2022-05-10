@@ -1,18 +1,16 @@
 <%@page import="java.sql.ResultSet" %>
 <%@page import="java.sql.Connection" %>
-<%@ page import="java.sql.DriverManager" %>
 <%@ page import="java.sql.Statement" %>
+<%@ page import="edu.fpdual.proyectovn.jdbc.connector.Connector" %>
+<%@ page import="edu.fpdual.proyectovn.jdbc.manager.implement.CiudadManagerImpl" %>
 
-<%--
-    Author     : Natalia Castillo
---%>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gestión Usuarios</title>
+  <title>Categorías VayaPlan</title>
   <link rel="shortcut icon" href="images/icons/logo.ico" type="image/x-icon">
   <!-- CSS bootstrap -->
   <link
@@ -32,108 +30,55 @@
   <!--Barra navegacion-->
   <div id="nav-placeholder"></div>
   <%-- enlace con la base de datos --%>
-  <% // TODO: 01/05/2022 Intentar conectar con JDBC
-    Class.forName("com.mysql.cj.jdbc.Driver");
-    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyectovn", "root", "Proyecto.VN");
+  <%
     request.setCharacterEncoding("UTF-8");
+    Connector connector = new Connector();
+    Connection con = connector.getConnection();
+    int idciu = Integer.parseInt(request.getParameter("IDciu"));
+    //ResultSet ciudad = new CiudadManagerImpl().CiudadPorID(con, idciu);
+    //ciudad.next();
+    // TODO: 03/05/2022 cambiar cuando hayamos creado dao y cya
     Statement s = con.createStatement();
-
-    ResultSet listado = s.executeQuery("SELECT * FROM categoria");
+    Statement st = con.createStatement();
+    Statement stm = con.createStatement();
+    request.setCharacterEncoding("UTF-8");
+    ResultSet sub = s.executeQuery("SELECT DISTINCT NomCat FROM categoria c "
+        + " INNER JOIN subcategoria s ON c.IDcat = s.IDcat"
+        + " INNER JOIN actividad a ON s.IDsub = a.IDsub"
+        + " INNER JOIN ciudad ci ON a.IDciu = ci.IDciu"
+        + " WHERE a.IDciu = " + idciu);
+    ResultSet numActividades = stm.executeQuery("SELECT COUNT(*) AS total FROM actividad where IDciu = " + idciu);
+    numActividades.next();
   %>
 
-  <div id="container" class="container-flex text-center m-auto p-5 d-flex h-auto">
+  <div id="container" class="container-flex text-center m-auto p-3 d-flex h-auto">
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-auto m-auto">
 
+      <%
+        while (sub.next()) {
+      %>
       <div class="col m-auto p-2">
-      <div class="card" style="width: 18rem;">
-        <img src="images/icons/icon-museum-25.png" class="card-img-top" alt="logo VN">
-        <div class="card-body">
-          <h5 class="card-title">Exposición</h5>
-          <p class="card-text"></p>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">An item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
-        </ul>
-        <div class="card-body">
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
-        </div>
-      </div>
-    </div> <!-- fin de col 1-->
-    <div class="col m-auto p-2">
-      <div class="card" style="width: 18rem;">
-        <img src="images/icons/ciudad.png" class="card-img-top" alt="logo VN">
-        <div class="card-body">
-          <h5 class="card-title">Turismo</h5>
-          <p class="card-text"></p>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">An item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
-        </ul>
-        <div class="card-body">
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
+        <div class="card">
+          <img src="images/icons/icon-museum-25.png" class="card-img-top img-responsive" alt="icono museo\">
+          <div class="card-body">
+            <h5 class="card-title"><%=sub.getString("NomCat") %>
+            </h5>
+            <p class="card-text"></p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Ciudad elegida: <%=idciu %></li>
+            <li class="list-group-item">Nombre ciudad: <% %></li>
+            <li class="list-group-item"> Num actividades: <%=numActividades.getString("total")%>
+            </li>
+          </ul>
+          <div class="card-body">
+            <a href="actividades.jsp" class="card-link">Lista de Actividades </a>
+          </div>
         </div>
       </div>
-    </div> <!-- fin de col 2-->
-    <div class="col m-auto p-2">
-      <div class="card" style="width: 18rem;">
-        <img src="images/icons/zapatilla.png" class="card-img-top" alt="logo VN">
-        <div class="card-body">
-          <h5 class="card-title">Deporte</h5>
-          <p class="card-text"></p>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">An item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
-        </ul>
-        <div class="card-body">
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
-        </div>
-      </div>
-    </div> <!-- fin de col 3-->
-    <div class="col m-auto p-2">
-      <div class="card" style="width: 18rem;">
-        <img src="images/icons/location-icon.png" class="card-img-top" alt="logo VN">
-        <div class="card-body">
-          <h5 class="card-title">Visitar</h5>
-          <p class="card-text"></p>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">An item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
-        </ul>
-        <div class="card-body">
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
-        </div>
-      </div>
-    </div> <!-- fin de col 4-->
-    <div class="col m-auto p-2">
-      <div class="card" style="width: 18rem;">
-        <img src="images/icons/mono-gnome-question.png" class="card-img-top" alt="logo VN">
-        <div class="card-body">
-          <h5 class="card-title">Entretenimiento</h5>
-          <p class="card-text"></p>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">An item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
-        </ul>
-        <div class="card-body">
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
-        </div>
-      </div>
-    </div> <!-- fin de col 5-->
+      <%
+        }
+      %>
 
   </div> <!-- fin del row -->
 </div> <!-- fin container -->

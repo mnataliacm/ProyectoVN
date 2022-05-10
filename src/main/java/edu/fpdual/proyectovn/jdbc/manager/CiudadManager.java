@@ -24,7 +24,7 @@ public interface CiudadManager {
    * @param id  ID de la ciudad seleccionada
    * @return {@code String} nombre de la ciudad
    */
-  public String CiudadPorID(Connection con, int id) throws SQLException;
+  public ResultSet CiudadPorID(Connection con, int id) throws SQLException;
 
   /**
    * Busca ciudades que tienen actividades
@@ -33,6 +33,6 @@ public interface CiudadManager {
    * @param id  ID de la ciudad seleccionada
    * @return {@code List} of {@code Ciudad}
    */
-  public List CiudadesConActividades(Connection con, int id) throws SQLException;
+  public ResultSet CiudadesConActividades(Connection con, int id) throws SQLException;
 
 }

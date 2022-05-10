@@ -1,11 +1,6 @@
 package edu.fpdual.proyectovn.jdbc.dao;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,6 +10,7 @@ import java.sql.SQLException;
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
+@Builder
 
 public class Usuario {
 

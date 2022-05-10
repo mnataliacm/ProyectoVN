@@ -42,7 +42,7 @@
         + " INNER JOIN categoria c ON s.IDcat = s.IDcat"
         + " INNER JOIN actividad a ON s.IDsub = a.IDsub"
         + " INNER JOIN ciudad ci ON a.IDciu = ci.IDciu"
-        + " WHERE ci.IDciu = " + ".get("Nom");
+        + " WHERE ci.IDciu = 18";
 
     int conteo = 0;
   %>

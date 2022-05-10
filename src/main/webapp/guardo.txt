@@ -58,13 +58,15 @@ de categorias
 </html>
 
 
+----------------------------------------------------------------------------------------------------------------------
 
-
-    // TODO: 03/05/2022 cambiar cuando hayamos creado dao y cya
+    request.setCharacterEncoding("UTF-8");
+    Connector connector = new Connector();
+    Connection con = connector.getConnection();
     Statement s = con.createStatement();
     Statement st = con.createStatement();
     Statement stm = con.createStatement();
-    request.setCharacterEncoding("UTF-8");
+
 
     ResultSet ciudad = st.executeQuery("SELECT NomCiu FROM ciudad WHERE IDciu = " + idCiu);
     ciudad.next();
@@ -76,8 +78,46 @@ de categorias
     ResultSet numActividades = stm.executeQuery("SELECT COUNT(*) AS total FROM actividad where IDciu = " + idCiu);
     numActividades.next();
 
+<%
+    request.setCharacterEncoding("UTF-8");
+    Connector connector = new Connector();
+    Connection con = connector.getConnection();
+    Statement s = con.createStatement();
+    Statement st = con.createStatement();
+    Statement stm = con.createStatement();
+    int idciu = Integer.parseInt(request.getParameter("IDciu"));
+    String ciudad = (s.executeQuery("SELECT NomCiu FROM ciudad WHERE IDciu = " + idciu).toString());
+    //ciudad.next();
+    ResultSet sub = st.executeQuery("SELECT DISTINCT(NomCat) FROM categoria c "
+        + " INNER JOIN subcategoria s ON c.IDcat = s.IDcat"
+        + " INNER JOIN actividad a ON s.IDsub = a.IDsub"
+        + " INNER JOIN ciudad ci ON a.IDciu = ci.IDciu"
+        + " WHERE a.IDciu = " + 18);
+
+    //ResultSet t = stm.executeQuery("SELECT COUNT(*) AS total FROM actividad where IDciu = " + idciu);
+    //String total = t.getString("total");
+
+  %>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+ <%USUARIOS ... NO CONECTA
+    Connector connector = new Connector();
+    Connection con = connector.getConnection();
+    ResultSet listado = new UsuarioManagerImpl().TodosUsuarios(con);
+    //listado.next();
+  %>
 
 
 

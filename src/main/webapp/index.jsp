@@ -1,6 +1,3 @@
-<%--
-    Author     : Natalia Castillo
---%>
 <%@page contentType="text/html; charser=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -20,18 +17,15 @@
   <!-- CSS mio -->
   <link rel="stylesheet" href="style/style.css">
   <!-- javascript para reutilizar navbar -->
-  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 <!-- fondo que lleva a iniciar sesion -->
 <div class="container-flex position-relative">
   <img src="./images/marco.png" class="img-flex vh-100 w-100" role="button" alt="marco">
-  <a  href="ciudades.jsp">
- </div>
+  <a href="ciudades.jsp">
 
 <div id="wrapper" class="container-fluid position-absolute top-50 start-50 translate-middle">
-
-
   <!-- Card de bienvenida -->
   <div id="entrada" class="container align-items-center mt-5 w-50">
     <div class="card text-center">
@@ -42,23 +36,23 @@
         <i class="fa fa-pagelines fs-5" aria-hidden="true"></i>
         <h5 class="card-title">Disfruta de tu tiempo libre</h5>
         <p class="card-text">Registrate y obtén descuentos !!!!probando github 2022!!!</p>
-
       </div>
     </div>
   </div>
-
   <!-- imagen de entrada -->
   <div class="container">
     <div class="container-flex">
       <div class="row">
         <div class="col-lg-6 m-auto">
-          <img src="./imagenes/rose.png"
-               class="img-fluid  mt-5" alt="flores moradas">
+          <img src="images/cenefaVerde.png"
+               class="img-fluid  mt-5" alt="cenefa verde">
         </div>
       </div>
     </div>
   </div>
 </div><!-- fin wrapper -->
+  </a>
+</div>
 
 <!-- JS bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

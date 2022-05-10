@@ -5,12 +5,11 @@
 <%-- 
     Author     : Natalia Castillo
 --%>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%
   Class.forName("com.mysql.jdbc.Driver");
   Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyectovn","root", "Proyecto.VN");
   Statement s = conexion.createStatement();
-  
-  request.setCharacterEncoding("UTF-8");
   
   String usuario = request.getParameter("usuario");
   String password = request.getParameter("password");
@@ -37,7 +36,7 @@
   }
     
 } else {
-    session.setAttribute("error", "Usuario o contrase�a incorrecto");
+    session.setAttribute("error", "Usuario o contraseña incorrecto");
     response.sendRedirect("formularioLogin.jsp");
   }
 %>

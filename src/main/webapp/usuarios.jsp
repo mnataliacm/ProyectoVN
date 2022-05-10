@@ -1,7 +1,11 @@
+
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Connection"%>
 <%@ page import="java.sql.DriverManager" %>
 <%@ page import="java.sql.Statement" %>
+<%@ page import="edu.fpdual.proyectovn.jdbc.connector.Connector" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="edu.fpdual.proyectovn.jdbc.manager.implement.UsuarioManagerImpl" %>
 
 <%--
     Author     : Natalia Castillo
@@ -32,7 +36,7 @@
   <!--Barra navegacion-->
   <div id="nav-placeholder"></div>
   <%-- enlace con la base de datos --%>
-  <% // TODO: 01/05/2022 añadir control login que solo admin pueda ver e intentar conectar con JDBC
+  <%// TODO: 01/05/2022 añadir control login que solo admin pueda ver e intentar conectar con JDBC
     Class.forName("com.mysql.cj.jdbc.Driver");
     Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyectovn","root", "Proyecto.VN");
     request.setCharacterEncoding("UTF-8");
@@ -40,6 +44,13 @@
 
     ResultSet listado = s.executeQuery("SELECT * FROM usuario");
   %>
+  <%--
+    Connector connector = new Connector();
+    Connection con = connector.getConnection();
+    ResultSet listado = new UsuarioManagerImpl().TodosUsuarios(con);
+
+  --%>
+
 
   <!-- listado de plantas     table-responsive-stack table  table-success table-striped -->
   <div class="container mt-3 text-center">

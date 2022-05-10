@@ -2,6 +2,9 @@
 <%@page import="java.sql.Connection"%>
 <%@ page import="java.sql.DriverManager" %>
 <%@ page import="java.sql.Statement" %>
+<%@ page import="edu.fpdual.proyectovn.jdbc.connector.Connector" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="edu.fpdual.proyectovn.jdbc.manager.implement.UsuarioManagerImpl" %>
 
 <%--
     Author     : Natalia Castillo
@@ -32,44 +35,49 @@
   <!--Barra navegacion-->
   <div id="nav-placeholder"></div>
   <%-- enlace con la base de datos --%>
-  <% // TODO: 01/05/2022 añadir control login que solo admin pueda ver e intentar conectar con JDBC
+  <%// TODO: 01/05/2022 añadir control login que solo admin pueda ver e intentar conectar con JDBC
     Class.forName("com.mysql.cj.jdbc.Driver");
     Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyectovn","root", "Proyecto.VN");
     request.setCharacterEncoding("UTF-8");
     Statement s = con.createStatement();
 
-    ResultSet listado = s.executeQuery("SELECT * FROM usuario");
+    ResultSet listado = s.executeQuery("SELECT * FROM empresa");
   %>
+  <%--
+    Connector connector = new Connector();
+    Connection con = connector.getConnection();
+    ResultSet listado = new UsuarioManagerImpl().TodosUsuarios(con);
+
+  --%>
+
 
   <!-- listado de plantas     table-responsive-stack table  table-success table-striped -->
   <div class="container mt-3 text-center">
     <div class=" panel panel-light">
-      <h2 class="panel-heading text-center bg-verde">BASE DE DATOS DE USUARIOS</h2>
+      <h2 class="panel-heading text-center bg-verde">BASE DE DATOS DE EMPRESAS</h2>
       <table class="table table-striped table-verde ">
-        <tr class="table-dark"><th>ID</th><th>Usuario</th><th>Contraseña</th><th>Email</th><th>Ciudad</th></tr>
+        <tr class="table-dark"><th>ID</th><th>Empresa</th><th>Ciudad</th></tr>
           <%
              while (listado.next()) {
         %>
         <tr>
-          <td><%=listado.getInt("IDusu")%></td>
-          <td><%=listado.getString("NomUsu")%></td>
-          <td><%=listado.getString("ApeUsu")%></td>
-          <td><%=listado.getString("Email")%></td>
+          <td><%=listado.getInt("IDemp")%></td>
+          <td><%=listado.getString("NomEmp")%></td>
+          <td><%=listado.getString("IDciu")%></td>
           <!-- modificar -->
           <td>
             <div class="row">
               <div class="col-4 ">
                 <form method="post" action="user.jsp">
-                  <input type="hidden" name="NomUsu" value="<%=listado.getString("NomUsu") %>">
-                  <input type="hidden" name="ApeUsu" value="<%=listado.getString("ApeUsu") %>">
-                  <input type="hidden" name="Email" value="<%=listado.getString("Email") %>">
+                  <input type="hidden" name="NomEmp" value="<%=listado.getString("NomEmp") %>">
+                  <input type="hidden" name="IDciu" value="<%=listado.getString("IDciu") %>">
                   <button type="submit"  class="btn btn-info"><span class="bi bi-pencil-fill"> </span> Editar</button>
                 </form>
               </div>
               <%--borrar--%>
               <div class="col-4">
                 <form method="post" action="index.jsp">
-                  <input type="hidden" name="IDusu" value="<%=listado.getString("IDusu") %>"/>
+                  <input type="hidden" name="IDemp" value="<%=listado.getString("IDemp") %>"/>
                   <button type="submit" class="btn btn-danger"><span class="bi bi-trash-fill"></span> Borrar</button>
                 </form>
               </div>

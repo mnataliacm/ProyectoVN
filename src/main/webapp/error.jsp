@@ -22,7 +22,7 @@
     <!-- ICONOS bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <!-- CSS mio -->
-    <link rel="stylesheet" href="./estilo/style.css">
+    <link rel="stylesheet" href="style/style.css">
   </head>
   <body>
 
@@ -69,7 +69,7 @@
       <div class="container-flex">
         <div class="row">
           <div class="col-lg-6 m-auto">
-            <img src="./imagenes/rosa.png" 
+            <img src="images/rosa.png"
                  class="img-fluid  mt-5" alt="flores moradas">
           </div>
         </div>
@@ -82,7 +82,7 @@
           integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
           crossorigin="anonymous"></script>  
   <!-- JS mio -->
-  <script src="./js/javascript.js"></script> 
+  <script src="javascript/javascript.js"></script>
 
 </body>
 </html>

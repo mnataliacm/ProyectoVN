@@ -22,7 +22,7 @@
     <!-- ICONOS bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <!-- CSS mio -->
-    <link rel="stylesheet" href="./estilo/style.css">
+    <link rel="stylesheet" href="style/style.css">
     <!-- javascript para reutilizar navbar -->
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
   </head>
@@ -45,7 +45,7 @@
         <!-- ventana de logging -->	
         <div class="row  d-flex align-items-center  justify-content-center ">
           <div class="col-xs-12 col-md-8 col-lg-4 bg-verde border border-primary">
-            <img src="./imagenes/tulips.png" class="img w-100 h-25" alt="tulipanes rojos">
+            <img src="images/icons/logovntrans.png" class="img w-100 h-25" alt="tulipanes rojos">
             <h2 class="bg-tostado text-center py-3">Iniciar sesión</h2>
 
             <form method="post" action="login.jsp" class="p-3">
@@ -94,6 +94,6 @@
           integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
           crossorigin="anonymous"></script>  
   <!-- JS mio -->
-  <script src="./js/javascript.js"></script> 
+  <script src="javascript/javascript.js"></script>
 </body>
 </html>
