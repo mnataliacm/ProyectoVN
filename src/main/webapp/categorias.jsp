@@ -40,14 +40,17 @@
     // TODO: 03/05/2022 cambiar cuando hayamos creado dao y cya
     Statement s = con.createStatement();
     Statement st = con.createStatement();
-    Statement stm = con.createStatement();
-    request.setCharacterEncoding("UTF-8");
-    ResultSet sub = s.executeQuery("SELECT DISTINCT NomCat FROM categoria c "
+
+    ResultSet sub = s.executeQuery("SELECT DISTINCT NomCat, Imagen FROM categoria c "
         + " INNER JOIN subcategoria s ON c.IDcat = s.IDcat"
         + " INNER JOIN actividad a ON s.IDsub = a.IDsub"
         + " INNER JOIN ciudad ci ON a.IDciu = ci.IDciu"
         + " WHERE a.IDciu = " + idciu);
-    ResultSet numActividades = stm.executeQuery("SELECT COUNT(*) AS total FROM actividad where IDciu = " + idciu);
+    ResultSet numActividades = st.executeQuery("SELECT COUNT(a.IDact) AS total, c.IDcat FROM actividad a"
+        + " INNER JOIN subcategoria s ON a.IDsub = s.IDsub"
+        + " INNER JOIN categoria c ON s.IDcat = c.IDcat"
+        + " WHERE IDciu = " + idciu
+        + " GROUP BY IDcat");
     numActividades.next();
   %>
 
@@ -59,16 +62,18 @@
       %>
       <div class="col m-auto p-2">
         <div class="card">
-          <img src="images/icons/icon-museum-25.png" class="card-img-top img-responsive" alt="icono museo\">
+          <img src="<%=sub.getString("Imagen")%>" class="card-img-top m-auto" alt="icono museo\">
           <div class="card-body">
             <h5 class="card-title"><%=sub.getString("NomCat") %>
             </h5>
             <p class="card-text"></p>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">Ciudad elegida: <%=idciu %></li>
-            <li class="list-group-item">Nombre ciudad: <% %></li>
-            <li class="list-group-item"> Num actividades: <%=numActividades.getString("total")%>
+            <li class="list-group-item">Ciudad elegida: <%=idciu %>
+            </li>
+            <li class="list-group-item">Nombre ciudad: <%--=ciudad.getString("NomCiu")--%>
+            </li>
+            <li class="list-group-item"> Num actividades: <%=numActividades.getInt("total")%>
             </li>
           </ul>
           <div class="card-body">
@@ -78,10 +83,37 @@
       </div>
       <%
         }
+        // TODO: 10/05/2022 A ver si averiguamos por que falla el if...
+        if (numActividades.getRow() == 0) {
+      %>
+      <div class="col m-auto p-2">
+        <div class="card">
+          <img src="static/images/icons/bored.png" class="card-img-top img-responsive" alt="falla icono aburrido">
+          <i class="bi bi-emoji-frown display-1"></i>
+          <div class="card-body">
+            <h5 class="card-title">Lo sentimos, no hay actividades
+            </h5>
+            <p class="card-text"></p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Ciudad elegida: <%=idciu %>
+            </li>
+            <li class="list-group-item">Nombre ciudad: <%--=ciudad.getString("NomCiu")--%>
+            </li>
+            <li class="list-group-item"> Num actividades: <%=numActividades.getRow()%>
+            </li>
+          </ul>
+          <div class="card-body">
+            <a href="ciudades.jsp" class="card-link">Volver para elegir otra ciudad </a>
+          </div>
+        </div>
+      </div>
+      <%
+        }
       %>
 
-  </div> <!-- fin del row -->
-</div> <!-- fin container -->
+    </div> <!-- fin del row -->
+  </div> <!-- fin container -->
 </div> <!-- fin wrapper -->
 <!-- JS bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

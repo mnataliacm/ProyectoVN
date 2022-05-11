@@ -2,6 +2,8 @@
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
+<%@ page import="edu.fpdual.proyectovn.jdbc.manager.implement.UsuarioManagerImpl" %>
+<%@ page import="edu.fpdual.proyectovn.jdbc.connector.Connector" %>
 <%-- 
     Author     : Natalia Castillo
 --%>
@@ -36,24 +38,26 @@
           <div class="col-xs-12 col-md-8 col-lg-6 bg-verde border border-primary">
             <img src="images/icons/logovntrans.png" class="img w-50 h-25" alt="logo vn">
             <h2 class="bg-tostado text-center py-3">Nuevo usuario</h2>
-            <form method="post" action="registrarUsuario.jsp" class="row g-4 p-3 bg-verde">
+            <form method="post" action="<%out.print("comprobar");%>" class="row g-4 p-3 bg-verde">
               <div class="col-md-5">
-                <label for="usuario" class="form-label">Usuario</label> 
-                <input type="text" name="usuario" class="form-control" id="usuario" required>
+                <label for="nombre" class="form-label">Usuario</label>
+                <input type="text" name="nombre" class="form-control" id="nombre" required>
               </div>
+
+
               <div class="col-md-2"></div>
               <div class="col-md-5">
                 <label for="password" class="form-label">Contraseña</label> 
                 <input type="password" name="password" class="form-control" id="password" required>
-                <div id="identificadorlHelp" class="form-text">Entre 4 y 10 caracteres [(a-z)(0-9)]</div>
+                <div id="identificadorlHelp1" class="form-text">Entre 4 y 10 caracteres [(a-z)(0-9)]</div>
               </div>
               <div class="col-md-12">
                 <label for="email" class="form-label">Email</label> <input
                   type="email" name="email" class="form-control" id="email" placeholder="nombre@correo.com" required>
-                <div id="identificadorlHelp" class="form-text">Nunca compartiremos tu email, ni ningún otro dato con nadie.</div>
+                <div id="identificadorlHelp2" class="form-text">Nunca compartiremos tu email, ni ningún otro dato con nadie.</div>
               </div>
               <div class="col-md-5">
-                <label for="usuario" class="form-label">Móvil</label>
+                <label for="movil" class="form-label">Móvil</label>
                 <input type="text" name="movil" class="form-control" id="movil" required>
               </div>
               <div class="col-12 text-center">
@@ -73,3 +77,20 @@
   <script src="javascript/javascript.js"></script>
   </body>
 </html>
+<%
+  request.setCharacterEncoding("UTF-8");
+  Connector connector = new Connector();
+  Connection con = connector.getConnection();
+  String nombre = request.getParameter("nombre");
+  String apellido = request.getParameter("apellido");
+  String password = request.getParameter("password");
+  String email = request.getParameter("email");
+  String movil = request.getParameter("movil");
+  String comprobar = "";
+  boolean nuevo = new UsuarioManagerImpl().NuevoUsuario(con, nombre, apellido, password, email, movil);
+  if (nuevo) {
+    comprobar = "ok.jsp";
+  } else {
+    comprobar = "error.jsp";
+  }
+%>

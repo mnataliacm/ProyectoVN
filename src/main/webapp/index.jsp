@@ -17,12 +17,12 @@
   <!-- CSS mio -->
   <link rel="stylesheet" href="style/style.css">
   <!-- javascript para reutilizar navbar -->
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery.min.js"></script>
 </head>
 <body>
 <!-- fondo que lleva a iniciar sesion -->
 <div class="container-flex position-relative">
-  <img src="./images/marco.png" class="img-flex vh-100 w-100" role="button" alt="marco">
+  <img src="images/marco.png" class="img-flex vh-100 w-100" role="button" alt="marco">
   <a href="ciudades.jsp">
 
 <div id="wrapper" class="container-fluid position-absolute top-50 start-50 translate-middle">
