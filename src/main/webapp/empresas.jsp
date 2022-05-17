@@ -55,8 +55,20 @@
   <div class="container mt-3 text-center">
     <div class=" panel panel-light">
       <h2 class="panel-heading text-center bg-verde">BASE DE DATOS DE EMPRESAS</h2>
+
+      <table class="table table-striped table-verde">
+        <form method="post" action ="nuevaActividad.jsp">
+          <tr  class="table-warning">
+            <td><input type="text" name="NomEmp" size="100" placeholder="Nombre empresa" required></td>
+            <td><input type="text" name="Ciudad" size="10" placeholder="Ciudad" required></td>
+            <td><button type="submit" value="Añadir" class="btn btn-primary"><span class="bi bi-plus-circle"></span> </button></td>
+          </tr>
+        </form>
+      </table>
+
       <table class="table table-striped table-verde ">
         <tr class="table-dark"><th>ID</th><th>Empresa</th><th>Ciudad</th></tr>
+
           <%
              while (listado.next()) {
         %>

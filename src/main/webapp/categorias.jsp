@@ -35,6 +35,7 @@
     Connector connector = new Connector();
     Connection con = connector.getConnection();
     int idciu = Integer.parseInt(request.getParameter("IDciu"));
+    session.setAttribute("idciu", idciu);
     //ResultSet ciudad = new CiudadManagerImpl().CiudadPorID(con, idciu);
     //ciudad.next();
     // TODO: 03/05/2022 cambiar cuando hayamos creado dao y cya
@@ -54,7 +55,7 @@
     numActividades.next();
   %>
 
-  <div id="container" class="container-flex text-center m-auto p-3 d-flex h-auto">
+  <div id="container" class="container-flex text-center m-auto p-3 d-flex">
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-auto m-auto">
 
       <%
@@ -62,7 +63,7 @@
       %>
       <div class="col m-auto p-2">
         <div class="card">
-          <img src="<%=sub.getString("Imagen")%>" class="card-img-top m-auto" alt="icono museo\">
+          <img src="<%=sub.getString("Imagen")%>" class="card-img-top m-auto w-25 h-25" alt="icono categoría\">
           <div class="card-body">
             <h5 class="card-title"><%=sub.getString("NomCat") %>
             </h5>
@@ -70,8 +71,6 @@
           </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">Ciudad elegida: <%=idciu %>
-            </li>
-            <li class="list-group-item">Nombre ciudad: <%--=ciudad.getString("NomCiu")--%>
             </li>
             <li class="list-group-item"> Num actividades: <%=numActividades.getInt("total")%>
             </li>
@@ -110,8 +109,9 @@
       </div>
       <%
         }
+        String idcat = request.getParameter("IDcat");
+        session.setAttribute("idcat", idcat);
       %>
-
     </div> <!-- fin del row -->
   </div> <!-- fin container -->
 </div> <!-- fin wrapper -->

@@ -44,7 +44,6 @@
                 <input type="text" name="nombre" class="form-control" id="nombre" required>
               </div>
 
-
               <div class="col-md-2"></div>
               <div class="col-md-5">
                 <label for="password" class="form-label">Contraseña</label> 

@@ -2,6 +2,12 @@
 $(function(){
   $('#nav-placeholder').load('navbar.jsp');
 });
+//replicar conexión
+$(function(){
+  $('#con-conexiondb').load('conexion.jsp');
+});
+
+
 
 //bootstrap modal
 var myModal = document.getElementById('myModal');

@@ -29,4 +29,5 @@ public class Usuario {
     setPass(result.getString("PassUsu"));
     setMovil(result.getString("Movil"));
   }
+
 }

@@ -1,21 +1,20 @@
 package edu.fpdual.proyectovn.jdbc.manager;
 
-import java.sql.Connection;
+import edu.fpdual.proyectovn.jdbc.dao.Usuario;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.util.LinkedList;
 
 public interface UsuarioManager {
 
   /**
    * Busca todos los usuarios
-   * @param con conexión a BBDD
    * @return {@code Set} of {@code Usuario}
    */
-  public ResultSet TodosUsuarios(Connection con) throws SQLException;
+  public LinkedList<Usuario> TodosUsuarios() throws SQLException;
   /**
    * Modifica datos de un usuario
-   * @param con conexión a BBDD
    * @param nom nuevo/mismo nombre
    * @param ape nuevo/mismo apellido
    * @param email nuevo/mismo email
@@ -24,10 +23,9 @@ public interface UsuarioManager {
    * @return {@code Set} of {@code Usuario}
    */
 
-  public boolean NuevoUsuario(Connection con, String nom, String ape, String email, String pass, String movil);
+  public boolean NuevoUsuario(String nom, String ape, String email, String pass, String movil);
   /**
    * Modifica datos de un usuario
-   * @param con conexión a BBDD
    * @param nom nuevo/mismo nombre
    * @param ape nuevo/mismo apellido
    * @param email nuevo/mismo email
@@ -36,20 +34,18 @@ public interface UsuarioManager {
    * @param id ID del usuario a modificar
    * @return {@code boolean} of {@code Usuario}
    */
-  public boolean ModificarUsuario(Connection con, String nom, String ape, String email, String pass, String movil, int id);
+  public boolean ModificarUsuario(String nom, String ape, String email, String pass, String movil, int id);
   /**
    * Borra un usuario
-   * @param con conexión a BBDD
    * @param id ID del usuario a borrar
    * @return {@code Set} of {@code Usuario}
    */
-  public boolean BorraUsuario(Connection con, int id);
+  public boolean BorraUsuario(int id);
   /**
    * Comprobar si usuario existe
-   * @param con conexión a BBDD
    * @param id ID del usuario a buscar
    * @return {@code Set} of {@code Usuario}
    */
-  public boolean BuscarUserPorID(Connection con, int id);
+  public boolean BuscarUserPorID(int id);
 
 }
