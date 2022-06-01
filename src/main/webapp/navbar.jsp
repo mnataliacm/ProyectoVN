@@ -32,6 +32,12 @@
         <li class="nav-item">
           <a class="nav-link active" href="actividades.jsp">Actividades</a>
         </li>
+            <li class="nav-item">
+                <a class="nav-link" href="reservas.jsp">Reservas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="empresas.jsp">Empresa</a>
+            </li>
         </ul>
       <form class="form-inline">
          <a class="btn-lg btn-turquesa text-white p-2" href="formularioLogin.jsp">Iniciar sesión</a>
@@ -50,6 +56,12 @@
           <li class="nav-item">
             <a class="nav-link" href="actividades.jsp">Actividades</a>
           </li>
+            <li class="nav-item">
+                <a class="nav-link" href="reservas.jsp">Reservas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="empresas.jsp">Empresa</a>
+            </li>
         </ul>
         <form class="form-inline">
          <pre>Bienvenid@, <strong><%=session.getAttribute("usuario") %></strong>. (<a href="logout.jsp">Salir</a>)</pre>
@@ -68,6 +80,9 @@
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="actividades.jsp">Actividades</a>
         </li>
+            <li class="nav-item">
+                <a class="nav-link" href="empresas.jsp">Empresa</a>
+            </li>
         </ul>
        <%-- <form class="d-flex" action="buscar.jsp">
         <input class="form-control me-2" type="search" name="buscar" placeholder="nombre de actividad" aria-label="search" required>
