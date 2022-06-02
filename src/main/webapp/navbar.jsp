@@ -83,6 +83,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="empresas.jsp">Empresa</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="reservas.jsp">Reservas</a>
+            </li>
         </ul>
        <%-- <form class="d-flex" action="buscar.jsp">
         <input class="form-control me-2" type="search" name="buscar" placeholder="nombre de actividad" aria-label="search" required>

@@ -14,13 +14,14 @@ import java.sql.SQLException;
 @ToString
 
 public class Reservas {
-
+    private int idres;
     private int idUsu;
     private int idAct;
     private Date fecha;
     private String hora;
 
     public Reservas(ResultSet result) throws SQLException {
+        setIdres(result.getInt("IDres"));
         setIdUsu(result.getInt("IDusu"));
         setIdAct(result.getInt("IDact"));
         setFecha(result.getDate("Fecha"));

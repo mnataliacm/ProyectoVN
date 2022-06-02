@@ -45,14 +45,12 @@
         <tr class="table-dark">
           <th>ID</th>
           <th>Nombre</th>
-          <th>Ciudad</th>
         </tr>
 
         <form method="post" action="empresas.jsp">
           <tr class="table-warning">
             <td><input type="text" name="IDemp" size="5" placeholder="<%=total + 1%>" disabled></td>
             <td><input type="text" name="NomEmp" size="60" placeholder="Nombre empresa" required></td>
-            <td><input type="text" name="Ciudad" size="10" placeholder="Ciudad" required></td>
             <td>
               <button type="submit" value="Añadir" class="btn btn-primary"><span class="bi bi-plus-circle"></span>
               </button>
@@ -65,7 +63,6 @@
         <tr class="table-dark">
           <th>ID</th>
           <th>Empresa</th>
-          <th>Ciudad</th>
         </tr>
 
         <%
