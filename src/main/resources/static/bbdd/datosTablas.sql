@@ -29,7 +29,7 @@ INSERT INTO empresa values
 (4, 'Cervantes'),
 (5, 'EscapeRoom Solete');
 
-/*SET FOREIGN_KEY_CHECKS = 0;*/  /*descomentar y usar si da error, es la solución que encontré ya que me daba fallo de integridad con la FK de empresa*/
+SET FOREIGN_KEY_CHECKS = 0;
 INSERT INTO actividad VALUES
 (1, 1, 18, 'El rey leon', 2, 'J-D de 18:00 a 23:00', 'https://www.tupalacio.org/events/categoria/palacio-de-congresos/'),
 (2, 1, 29, 'El rey leon', 4, null, 'https://www.teatrocervantes.com/'),
