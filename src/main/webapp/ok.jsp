@@ -1,8 +1,4 @@
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.Statement"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.Connection"%>
-<%-- 
+<%--
     Author     : Natalia Castillo
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Confirmación</title>
-    <link rel="shortcut icon" href="images/icons/favicon2.png" type="image/x-icon">
+    <link rel="shortcut icon" href="images/icons/favicon2.ico" type="image/x-icon">
     <!-- CSS bootstrap -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
@@ -47,8 +43,8 @@
     }      
   %>
 
-  <div id="wraper" class="container-flex vh-100 pt-5"> 
-    <div class="container w-25 text-center">
+  <div id="wraper" class="container-flex vh-100 pt-5">
+    <div class="container w-25 text-center m-auto">
       <div class="row">        
         <div class="col">
           <div class="card bg-verde">
@@ -70,8 +66,8 @@
       <div class="container-flex">
         <div class="row">
           <div class="col-lg-6 m-auto">
-            <img src="./imagenes/rosa.png" 
-                 class="img-fluid  mt-5" alt="flores moradas">
+            <img src="images/"
+                 class="img-fluid  mt-5" alt="">
           </div>
         </div>
       </div>

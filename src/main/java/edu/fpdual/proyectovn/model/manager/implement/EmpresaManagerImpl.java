@@ -27,15 +27,12 @@ public class EmpresaManagerImpl implements EmpresaManager {
     }
   }
 
-
-
-  public ResultSet modificarEmpresa (Connection con, String nomEmp, Integer idCiu, Integer idEmp ) throws SQLException {
+  public ResultSet modificarEmpresa (Connection con, String nomEmp, Integer idCiu, Integer idEmp ) {
     try (Statement s = con.createStatement()) {
-      ResultSet result = s.executeQuery("UPDATE empresa SET "
+
+      return s.executeQuery("UPDATE empresa SET "
           + "NomEmp = '" + nomEmp
           + "' WHERE IDemp = " + idEmp);
-
-      return result ;
     } catch (SQLException e) {
       e.printStackTrace();
 
@@ -43,4 +40,36 @@ public class EmpresaManagerImpl implements EmpresaManager {
     }
 
   }
+
+
+  @Override
+  public boolean crear(Connection con, Empresa entity) {
+    return false;
+  }
+
+  @Override
+  public boolean modificar(Connection con, Empresa entity) {
+    return false;
+  }
+
+  @Override
+  public boolean borrar(Connection con, Integer id) {
+    return false;
+  }
+
+  @Override
+  public Empresa buscaId(Connection con, Integer id) {
+    return null;
+  }
+
+  @Override
+  public boolean buscaEmail(Connection con, String email) {
+    return false;
+  }
+
+  @Override
+  public int total(Connection con) {
+    return 0;
+  }
+
 }

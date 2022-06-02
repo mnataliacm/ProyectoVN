@@ -19,7 +19,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Confirmación</title>
-  <link rel="shortcut icon" href="images/icons/favicon2.png" type="image/x-icon">
+  <link rel="shortcut icon" href="images/icons/favicon2.ico" type="image/x-icon">
   <!-- CSS bootstrap -->
   <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"

@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.Set;
 
 
-public interface EmpresaManager {
+public interface EmpresaManager extends Manager<Empresa, Integer> {
 
     /**
      * Busca todos las empresas
@@ -23,5 +23,5 @@ public interface EmpresaManager {
      * @param con conexión a BBDD
      * @return {@code Set} of {@code Usuario}
      */
-    public ResultSet modificarEmpresa(Connection con, String nomEmp, Integer idCiu, Integer idEmp) throws SQLException;
+    ResultSet modificarEmpresa(Connection con, String nomEmp, Integer idCiu, Integer idEmp) throws SQLException;
 }

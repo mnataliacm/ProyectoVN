@@ -33,13 +33,13 @@
   <!--Barra navegacion-->
   <div id="nav-placeholder"></div>
   <%
-    int total;
+    int total = 0;
     if ((session.getAttribute("usuario") != null) && (session.getAttribute("usuario").equals("Admin"))) {
       UsuarioController usuarioController = new UsuarioController(new UsuarioManagerImpl());
       try {
         total = usuarioController.todosUsuarios().size();
       } catch (SQLException | ClassNotFoundException e) {
-        throw new RuntimeException(e);
+        e.printStackTrace();
       }
   %>
   <div class="container mt-3 text-center">
@@ -57,6 +57,7 @@
         </tr>
         <%
           try {
+
             for (Usuario u : usuarioController.todosUsuarios()) {
           %>
           <tr>

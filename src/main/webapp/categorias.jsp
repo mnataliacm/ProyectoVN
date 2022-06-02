@@ -2,6 +2,8 @@
 <%@page import="java.sql.Connection" %>
 <%@ page import="java.sql.Statement" %>
 <%@ page import="edu.fpdual.proyectovn.model.connector.Connector" %>
+<%@ page import="edu.fpdual.proyectovn.model.manager.implement.CiudadManagerImpl" %>
+<%@ page import="edu.fpdual.proyectovn.controller.CiudadController" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
@@ -30,14 +32,12 @@
   <div id="nav-placeholder"></div>
   <%-- enlace con la base de datos --%>
   <%
-    request.setCharacterEncoding("UTF-8");
     Connector connector = new Connector();
     Connection con = connector.getConnection();
-    int idciu = Integer.parseInt(request.getParameter("IDciu"));
+    CiudadController ciudadController = new CiudadController(new CiudadManagerImpl());
+    Integer idciu = Integer.parseInt(request.getParameter("IDciu"));
     session.setAttribute("ciudad", idciu);
-
-    //ResultSet ciudad = new CiudadManagerImpl().CiudadPorID(con, idciu);
-    //ciudad.next();
+    //String ciudad = ciudadController.nombreCiudad(idciu);
     // TODO: 03/05/2022 cambiar cuando hayamos creado dao y cya
     Statement s = con.createStatement();
     Statement st = con.createStatement();
@@ -75,7 +75,7 @@
             <p class="card-text"></p>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">Ciudad elegida: <%=sub.getString("NomCiu") %>
+            <li class="list-group-item">Ciudad elegida: <% %><%=sub.getString("NomCiu") %>
             </li>
             <li class="list-group-item"> Num actividades: <%=numActividades.getInt("total")%>
             </li>
@@ -95,16 +95,10 @@
         <div class="card pt-3 pb-2">
           <i class="bi bi-emoji-frown display-1"></i>
           <div class="card-body">
-            <h5 class="card-title">Lo sentimos, no hay actividades
+            <h5 class="card-title">Lo sentimos, en esta ciudad no hay actividades disponibles en este momento
             </h5>
             <p class="card-text"></p>
           </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Ciudad elegida: <%=sub.getString("NomCiu") %>
-            </li>
-            <li class="list-group-item"> Num actividades: <%=numActividades.getInt("total")%>
-            </li>
-          </ul>
           <div class="card-body">
             <a href="ciudades.jsp" class="card-link">Volver para elegir otra ciudad </a>
           </div>

@@ -1,9 +1,6 @@
 package edu.fpdual.proyectovn.model.manager.implement;
 
-
-import edu.fpdual.proyectovn.model.dao.Empresa;
 import edu.fpdual.proyectovn.model.dao.Reservas;
-import edu.fpdual.proyectovn.model.manager.EmpresaManager;
 import edu.fpdual.proyectovn.model.manager.ReservasManager;
 
 import java.sql.*;
@@ -30,6 +27,35 @@ public class ReservasManagerImpl implements ReservasManager {
     }
 
 
+    @Override
+    public boolean crear(Connection con, Reservas entity) {
+        return false;
+    }
+
+    @Override
+    public boolean modificar(Connection con, Reservas entity) {
+        return false;
+    }
+
+    @Override
+    public boolean borrar(Connection con, Integer id) {
+        return false;
+    }
+
+    @Override
+    public Reservas buscaId(Connection con, Integer id) {
+        return null;
+    }
+
+    @Override
+    public boolean buscaEmail(Connection con, String email) {
+        return false;
+    }
+
+    @Override
+    public int total(Connection con) {
+        return 0;
+    }
 
 
 }

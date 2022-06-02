@@ -1,25 +1,18 @@
 package edu.fpdual.proyectovn.model.manager;
 
-import edu.fpdual.proyectovn.model.dao.Empresa;
 import edu.fpdual.proyectovn.model.dao.Reservas;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Set;
 
-public interface ReservasManager {
+public interface ReservasManager extends Manager<Reservas, Integer> {
 
     /**
-     * Busca todos las empresas
+     * Busca todas las reservas
      *
      * @param con conexión a BBDD
-     * @return {@code Set} of {@code Usuario}
+     * @return {@code Set} of {@code Reserva}
      */
     Set<Reservas> todos(Connection con);
-    /**
-     * Busca todos las reservas
-     * @param con conexión a BBDD
-     * @return {@code Set} of {@code Usuario}
-     */
+
 }

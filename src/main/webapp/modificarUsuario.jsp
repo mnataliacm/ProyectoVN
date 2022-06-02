@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Modificar Usuarios</title>
-    <link rel="shortcut icon" href="images/icons/favicon2.png" type="image/x-icon">
+    <link rel="shortcut icon" href="images/icons/favicon2.ico" type="image/x-icon">
     <!-- CSS bootstrap -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
@@ -32,26 +32,29 @@
                 <img src="images/cenefaVerde.png" class="img w-50" alt="tulipanes rojos">
                 <h2 class="bg-tostado text-center py-3">Editar usuario</h2>
               </div>
+              <%
+                // TODO: 01/06/2022  quito archivo e intento ejecutar el update : grabarUserModificado.jsp
+              %>
               <form method="post" action="grabarUserModificado.jsp">
                 <div class="card-body bg-naranja">
                   <div class="row">
                     <div class="col">
-                      <label>ID </label><input type="text" size="5" name="IDusu" value="<%= request.getParameter("IDusu") %>" readonly>
+                      <label>ID <input type="text" size="5" name="IDusu" value="<%= request.getParameter("IDusu") %>" readonly></label>
                     </div>
                     <div class="col"> 
-                      <label>Nombre</label><input type="text" size="25" name="NomUsu" value="<%= request.getParameter("NomUsu") %>" required>
+                      <label>Nombre <input type="text" size="25" name="NomUsu" value="<%= request.getParameter("NomUsu") %>" required></label>
                     </div>
                     <div class="col"> 
-                      <label>Apellido</label><input type="text" size="25" name="ApeUsu" value="<%= request.getParameter("ApeUsu") %>" required >
+                      <label>Apellido <input type="text" size="25" name="ApeUsu" value="<%= request.getParameter("ApeUsu") %>" required ></label>
                     </div>           
                     <div class="col"> 
-                      <label>Contraseña</label><input type="text" size="25" name="PassUsu" value="<%= request.getParameter("PassUsu") %>" required >
+                      <label>Contraseña <input type="text" size="25" name="PassUsu" value="<%= request.getParameter("PassUsu") %>" required ></label>
                     </div>
                     <div class="col">
-                      <label>Email</label><input type="email" size="35" name="Email" value="<%= request.getParameter("Email") %>" required >
+                      <label>Email <input type="email" size="35" name="Email" value="<%= request.getParameter("Email") %>" required ></label>
                     </div>
                     <div class="col">
-                      <label>Móvil</label><input type="text" size="35" name="Movil" value="<%= request.getParameter("Movil") %>" required >
+                      <label>Móvil <input type="text" size="35" name="Movil" value="<%= request.getParameter("Movil") %>" required ></label>
                     </div>
                   </div>
                 </div>
