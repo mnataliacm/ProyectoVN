@@ -2,10 +2,6 @@
 $(function(){
   $('#nav-placeholder').load('navbar.jsp');
 });
-//replicar conexión
-$(function(){
-  $('#con-conexiondb').load('conexion.jsp');
-});
 
 
 
