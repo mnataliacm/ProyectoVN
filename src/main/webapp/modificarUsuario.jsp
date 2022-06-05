@@ -54,7 +54,7 @@
                       <label>Móvil <input type="text" size="35" name="Movil" value="<%= request.getParameter("Movil") %>" required ></label>
                     </div>
                     <div class="col">
-                      <label>Ciudad <input type="text" size="25" name="IDciu" value="<%= request.getParameter("IDciu") %>" required ></label>
+                      <label>Ciudad <input type="text" size="25" name="Ciudad" value="<%= request.getParameter("Ciudad") %>" required ></label>
                     </div>
                   </div>
                 </div>

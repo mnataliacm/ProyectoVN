@@ -4,6 +4,7 @@ import lombok.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 @Setter
 @Getter
 @ToString
@@ -20,6 +21,7 @@ public class Usuario {
   private String email;
   private String movil;
   private  int ciu;
+
   public Usuario(ResultSet result) {
     try {
       this.id = result.getInt("IDusu");
@@ -33,13 +35,4 @@ public class Usuario {
       e.printStackTrace();
     }
   }
-
-  public Usuario(String nom, String ape, String pass, String email, String movil, int ciu) {
-  }
-
-  // TODO: 30/05/2022 por que falla?
- /* @Override
-  public int compareTo(Usuario o) {
-    return this.id.compareTo(o.getId());
-  }*/
 }

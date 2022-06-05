@@ -92,7 +92,7 @@
                   <input type="hidden" name="PassUsu" value="<%=u.getPass() %>">
                   <input type="hidden" name="Email" value="<%=u.getEmail() %>">
                   <input type="hidden" name="Movil" value="<%=u.getMovil() %>">
-                  <input type="hidden" name="ciudad" value="<%=u.getCiu() %>">
+                  <input type="hidden" name="Ciudad" value="<%=u.getCiu() %>">
                   <button type="submit" class="btn btn-info"><span class="bi bi-pencil-fill"> </span> Editar</button>
                 </form>
               </div>
