@@ -5,6 +5,7 @@ import lombok.*;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 
 @Getter
 @Setter
@@ -14,18 +15,16 @@ import java.sql.SQLException;
 @ToString
 
 public class Reservas {
-    private int idres;
+    private int idRes;
     private int idUsu;
     private int idAct;
+    private Time hora;
     private Date fecha;
-    private String hora;
-
     public Reservas(ResultSet result) throws SQLException {
-        setIdres(result.getInt("IDres"));
+        setIdRes(result.getInt("IDres"));
         setIdUsu(result.getInt("IDusu"));
         setIdAct(result.getInt("IDact"));
+        setHora(result.getTime("Hora"));
         setFecha(result.getDate("Fecha"));
-        setHora(result.getString("Hora"));
     }
-
 }

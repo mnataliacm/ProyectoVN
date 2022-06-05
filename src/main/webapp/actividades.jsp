@@ -1,15 +1,18 @@
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="edu.fpdual.proyectovn.model.connector.Connector" %>
 <%@ page import="edu.fpdual.proyectovn.controller.ActividadController" %>
 <%@ page import="edu.fpdual.proyectovn.model.manager.implement.ActividadManagerImpl" %>
 <%@ page import="edu.fpdual.proyectovn.model.dao.Actividad" %>
 <%@ page import="java.sql.SQLException" %>
-
+<%@ page import="java.util.Set" %>
+<%@ page import="java.util.Comparator" %>
+<%@ page import="java.util.stream.Collectors" %>
+<%@ page import="java.util.LinkedHashSet" %>
 <%--
     Author     : Natalia Castillo
     Author     : Verónica González
 --%>
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,9 +61,12 @@
           <th>Información</th>
         </tr>
           <%
-          try {
-            for (Actividad a : actividadController.todasActividades()) {
-        %>
+            try {
+              Set<Actividad> listado = actividadController.todasActividades()
+                  .stream().sorted(Comparator.comparing(Actividad::getIdact))
+                  .collect(Collectors.toCollection(LinkedHashSet::new));
+              for (Actividad a : listado) {
+          %>
         <tr>
           <td><%=a.getIdact()%>
           </td>
@@ -87,7 +93,7 @@
             <div class=" panel panel-light">
               <h2 class="panel-heading text-center bg-verde"> LISTADO DE ACTIVIDADES (<%=total %>)</h2>
               <table class="table table-striped table-verde">
-                <form method="post" action="nuevaActividad.jsp">
+                <form method="post" action="#">
                   <tr class="table-warning">
                     <td><label>
                       <input type="text" name="IDact" size="3" placeholder="<%=total + 1%>" readonly>
@@ -129,7 +135,10 @@
                 </tr>
                 <%
                   try {
-                    for (Actividad a : actividadController.todasActividades()) {
+                    Set<Actividad> listado = actividadController.todasActividades()
+                        .stream().sorted(Comparator.comparing(Actividad::getIdact))
+                        .collect(Collectors.toCollection(LinkedHashSet::new));
+                    for (Actividad a : listado) {
                 %>
                 <tr>
                   <td><%=a.getIdact()%>
@@ -150,7 +159,7 @@
                   <td>
                     <div class="row">
                       <div class="col-6 ">
-                        <form method="post" action="registrarUsuario.jsp">
+                        <form method="post" action="#">
                           <input type="hidden" name="IDact" value="<%=a.getIdact() %>">
                           <input type="hidden" name="IDcat" value="<%=a.getIdcat() %>">
                           <input type="hidden" name="IDciu" value="<%=a.getIdciu() %>">
@@ -164,7 +173,7 @@
                       </div>
                       <%--borrar--%>
                       <div class="col-6">
-                        <form method="post" action="actividades.jsp">
+                        <form method="post" action="#">
                           <input type="hidden" name="IDact" value="<%=a.getIdact() %>"/>
                           <button type="submit" class="btn btn-danger"><span class="bi bi-trash-fill"></span> Borrar
                           </button>
@@ -172,27 +181,12 @@
                       </div>
                   </td>
                 </tr>
-
                 <%
                     }
                   } catch (SQLException | ClassNotFoundException e) {
                     throw new RuntimeException(e);
                   }
                 } else if (session.getAttribute("usuario") != null) {
-                  try {
-                    Connection con = new Connector().getConnection();
-                  } catch (ClassNotFoundException | SQLException e) {
-                    throw new RuntimeException(e);
-                  }
-                  //int idciu = (int) session.getAttribute("ciudad");
-                  //int idcat = (int) session.getAttribute("categoria");
-                  //Set<Actividad> actividadSet = new ActividadManagerImpl().actividadesPorCiudad(con, idciu, idcat);
-                  //actividadSet.add((Actividad) actividadSet);
-                  try {
-                    total = actividadController.todasActividades().size();
-                  } catch (SQLException | ClassNotFoundException e) {
-                    throw new RuntimeException(e);
-                  }
                 %>
                 <div class="container mt-3 text-center">
                   <div class=" panel panel-light">
@@ -208,9 +202,12 @@
                         <th>Información</th>
                       </tr>
                         <%
-                  try {
-                    for (Actividad a : actividadController.todasActividades()) {
-                %>
+                        try {
+                          Set<Actividad> listado = actividadController.todasActividades()
+                              .stream().sorted(Comparator.comparing(Actividad::getIdact))
+                              .collect(Collectors.toCollection(LinkedHashSet::new));
+                          for (Actividad a : listado) {
+                        %>
                       <tr>
                         <td><%=a.getIdact()%>
                         </td>

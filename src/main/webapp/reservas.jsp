@@ -58,7 +58,7 @@
             for (Reservas e : reservaController.todasReservas()) {
         %>
         <tr>
-          <td><%=e.getIdres()%>
+          <td><%=e.getIdRes()%>
           </td>
           <td><%=e.getIdUsu()%>
           </td>

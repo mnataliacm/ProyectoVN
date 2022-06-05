@@ -1,13 +1,16 @@
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ page import="edu.fpdual.proyectovn.model.manager.implement.UsuarioManagerImpl" %>
 <%@ page import="edu.fpdual.proyectovn.model.dao.Usuario" %>
 <%@ page import="edu.fpdual.proyectovn.controller.UsuarioController" %>
 <%@ page import="java.sql.SQLException" %>
-
+<%@ page import="java.util.Set" %>
+<%@ page import="java.util.Comparator" %>
+<%@ page import="java.util.stream.Collectors" %>
+<%@ page import="java.util.LinkedHashSet" %>
 <%--
     Author     : Natalia Castillo
     Author     : Verónica González
 --%>
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,56 +59,54 @@
           <th>Ciudad</th>
         </tr>
         <%
-          try {
-
-            for (Usuario u : usuarioController.todosUsuarios()) {
-          %>
-          <tr>
-            <td><%=u.getId()%>
-            </td>
-            <td><%=u.getNom()%>
-            </td>
-            <td><%=u.getApe()%>
-            </td>
-            <td><%=u.getPass()%>
-            </td>
-            <td><%=u.getEmail()%>
-            </td>
-            <td><%=u.getMovil()%>
-            </td>
-            <td><%=u.getCiu()%>
-            </td>
-            <!-- modificar -->
-            <td>
-              <div class="row">
-                <div class="col-6 ">
-                  <form method="post" action="modificarUsuario.jsp">
-                    <input type="hidden" name="IDusu" value="<%=u.getId() %>">
-                    <input type="hidden" name="NomUsu" value="<%=u.getNom() %>">
-                    <input type="hidden" name="ApeUsu" value="<%=u.getApe() %>">
-                    <input type="hidden" name="PassUsu" value="<%=u.getPass() %>">
-                    <input type="hidden" name="Email" value="<%=u.getEmail() %>">
-                    <input type="hidden" name="Movil" value="<%=u.getMovil() %>">
-                    <input type="hidden" name="ciudad" value="<%=u.getCiu() %>">
-                    <button type="submit" class="btn btn-info"><span class="bi bi-pencil-fill"> </span> Editar</button>
-                  </form>
-                </div>
-                <%--borrar--%>
-                <div class="col-6">
-                  <form method="post" action="borrarUsuario.jsp">
-                    <input type="hidden" name="IDusu" value="<%=u.getId() %>"/>
-                    <button type="submit" class="btn btn-danger"><span class="bi bi-trash-fill"></span> Borrar</button>
-                  </form>
-                </div>
+          Set<Usuario> listado = usuarioController.todosUsuarios()
+              .stream().sorted(Comparator.comparing(Usuario::getId))
+              .collect(Collectors.toCollection(LinkedHashSet::new));
+          for (Usuario u : listado) {
+        %>
+        <tr>
+          <td><%=u.getId()%>
+          </td>
+          <td><%=u.getNom()%>
+          </td>
+          <td><%=u.getApe()%>
+          </td>
+          <td><%=u.getPass()%>
+          </td>
+          <td><%=u.getEmail()%>
+          </td>
+          <td><%=u.getMovil()%>
+          </td>
+          <td><%=u.getCiu()%>
+          </td>
+          <!-- modificar -->
+          <td>
+            <div class="row">
+              <div class="col-6 ">
+                <form method="post" action="modificarUsuario.jsp">
+                  <input type="hidden" name="IDusu" value="<%=u.getId() %>">
+                  <input type="hidden" name="NomUsu" value="<%=u.getNom() %>">
+                  <input type="hidden" name="ApeUsu" value="<%=u.getApe() %>">
+                  <input type="hidden" name="PassUsu" value="<%=u.getPass() %>">
+                  <input type="hidden" name="Email" value="<%=u.getEmail() %>">
+                  <input type="hidden" name="Movil" value="<%=u.getMovil() %>">
+                  <input type="hidden" name="ciudad" value="<%=u.getCiu() %>">
+                  <button type="submit" class="btn btn-info"><span class="bi bi-pencil-fill"> </span> Editar</button>
+                </form>
               </div>
-            </td>
-          </tr>
-          <%
-              }
-            } catch (SQLException | ClassNotFoundException e) {
-              throw new RuntimeException(e);
+              <%--borrar--%>
+              <div class="col-6">
+                <form method="post" action="borrarUsuario.jsp">
+                  <input type="hidden" name="IDusu" value="<%=u.getId() %>"/>
+                  <button type="submit" class="btn btn-danger"><span class="bi bi-trash-fill"></span> Borrar</button>
+                </form>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <%
             }
-            } else {
+          } else {
             response.sendRedirect("index.jsp");
           }
         %>

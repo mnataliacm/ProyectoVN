@@ -17,12 +17,9 @@ public class UsuarioController {
     Connection con = new Connector().getConnection();
     Set<Usuario> usuarioSet = usuarioManager.todos(con);
     for (Usuario u : usuarioSet) {
-
       u.setNom(u.getNom().toUpperCase().charAt(0) + u.getNom().substring(1).toLowerCase());
       u.setApe(u.getApe().toUpperCase().charAt(0) + u.getApe().substring(1).toLowerCase());
-
     }
     return usuarioSet;
   }
-
 }

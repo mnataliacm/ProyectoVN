@@ -1,13 +1,16 @@
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ page import="edu.fpdual.proyectovn.model.manager.implement.EmpresaManagerImpl" %>
 <%@ page import="edu.fpdual.proyectovn.controller.EmpresaController" %>
 <%@ page import="edu.fpdual.proyectovn.model.dao.Empresa" %>
 <%@ page import="java.sql.SQLException" %>
-
+<%@ page import="java.util.Set" %>
+<%@ page import="java.util.Comparator" %>
+<%@ page import="java.util.stream.Collectors" %>
+<%@ page import="java.util.LinkedHashSet" %>
 <%--
     Author     : Natalia Castillo
     Author     : Verónica González
 --%>
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +38,12 @@
   <%
     if ((session.getAttribute("usuario") != null) && (session.getAttribute("usuario").equals("Admin"))) {
       EmpresaController empresaController = new EmpresaController(new EmpresaManagerImpl());
-      int total = empresaController.todasEmpresas().size();
+      int total = 0;
+      try {
+        total = empresaController.todasEmpresas().size();
+      } catch (SQLException | ClassNotFoundException e) {
+        throw new RuntimeException(e);
+      }
   %>
   <!-- listado de plantas     table-responsive-stack table  table-success table-striped -->
   <div class="container mt-3 text-center">
@@ -66,7 +74,10 @@
         </tr>
 
         <%
-          for (Empresa e : empresaController.todasEmpresas()) {
+          Set<Empresa> listado = empresaController.todasEmpresas()
+              .stream().sorted(Comparator.comparing(Empresa::getId))
+              .collect(Collectors.toCollection(LinkedHashSet::new));
+          for (Empresa e : listado) {
         %>
         <tr>
           <td><%=e.getId()%>
