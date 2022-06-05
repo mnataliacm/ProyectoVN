@@ -1,8 +1,7 @@
-
-<%-- 
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
+<%--
     Author     : Natalia Castillo
 --%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -22,27 +21,7 @@
     <link rel="stylesheet" href="style/style.css">
   </head>
   <body>
-
-  <%  
-    String user = (String) session.getAttribute("usuario");
-    String enlace = "index.jsp";
-    String mensaje = "";    
-
-     if (session.getAttribute("usuario") != null) {
-      if ((user.equals("Admin"))) {
-        enlace = "usuarios.jsp";
-      } else if (user.equals("Colaborador")) {
-          enlace = "buscadorColab.jsp";
-      } else {
-          enlace = "buscador.jsp";
-      }    
-    } else {
-        session.setAttribute("error", "No tienes sesión iniciada");
-        response.sendRedirect("formularioLogin.jsp");
-    }      
-  %>
-
-  <div id="wraper" class="container-flex vh-100 pt-5"> 
+   <div id="wrapper" class="container-flex vh-100 pt-5">
     <div class="container w-25 text-center">
       <div class="row">        
         <div class="col">
@@ -51,11 +30,10 @@
             <div class="card-body">          
               <h3><i class="bi bi-x-circle text-danger fs-1"></i></h3>
               <p> Hubo un error, compruebe datos.</p>
-              <p><%=mensaje %> </p>
-              <p><%= session.getAttribute("planta") %> </p>
+              <p><%=session.getAttribute("mensaje") %> </p>
             </div>  
             <div class="card-footer">
-              <a href="<%=enlace %>" class="btn-lg btn-danger" role="button">Aceptar</a>
+              <a href="<%=session.getAttribute("enlace") %>" class="btn-lg btn-danger" role="button">Aceptar</a>
             </div>
           </div>
         </div>
@@ -73,13 +51,11 @@
       </div>
     </div>        
   </div> <!-- fin del wrapper -->
-
   <!-- JS bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
           integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
           crossorigin="anonymous"></script>  
   <!-- JS mio -->
   <script src="javascript/javascript.js"></script>
-
 </body>
 </html>

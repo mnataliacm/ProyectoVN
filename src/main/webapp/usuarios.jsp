@@ -38,8 +38,9 @@
   <%
     int total = 0;
     if ((session.getAttribute("usuario") != null) && (session.getAttribute("usuario").equals("Admin"))) {
-      UsuarioController usuarioController = new UsuarioController(new UsuarioManagerImpl());
+      UsuarioController usuarioController = null;
       try {
+        usuarioController = new UsuarioController(new UsuarioManagerImpl());
         total = usuarioController.todosUsuarios().size();
       } catch (SQLException | ClassNotFoundException e) {
         e.printStackTrace();
@@ -59,6 +60,7 @@
           <th>Ciudad</th>
         </tr>
         <%
+          assert usuarioController != null;
           Set<Usuario> listado = usuarioController.todosUsuarios()
               .stream().sorted(Comparator.comparing(Usuario::getId))
               .collect(Collectors.toCollection(LinkedHashSet::new));

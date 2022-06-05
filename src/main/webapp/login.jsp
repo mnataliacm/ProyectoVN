@@ -1,9 +1,9 @@
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="edu.fpdual.proyectovn.model.connector.Connector" %>
 <%-- 
     Author     : Natalia Castillo
 --%>
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%
   Connection con;
   try {

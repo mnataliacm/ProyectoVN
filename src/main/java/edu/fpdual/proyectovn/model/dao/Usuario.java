@@ -34,6 +34,9 @@ public class Usuario {
     }
   }
 
+  public Usuario(String nom, String ape, String pass, String email, String movil, int ciu) {
+  }
+
   // TODO: 30/05/2022 por que falla?
  /* @Override
   public int compareTo(Usuario o) {

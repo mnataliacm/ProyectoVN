@@ -1,3 +1,4 @@
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ page import="edu.fpdual.proyectovn.model.connector.Connector" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="edu.fpdual.proyectovn.model.dao.Reservas" %>
@@ -6,7 +7,6 @@
 <%-- 
     Author     : Natalia Castillo
 --%>
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,50 +28,27 @@
   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 <body class="bg-success">
-<div id="wraper" class="container-fluid">
-
-  <!--Barra navegacion-->
+<div id="wrapper" class="container-fluid">
+  <!--Barra navegación-->
   <div id="nav-placeholder"></div>
-
   <%
+    // TODO: 05/06/2022 arreglar 
     Connection con;
-    try {
-      con = new Connector().getConnection();
-    } catch (ClassNotFoundException | SQLException e) {
-      throw new RuntimeException(e);
-    }
     Statement s;
-    try {
-      s = con.createStatement();
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
-    ReservaController reservaController = new ReservaController(new ReservasManagerImpl());
     String nombre = (String) session.getAttribute("usuario");
     String user = nombre.toUpperCase().charAt(0) + nombre.substring(1).toLowerCase();
     Integer id = (Integer) session.getAttribute("idusu");
-    ResultSet info;
+    ReservaController reservaController = new ReservaController(new ReservasManagerImpl());
     try {
+      con = new Connector().getConnection();
+      s = con.createStatement();
+      ResultSet info;
       info = s.executeQuery("SELECT * FROM usuario WHERE NomUsu LIKE ('" + nombre + "')");
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
-    //ResultSet info = (ResultSet) new UsuarioService(new UsuarioManagerImpl()).buscaIdUsuario(id);
-    try {
       info.next();
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
-
-/*    CiudadController ciudadController = new CiudadController(new CiudadManagerImpl());
-    String ciudad;
-    ciudad = ciudadController.nombreCiudad(idciu);*/
-
-
-    if (session.getAttribute("usuario") == null) {
-      session.setAttribute("error", "Debe iniciar sesión para acceder a la página de perfil.");
-      response.sendRedirect("formularioLogin.jsp");
-    }
+        if (session.getAttribute("usuario") == null) {
+          session.setAttribute("error", "Debe iniciar sesión para acceder a la página de perfil.");
+          response.sendRedirect("formularioLogin.jsp");
+        }
   %>
   <div class="container border-danger">
     <div class=" panel mt-5">
@@ -130,7 +107,6 @@
       </table>
     </div>
   </div>
-
   <!-- Modal -->
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
        aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -156,13 +132,11 @@
                     <th>Valoración</th>
                   </tr>
                   <%
-                    try {
-                      try {
                         for (Reservas r : reservaController.todasReservas()) {
                           if (r.getIdUsu() == id) {
                     %>
                     <tr>
-                      <td><%=r.getIdres()%>
+                      <td><%=r.getIdRes()%>
                       </td>
                       <td><%=r.getIdUsu()%>
                       </td>
@@ -176,10 +150,7 @@
                     <%
                           }
                         }
-                      } catch (ClassNotFoundException e) {
-                        throw new RuntimeException(e);
-                      }
-                    } catch (SQLException e) {
+                      } catch (ClassNotFoundException | SQLException e) {
                       throw new RuntimeException(e);
                     }
                   %>
@@ -194,8 +165,7 @@
       </div>
     </div>
   </div> <!-- cierre container lista -->
-</div> <!-- fin wraper -->
-
+</div> <!-- fin wrapper -->
 <!-- JS bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"

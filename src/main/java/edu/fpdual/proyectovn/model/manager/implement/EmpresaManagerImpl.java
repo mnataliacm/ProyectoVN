@@ -46,30 +46,20 @@ public class EmpresaManagerImpl implements EmpresaManager {
   public boolean crear(Connection con, Empresa entity) {
     return false;
   }
-
   @Override
   public boolean modificar(Connection con, Empresa entity) {
     return false;
   }
-
   @Override
   public boolean borrar(Connection con, Integer id) {
     return false;
   }
-
   @Override
   public Empresa buscaId(Connection con, Integer id) {
     return null;
   }
-
   @Override
   public boolean buscaEmail(Connection con, String email) {
     return false;
   }
-
-  @Override
-  public int total(Connection con) {
-    return 0;
-  }
-
 }

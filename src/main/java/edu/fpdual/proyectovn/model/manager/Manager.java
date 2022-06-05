@@ -59,20 +59,5 @@ public interface Manager<T, U> {
    */
   boolean buscaEmail(Connection con, String email);
 
-  /**
-   * Devuelve el total de lineas
-   *
-   * @param con DB connection
-   * @return a {@link int}
-   */
-  int total(Connection con);
-
-  /**
-   * Finds all the entities in the DB based on a list of ids.
-   *
-   * @param con DB connection
-   * @return a {@link Set} of {@link T}
-   */
-  /*Set<T> ordenarId(Connection con) throws SQLException;*/
 }
 

@@ -31,12 +31,10 @@ public class ReservasManagerImpl implements ReservasManager {
     public boolean crear(Connection con, Reservas entity) {
         return false;
     }
-
     @Override
     public boolean modificar(Connection con, Reservas entity) {
         return false;
     }
-
     @Override
     public boolean borrar(Connection con, Integer id) {
         return false;
@@ -51,11 +49,5 @@ public class ReservasManagerImpl implements ReservasManager {
     public boolean buscaEmail(Connection con, String email) {
         return false;
     }
-
-    @Override
-    public int total(Connection con) {
-        return 0;
-    }
-
 
 }

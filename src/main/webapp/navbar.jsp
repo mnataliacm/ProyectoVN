@@ -1,8 +1,8 @@
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%--
     Author     : Natalia Castillo
     Author     : Veronica Gonzalez
 --%>
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <nav class="navbar navbar-expand-md navbar-light bg-naranja sticky-top justify-content-between">
   <div class="container-fluid fs-5">
     <a class="navbar-brand" href="index.jsp"><i

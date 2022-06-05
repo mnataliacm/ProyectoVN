@@ -1,6 +1,5 @@
 package edu.fpdual.proyectovn.model.manager.implement;
 
-
 import edu.fpdual.proyectovn.model.dao.Ciudad;
 import edu.fpdual.proyectovn.model.manager.CiudadManager;
 
@@ -68,6 +67,7 @@ public class CiudadManagerImpl implements CiudadManager {
     }
   }
 
+
   @Override
   public boolean crear(Connection con, Ciudad ciudad) {
     return false;
@@ -80,12 +80,9 @@ public class CiudadManagerImpl implements CiudadManager {
   public boolean borrar(Connection con, Integer id) {
     return false;
   }
-@Override
+  @Override
   public boolean buscaEmail(Connection con, String email) {
     return false;
   }
-  @Override
-  public int total(Connection con) {
-    return 0;
-  }
+
 }

@@ -1,7 +1,7 @@
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%--
     Author     : Natalia Castillo
 --%>
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +32,7 @@
           <img src="images/icons/logovntrans.png" class="img w-50 h-25" alt="logo vn">
         </div>
         <h2 class="bg-tostado text-center py-3">Nuevo usuario</h2>
-        <form method="post" action="#" class="row g-4 p-3 bg-verde">
+        <form method="post" action="registrarUsuario.jsp" class="row g-4 p-3 bg-verde">
           <div class="col-md-5">
             <label for="nombre" class="form-label">Usuario</label>
             <input type="text" name="nombre" class="form-control rounded-pill" id="nombre" required>
@@ -56,7 +56,7 @@
             <label for="email" class="form-label">Email</label> <input
               type="email" name="email" class="form-control rounded-pill" id="email" placeholder="nombre@correo.com"
               required>
-            <div id="identificadorlHelp2" class="form-text">Nunca compartiremos tu email, ni ningún otro dato con
+            <div id="identificationHelp2" class="form-text">Nunca compartiremos tu email, ni ningún otro dato con
               nadie.
             </div>
           </div>
@@ -71,7 +71,6 @@
     </div>        <!-- cierre row -->
   </div>
 </div>    <!-- cierre wraper -->
-
 <!-- JS bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"

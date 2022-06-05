@@ -1,13 +1,12 @@
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ page import="edu.fpdual.proyectovn.controller.ReservaController" %>
 <%@ page import="edu.fpdual.proyectovn.model.manager.implement.ReservasManagerImpl" %>
 <%@ page import="edu.fpdual.proyectovn.model.dao.Reservas" %>
 <%@ page import="java.sql.SQLException" %>
-
 <%--
     Author     : Natalia Castillo
     Author     : Verónica González
 --%>
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>

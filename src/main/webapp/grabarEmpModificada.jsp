@@ -1,14 +1,14 @@
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.DriverManager" %>
 <%@ page import="java.sql.Statement" %>
-<%@ page import="java.sql.SQLException" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: Veronica G.P
   Date: 20/05/2022
   Time: 19:01
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>

@@ -38,27 +38,25 @@
   <%
     if ((session.getAttribute("usuario") != null) && (session.getAttribute("usuario").equals("Admin"))) {
       EmpresaController empresaController = new EmpresaController(new EmpresaManagerImpl());
-      int total = 0;
+      int total;
       try {
         total = empresaController.todasEmpresas().size();
       } catch (SQLException | ClassNotFoundException e) {
         throw new RuntimeException(e);
       }
   %>
-  <!-- listado de plantas     table-responsive-stack table  table-success table-striped -->
   <div class="container mt-3 text-center">
     <div class="panel panel-light">
       <h2 class="panel-heading text-center bg-verde">BASE DE DATOS DE EMPRESAS (<%=total %>)</h2>
       <table class="table table-striped table-verde">
-        <tr class="table-dark">
-          <th>ID</th>
-          <th>Nombre</th>
-        </tr>
-
         <form method="post" action="empresas.jsp">
           <tr class="table-warning">
-            <td><input type="text" name="IDemp" size="5" placeholder="<%=total + 1%>" disabled></td>
-            <td><input type="text" name="NomEmp" size="60" placeholder="Nombre empresa" required></td>
+            <td><label>
+              <input type="text" name="IDemp" size="5" placeholder="<%=total + 1%>" disabled>
+            </label></td>
+            <td><label>
+              <input type="text" name="NomEmp" size="60" placeholder="Nombre empresa" required>
+            </label></td>
             <td>
               <button type="submit" value="Añadir" class="btn btn-primary"><span class="bi bi-plus-circle"></span>
               </button>
@@ -66,17 +64,20 @@
           </tr>
         </form>
       </table>
-
       <table class="table table-striped table-verde ">
         <tr class="table-dark">
           <th>ID</th>
           <th>Empresa</th>
         </tr>
-
         <%
-          Set<Empresa> listado = empresaController.todasEmpresas()
-              .stream().sorted(Comparator.comparing(Empresa::getId))
-              .collect(Collectors.toCollection(LinkedHashSet::new));
+          Set<Empresa> listado;
+          try {
+            listado = empresaController.todasEmpresas()
+                .stream().sorted(Comparator.comparing(Empresa::getId))
+                .collect(Collectors.toCollection(LinkedHashSet::new));
+          } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+          }
           for (Empresa e : listado) {
         %>
         <tr>

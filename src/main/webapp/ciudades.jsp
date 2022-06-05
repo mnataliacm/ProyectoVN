@@ -1,5 +1,8 @@
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
-
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
+<%--
+    Author     : Natalia Castillo
+    Author     : Verónica González
+--%>
 <!DOCTYPE html>
 <html>
 <head>

@@ -1,13 +1,11 @@
 package edu.fpdual.proyectovn.model.manager.implement;
 
-
 import edu.fpdual.proyectovn.model.dao.Usuario;
 import edu.fpdual.proyectovn.model.manager.UsuarioManager;
 
 import java.sql.*;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 public class UsuarioManagerImpl implements UsuarioManager {
 
@@ -26,11 +24,6 @@ public class UsuarioManagerImpl implements UsuarioManager {
       e.printStackTrace();
       return null;
     }
-  }
-
-  public Set<Usuario> ordenarId(Connection con) {
-    return new TreeSet<>(todos(con));
-
   }
 
   @Override
@@ -69,7 +62,7 @@ public class UsuarioManagerImpl implements UsuarioManager {
     //prepare SQL statement
     String sql = "INSERT INTO usuario (NomUsu, ApeUsu, PassUsu, Email, Movil, IDciu) values (?, ?, ?, ?, ?, ?)";
     // Create general statement
-    try (PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+    try (PreparedStatement ps = con.prepareStatement(sql)) {
       //Add Parameters
       ps.setString(1, usuario.getNom());
       ps.setString(2, usuario.getApe());
@@ -79,8 +72,7 @@ public class UsuarioManagerImpl implements UsuarioManager {
       ps.setInt(6, usuario.getCiu());
       // Queries the DB
       int affectedRows = ps.executeUpdate();
-
-      if(affectedRows<=0){
+      if (affectedRows <= 0) {
         return false;
       }
       ResultSet resultSet = ps.getGeneratedKeys();
@@ -133,12 +125,6 @@ public class UsuarioManagerImpl implements UsuarioManager {
       return false;
     }
   }
-
-  @Override
-  public int total(Connection con) {
-    return 0;
-  }
-
 }
 
 

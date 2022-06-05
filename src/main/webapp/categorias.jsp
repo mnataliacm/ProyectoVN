@@ -1,11 +1,14 @@
-<%@page import="java.sql.ResultSet" %>
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ page import="java.sql.ResultSet" %>
 <%@page import="java.sql.Connection" %>
 <%@ page import="java.sql.Statement" %>
 <%@ page import="edu.fpdual.proyectovn.model.connector.Connector" %>
 <%@ page import="edu.fpdual.proyectovn.model.manager.implement.CiudadManagerImpl" %>
 <%@ page import="edu.fpdual.proyectovn.controller.CiudadController" %>
-
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%--
+    Author     : Natalia Castillo
+    Author     : Verónica González
+--%>
 <!DOCTYPE html>
 <html>
 <head>

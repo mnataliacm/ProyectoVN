@@ -1,27 +1,15 @@
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="edu.fpdual.proyectovn.model.connector.Connector" %>
 <%@ page import="java.sql.Statement" %>
 <%@ page import="java.sql.SQLException" %>
-
 <%-- 
     Author     : Natalia Castillo
 --%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <%
   Connection con;
-  try {
-    con = new Connector().getConnection();
-  } catch (ClassNotFoundException | SQLException e) {
-    throw new RuntimeException(e);
-  }
   Statement s;
-  try {
-    s = con.createStatement();
-  } catch (SQLException e) {
-    throw new RuntimeException(e);
-  }
-
+  boolean confirma;
   String editar = "UPDATE usuario SET "
       + " NomUsu = '" + request.getParameter("NomUsu")
       + "', ApeUsu = '" + request.getParameter("ApeUsu")
@@ -29,40 +17,28 @@
       + "', Email = '" + request.getParameter("Email")
       + "', Movil = '" + request.getParameter("Movil")
       + "' WHERE IDusu = " + Integer.parseInt(request.getParameter("IDusu"));
-
-  boolean confirma;
   try {
+    con = new Connector().getConnection();
+    s = con.createStatement();
     confirma = s.execute(editar);
-  } catch (SQLException e) {
+
+  } catch (ClassNotFoundException | SQLException e) {
     throw new RuntimeException(e);
   }
   if (confirma) {
+    session.setAttribute("icono", "<i class=\"bi bi-x-circle text-danger fs-1\"></i>");
+    session.setAttribute("mensaje", "<p>Error, no se ha podido modificar el nuevo usuario</p>");
+    session.setAttribute("enlace", "usuarios.jsp");
+    session.setAttribute("col", "btn-lg btn-danger");
     response.sendRedirect("error.jsp");
   } else {
+    session.setAttribute("icono", "<i class=\"bi bi-check2-circle text-primary fs-1\"></i>");
+    session.setAttribute("mensaje", "<p>Usuario modificado con éxito.</p>");
+    session.setAttribute("enlace", "usuarios.jsp");
+    session.setAttribute("col", "btn-lg btn-primary");
     response.sendRedirect("ok.jsp");
   }
 %>
-
-<%--
-  try {
-    Connection con = new Connector().getConnection();
-    PreparedStatement ps = null;
-    String editar = "UPDATE usuario SET  NomUsu = ?, ApeUsu = ?, PassUsu = ?, Email = ?, Movil = ? WHERE IDusu = ?";
-    assert ps != null;
-    ps.setString(1, request.getParameter("NomUsu"));
-    ps.setString(2, request.getParameter("ApeUsu"));
-    ps.setString(3, request.getParameter("PassUsu"));
-    ps.setString(4, request.getParameter("Email"));
-    ps.setString(5, request.getParameter("Movil"));
-    ps.setInt(6, Integer.parseInt(request.getParameter("IDusu")));
-    ps.executeUpdate(editar);
-    response.sendRedirect("ok.jsp");
-  } catch (ClassNotFoundException | SQLException e) {
-    response.sendRedirect("error.jsp");
-    throw new RuntimeException(e);
-  }
-
---%>
 
 <%--
   UsuarioService usuarioService = new UsuarioService(new UsuarioManagerImpl());
