@@ -59,6 +59,7 @@
     numActividades.next();
     //int idcat = numActividades.getInt("IDcat");
     //session.setAttribute("categoria", idcat);
+
   %>
 
   <div id="container" class="container-flex text-center m-auto p-3 d-flex h-auto">

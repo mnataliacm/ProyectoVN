@@ -32,9 +32,6 @@
                 <img src="images/cenefaVerde.png" class="img w-50" alt="tulipanes rojos">
                 <h2 class="bg-tostado text-center py-3">Editar usuario</h2>
               </div>
-              <%
-                // TODO: 01/06/2022  quito archivo e intento ejecutar el update : grabarUserModificado.jsp
-              %>
               <form method="post" action="grabarUserModificado.jsp">
                 <div class="card-body bg-naranja">
                   <div class="row">
@@ -55,6 +52,9 @@
                     </div>
                     <div class="col">
                       <label>Móvil <input type="text" size="35" name="Movil" value="<%= request.getParameter("Movil") %>" required ></label>
+                    </div>
+                    <div class="col">
+                      <label>Ciudad <input type="text" size="25" name="IDciu" value="<%= request.getParameter("IDciu") %>" required ></label>
                     </div>
                   </div>
                 </div>

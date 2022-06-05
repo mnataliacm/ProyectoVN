@@ -16,7 +16,8 @@
       + "', PassUsu = '" + request.getParameter("PassUsu")
       + "', Email = '" + request.getParameter("Email")
       + "', Movil = '" + request.getParameter("Movil")
-      + "' WHERE IDusu = " + Integer.parseInt(request.getParameter("IDusu"));
+      + "', IDciu = " + request.getParameter("IDciu")
+      + " WHERE IDusu = " + Integer.parseInt(request.getParameter("IDusu"));
   try {
     con = new Connector().getConnection();
     s = con.createStatement();
@@ -25,6 +26,8 @@
   } catch (ClassNotFoundException | SQLException e) {
     throw new RuntimeException(e);
   }
+
+
   if (confirma) {
     session.setAttribute("icono", "<i class=\"bi bi-x-circle text-danger fs-1\"></i>");
     session.setAttribute("mensaje", "<p>Error, no se ha podido modificar el nuevo usuario</p>");
