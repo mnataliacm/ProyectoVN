@@ -60,10 +60,8 @@ public class UsuarioManagerImpl implements UsuarioManager {
   @Override
   public boolean crear(Connection con, Usuario usuario) {
     //prepare SQL statement
-    String sql = "INSERT INTO usuario (NomUsu, ApeUsu, PassUsu, Email, Movil, IDciu) values (?, ?, ?, ?, ?, ?)";
-    // Create general statement
+    String sql = "INSERT INTO usuario (NomUsu, ApeUsu, PassUsu, Email, Movil, IDciu) VALUES (?, ?, ?, ?, ?, ?)";
     try (PreparedStatement ps = con.prepareStatement(sql)) {
-      //Add Parameters
       ps.setString(1, usuario.getNom());
       ps.setString(2, usuario.getApe());
       ps.setString(3, usuario.getPass());
@@ -75,9 +73,6 @@ public class UsuarioManagerImpl implements UsuarioManager {
       if (affectedRows <= 0) {
         return false;
       }
-      ResultSet resultSet = ps.getGeneratedKeys();
-      resultSet.beforeFirst();
-      resultSet.next();
       return true;
     } catch (SQLException e) {
       e.printStackTrace();

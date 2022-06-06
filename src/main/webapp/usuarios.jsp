@@ -1,12 +1,10 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
-<%@ page import="edu.fpdual.proyectovn.model.manager.implement.UsuarioManagerImpl" %>
-<%@ page import="edu.fpdual.proyectovn.model.dao.Usuario" %>
-<%@ page import="edu.fpdual.proyectovn.controller.UsuarioController" %>
-<%@ page import="java.sql.SQLException" %>
+<%@ page import="edu.fpdual.proyectovn.client.dto.Usuario" %>
 <%@ page import="java.util.Set" %>
 <%@ page import="java.util.Comparator" %>
 <%@ page import="java.util.stream.Collectors" %>
 <%@ page import="java.util.LinkedHashSet" %>
+<%@ page import="edu.fpdual.proyectovn.client.UsuarioClient" %>
 <%--
     Author     : Natalia Castillo
     Author     : Verónica González
@@ -36,15 +34,9 @@
   <!--Barra navegacion-->
   <div id="nav-placeholder"></div>
   <%
-    int total = 0;
     if ((session.getAttribute("usuario") != null) && (session.getAttribute("usuario").equals("Admin"))) {
-      UsuarioController usuarioController = null;
-      try {
-        usuarioController = new UsuarioController(new UsuarioManagerImpl());
-        total = usuarioController.todosUsuarios().size();
-      } catch (SQLException | ClassNotFoundException e) {
-        e.printStackTrace();
-      }
+      UsuarioClient usuarioClient = new UsuarioClient();
+      int total = new UsuarioClient().getTodos().size();
   %>
   <div class="container mt-3 text-center">
     <div class=" panel panel-light">
@@ -60,8 +52,7 @@
           <th>Ciudad</th>
         </tr>
         <%
-          assert usuarioController != null;
-          Set<Usuario> listado = usuarioController.todosUsuarios()
+          Set<Usuario> listado = usuarioClient.getTodos()
               .stream().sorted(Comparator.comparing(Usuario::getId))
               .collect(Collectors.toCollection(LinkedHashSet::new));
           for (Usuario u : listado) {
@@ -93,14 +84,18 @@
                   <input type="hidden" name="Email" value="<%=u.getEmail() %>">
                   <input type="hidden" name="Movil" value="<%=u.getMovil() %>">
                   <input type="hidden" name="Ciudad" value="<%=u.getCiu() %>">
-                  <button type="submit" class="btn btn-info"><span class="bi bi-pencil-fill"> </span> Editar</button>
+                  <button type="submit" class="btn btn-info"><span class="bi bi-pencil-fill"> </span>
+                    Editar
+                  </button>
                 </form>
               </div>
               <%--borrar--%>
               <div class="col-6">
                 <form method="post" action="borrarUsuario.jsp">
                   <input type="hidden" name="IDusu" value="<%=u.getId() %>"/>
-                  <button type="submit" class="btn btn-danger"><span class="bi bi-trash-fill"></span> Borrar</button>
+                  <button type="submit" class="btn btn-danger"><span class="bi bi-trash-fill"></span>
+                    Borrar
+                  </button>
                 </form>
               </div>
             </div>

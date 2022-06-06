@@ -1,7 +1,5 @@
-<%@ page import="java.util.List" %>
-<%@ page import="edu.fpdual.proyectovn.enumeration.Ciudad" %>
-<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
+
 <%--
     Author     : Natalia Castillo
 --%>
@@ -64,7 +62,7 @@
             <select class="form-select rounded-pill" aria-label="Default select example" id="ciudad">
               <option selected>Elige tu ciudad</option>
               <%--
-                List<Ciudad> ciudadList = new ArrayList<>() {
+                Set<Ciudad> ciudadSet =  {
                 };
                 for (Ciudad l : ciudadList) {
               --%>

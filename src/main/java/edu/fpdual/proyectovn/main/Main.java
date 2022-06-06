@@ -1,9 +1,6 @@
 package edu.fpdual.proyectovn.main;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
-import edu.fpdual.proyectovn.client.NotificationClient;
-import edu.fpdual.proyectovn.client.UsuarioNotification;
-import edu.fpdual.proyectovn.client.dto.Notification;
+import edu.fpdual.proyectovn.client.UsuarioClient;
 
 import java.io.FileNotFoundException;
 import java.security.NoSuchAlgorithmException;
@@ -12,13 +9,17 @@ import java.sql.SQLException;
 
 public class Main {
 
-  public static void main(String[] args) throws SQLException, ClassNotFoundException, NoSuchAlgorithmException, FileNotFoundException {
-/*
+  public static void main(String[] args) {
+
+    System.out.println(new UsuarioClient().getTodos().size());
+    System.out.println(new UsuarioClient().getTodos());
+    System.out.println(new UsuarioClient().getUsuario(Integer.valueOf(3)));
+
+    /*
     Connector connector = new Connector();
     Connection con = connector.getConnection();
     System.out.println(con.getCatalog());
 */
-
     /*UsuarioController usuarioController = new UsuarioController(new UsuarioManagerImpl());
     System.out.println(usuarioController.todosUsuarios().size());
     System.out.println(usuarioController.todosUsuarios() + "\n");
@@ -44,8 +45,7 @@ public class Main {
         MessageDigest.isEqual(hash.getBytes(), "26056A29E1E3A2E813EE5575A774B9B0".getBytes())
     );
 */
-    //System.out.println(new UsuarioNotification().getUsuario());
-    System.out.println(new UsuarioNotification().getUsuario(String.valueOf(3)));
+
 
     /*System.out.println(new NotificationClient().getNotification("8"));
     System.out.println(new NotificationClient().getNotification("82", ":D"));

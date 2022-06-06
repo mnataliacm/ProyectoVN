@@ -3,29 +3,22 @@
 <%@ page import="edu.fpdual.proyectovn.service.UsuarioService" %>
 <%@ page import="edu.fpdual.proyectovn.model.dao.Usuario" %>
 <%@ page import="java.sql.*" %>
-<%@ page import="edu.fpdual.proyectovn.model.connector.Connector" %>
 <%-- 
     Author     : Natalia Castillo
 --%>
 <%
   UsuarioService usuarioService = new UsuarioService(new UsuarioManagerImpl());
-  int id;
-  try {
-    id = (usuarioService.todosUsuarios().size()) + 1;
-  } catch (SQLException | ClassNotFoundException e) {
-    throw new RuntimeException(e);
-  }
+
   String nom = request.getParameter("nombre");
   String ape = request.getParameter("apellido");
   String pass = request.getParameter("password");
   String email = request.getParameter("email");
   String movil = request.getParameter("movil");
-  int idciu = 0;
+  Integer ciu = Integer.valueOf(request.getParameter("ciudad"));
   boolean nuevo;
   try {
-    Connection con = new Connector().getConnection();
-    Usuario usuario = new Usuario(id, nom, ape, pass, email, movil, idciu);
-    nuevo = new UsuarioManagerImpl().crear(con, usuario);
+    Usuario usuario = new Usuario(nom, ape, pass, email, movil, ciu);
+    nuevo = usuarioService.crearUsuario(usuario);
   } catch (SQLException | ClassNotFoundException e) {
     throw new RuntimeException(e);
   }

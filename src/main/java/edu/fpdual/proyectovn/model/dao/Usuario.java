@@ -20,7 +20,7 @@ public class Usuario {
   private String pass;
   private String email;
   private String movil;
-  private  int ciu;
+  private  Integer ciu;
 
   public Usuario(ResultSet result) {
     try {
@@ -34,5 +34,14 @@ public class Usuario {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+  }
+
+  public Usuario(String nom, String ape, String pass, String email, String movil, Integer ciu) {
+      this.nom = nom;
+      this.ape = ape;
+      this.pass = pass;
+      this.email = email;
+      this.movil = movil;
+      this.ciu = ciu;
   }
 }
