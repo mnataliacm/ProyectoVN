@@ -32,6 +32,7 @@
   <!--Barra navegacion-->
   <div id="nav-placeholder"></div>
   <%
+    // TODO: 07/06/2022 Pendiente de arreglar
     int total;
     if ((session.getAttribute("usuario") != null) && (session.getAttribute("usuario").equals("Admin"))) {
       ReservaController reservaController = new ReservaController(new ReservasManagerImpl());

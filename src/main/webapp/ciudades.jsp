@@ -1,3 +1,9 @@
+<%@ page import="edu.fpdual.proyectovn.client.dto.Ciudad" %>
+<%@ page import="java.util.Set" %>
+<%@ page import="edu.fpdual.proyectovn.client.CiudadClient" %>
+<%@ page import="java.util.Comparator" %>
+<%@ page import="java.util.stream.Collectors" %>
+<%@ page import="java.util.LinkedHashSet" %>
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%--
     Author     : Natalia Castillo
@@ -33,46 +39,33 @@
         <h2 class="panel-heading text-center bg-turquesa">Selecciona una ciudad</h2>
       </div>
       <form method="post" action="categorias.jsp">
-        <%
-          session.setAttribute("ciudad", request.getParameter("IDciu"));
-        %>
         <div class="row justify-content-around align-items-center gy-5 row-cols-lg-4 mt-5">
+          <%
+            CiudadClient ciudadClient = new CiudadClient();
+            Set<Ciudad> ciudads = ciudadClient.todos()
+                .stream().sorted(Comparator.comparing(Ciudad::getId))
+                .collect(Collectors.toCollection(LinkedHashSet::new));
+            session.setAttribute("ciudad", request.getParameter("IDciu"));
+            for (Ciudad c : ciudads) {
+          %>
           <div class="col">
-            <button class="btn btn-primary btn-lg" type="submit" name="IDciu" value="21">Huelva</button>
+            <button class="btn btn-primary btn-lg" type="submit" name="IDciu" value="<%=c.getId()%>"><%=c.getNom()%>>
+            </button>
           </div>
-          <div class="col">
-            <button class="btn btn-primary btn-lg" type="submit" name="IDciu" value="41">Sevilla</button>
-          </div>
-          <div class="col">
-            <button class="btn btn-primary btn-lg" type="submit" name="IDciu" value="14">Córdoba</button>
-          </div>
-          <div class="col">
-            <button class="btn btn-primary btn-lg" type="submit" name="IDciu" value="23">Jaén</button>
-          </div>
-          <div class="col">
-            <button class="btn btn-primary btn-lg" type="submit" name="IDciu" value="11">Cádiz</button>
-          </div>
-          <div class="col">
-            <button class="btn btn-primary btn-lg" type="submit" name="IDciu" value="29">Málaga</button>
-          </div>
-          <div class="col">
-            <button class="btn btn-primary btn-lg" type="submit" name="IDciu" value="18">Granada</button>
-          </div>
-          <div class="col">
-            <button class="btn btn-primary btn-lg" type="submit" name="IDciu" value="4">Almeria</button>
-          </div>
+          <%
+            }
+          %>
         </div> <!-- fin row -->
       </form>
       <form method="post" action="actividades.jsp">
         <div class="container-fluid w-50 h-50 m-auto text-center ">
-        <div class="panel w-75 m-auto pt-5 mt-5">
-          <h2 class="panel-heading text-center bg-turquesa">Ver todas</h2>
-          <button class="btn btn-primary btn-lg" type="submit" name="IDciu" value="0">Todas</button>
-        </div>
+          <div class="panel w-75 m-auto pt-5 mt-5">
+            <h2 class="panel-heading text-center bg-turquesa">Ver todas</h2>
+            <button class="btn btn-primary btn-lg" type="submit" name="IDciu" value="0">Todas</button>
+          </div>
         </div>
       </form>
     </div> <!-- fin container 2 -->
-
   </div> <!--  fin container 1 -->
 </div> <!-- fin wrapper img-->
 <!-- JS bootstrap -->

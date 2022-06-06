@@ -1,6 +1,6 @@
 package edu.fpdual.proyectovn.client;
 
-import edu.fpdual.proyectovn.client.dto.Usuario;
+import edu.fpdual.proyectovn.client.dto.Ciudad;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.WebTarget;
@@ -10,44 +10,43 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class UsuarioClient {
+public class CiudadClient {
   private final WebTarget webTarget;
 
-  public UsuarioClient() {
+  public CiudadClient() {
     Client client = ClientBuilder.newClient();
     this.webTarget = client.target("http://localhost:8081/WebServiceVN/api/");
   }
 
-  public Set<Usuario> todos() {
-    return new HashSet<Usuario>(Arrays.asList(webTarget.path("usuario")
+  public Set<Ciudad> todos() {
+    return new HashSet<Ciudad>(Arrays.asList(webTarget.path("ciudad")
         .request(MediaType.APPLICATION_JSON)
-        .get(Usuario[].class)));
+        .get(Ciudad[].class)));
+  }
+  public String buscaPorID(Integer id) {
+    return webTarget.path("ciudad/" + id)
+        .request(MediaType.APPLICATION_JSON)
+        .get(Ciudad.class).getNom();
   }
 
-  public Usuario buscaPorID(Integer id) {
-    return webTarget.path("usuario/" + id)
+  public boolean crear(Ciudad ciudad) {
+    webTarget.path("ciudad")
         .request(MediaType.APPLICATION_JSON)
-        .get(Usuario.class);
-  }
-
-  public boolean crear(Usuario usuario) {
-    webTarget.path("usuario")
-        .request(MediaType.APPLICATION_JSON)
-        .get(Usuario.class);
+        .get(Ciudad.class);
     return true;
   }
 
-  public boolean modificar(Usuario usuario) {
-    webTarget.path("usuario")
+  public boolean modificar(Ciudad ciudad) {
+    webTarget.path("ciudad")
         .request(MediaType.APPLICATION_JSON)
-        .get(Usuario.class);
+        .get(Ciudad.class);
     return true;
   }
 
   public boolean borrar(Integer id) {
-    webTarget.path("usuario/" + id)
+    webTarget.path("ciudad/" + id)
         .request(MediaType.APPLICATION_JSON)
-        .get(Usuario.class);
+        .get(Ciudad.class);
     return true;
   }
 }

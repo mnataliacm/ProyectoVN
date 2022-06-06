@@ -34,9 +34,10 @@
   <!--Barra navegacion-->
   <div id="nav-placeholder"></div>
   <%
+    // TODO: 07/06/2022 Falla String ciudad y total. Arreglar
     if ((session.getAttribute("usuario") != null) && (session.getAttribute("usuario").equals("Admin"))) {
       UsuarioClient usuarioClient = new UsuarioClient();
-      int total = new UsuarioClient().getTodos().size();
+      int total = new UsuarioClient().todos().size();
   %>
   <div class="container mt-3 text-center">
     <div class=" panel panel-light">
@@ -52,10 +53,10 @@
           <th>Ciudad</th>
         </tr>
         <%
-          Set<Usuario> listado = usuarioClient.getTodos()
+          Set<Usuario> usuarios = usuarioClient.todos()
               .stream().sorted(Comparator.comparing(Usuario::getId))
               .collect(Collectors.toCollection(LinkedHashSet::new));
-          for (Usuario u : listado) {
+          for (Usuario u : usuarios) {
         %>
         <tr>
           <td><%=u.getId()%>

@@ -36,6 +36,7 @@
   <!--Barra navegacion-->
   <div id="nav-placeholder"></div>
   <%
+    // TODO: 07/06/2022 Pendiente de arreglar
     if ((session.getAttribute("usuario") != null) && (session.getAttribute("usuario").equals("Admin"))) {
       EmpresaController empresaController = new EmpresaController(new EmpresaManagerImpl());
       int total;

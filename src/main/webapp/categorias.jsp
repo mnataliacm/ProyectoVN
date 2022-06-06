@@ -1,10 +1,8 @@
+<%@ page import="edu.fpdual.proyectovn.client.CategoriaClient" %>
+<%@ page import="edu.fpdual.proyectovn.client.dto.Categoria" %>
+<%@ page import="java.util.Set" %>
+<%@ page import="edu.fpdual.proyectovn.client.CiudadClient" %>
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
-<%@ page import="java.sql.ResultSet" %>
-<%@page import="java.sql.Connection" %>
-<%@ page import="java.sql.Statement" %>
-<%@ page import="edu.fpdual.proyectovn.model.connector.Connector" %>
-<%@ page import="edu.fpdual.proyectovn.model.manager.implement.CiudadManagerImpl" %>
-<%@ page import="edu.fpdual.proyectovn.controller.CiudadController" %>
 <%--
     Author     : Natalia Castillo
     Author     : Verónica González
@@ -33,67 +31,42 @@
 <div id="wrapper" class="container-flex">
   <!--Barra navegacion-->
   <div id="nav-placeholder"></div>
-  <%-- enlace con la base de datos --%>
-  <%
-    Connector connector = new Connector();
-    Connection con = connector.getConnection();
-    CiudadController ciudadController = new CiudadController(new CiudadManagerImpl());
-    Integer idciu = Integer.parseInt(request.getParameter("IDciu"));
-    session.setAttribute("ciudad", idciu);
-    //String ciudad = ciudadController.nombreCiudad(idciu);
-    // TODO: 03/05/2022 cambiar cuando hayamos creado dao y cya
-    Statement s = con.createStatement();
-    Statement st = con.createStatement();
-
-    ResultSet sub = s.executeQuery("SELECT DISTINCT(c.NomCat), c.Imagen, ci.NomCiu, a.IDcat, a.IDciu FROM categoria c "
-        + " INNER JOIN actividad a ON c.IDcat = a.IDcat"
-        + " INNER JOIN ciudad ci ON a.IDciu = ci.IDciu"
-        + " WHERE a.IDciu = " + idciu
-        + " AND a.IDcat = c.IDcat"
-        + " GROUP BY IDcat, IDciu");
-    ResultSet numActividades = st.executeQuery("SELECT COUNT(a.IDact) AS total, a.IDcat FROM actividad a"
-        + " INNER JOIN categoria c ON a.IDcat = c.IDcat"
-        + " WHERE a.IDciu = " + idciu
-        + " AND a.IDcat = c.IDcat"
-        + " GROUP BY a.IDcat");
-    numActividades.next();
-    //int idcat = numActividades.getInt("IDcat");
-    //session.setAttribute("categoria", idcat);
-
-  %>
-
   <div id="container" class="container-flex text-center m-auto p-3 d-flex h-auto">
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-auto m-auto">
-
-      <%
-        while (sub.next()) {
-      %>
+  <%
+    CategoriaClient categoriaClient = new CategoriaClient();
+    CiudadClient ciudadClient = new CiudadClient();
+    Integer idciu = Integer.parseInt(request.getParameter("IDciu"));
+    session.setAttribute("ciudad", idciu);
+    String ciudad = ciudadClient.buscaPorID(idciu);
+    Set<Categoria> categorias = categoriaClient.catConAct(idciu);
+    for (Categoria c : categorias) {
+  %>
       <div class="col m-auto p-2">
         <div class="card">
           <div class="container w-50 h-25">
-          <img src="<%=sub.getString("Imagen")%>" class="card-img-top m-auto" alt="icono museo\">
+          <img src="<%=c.getImagen()%>" class="card-img-top m-auto" alt="icono museo\">
         </div>
           <div class="card-body">
-            <h5 class="card-title"><%=sub.getString("NomCat") %>
+            <h5 class="card-title"><%=c.getNom() %>
             </h5>
             <p class="card-text"></p>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">Ciudad elegida: <% %><%=sub.getString("NomCiu") %>
+            <li class="list-group-item">Ciudad elegida: <%=ciudad %>
             </li>
-            <li class="list-group-item"> Num actividades: <%=numActividades.getInt("total")%>
+            <li class="list-group-item"> Num actividades: <%=categorias.size()%>
             </li>
           </ul>
           <div class="card-body">
             <a class="card-link" href="actividades.jsp" >Lista de Actividades</a>
-
           </div>
         </div>
       </div>
       <%
         }
         // TODO: 10/05/2022 A ver si averiguamos por que falla el if...
-        if (numActividades.getRow() == 0) {
+        if (categorias.size() == 0) {
       %>
       <div class="col m-auto p-5">
         <div class="card pt-3 pb-2">

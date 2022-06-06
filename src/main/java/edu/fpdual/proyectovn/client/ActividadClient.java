@@ -1,5 +1,6 @@
 package edu.fpdual.proyectovn.client;
 
+import edu.fpdual.proyectovn.client.dto.Actividad;
 import edu.fpdual.proyectovn.client.dto.Usuario;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
@@ -10,44 +11,43 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class UsuarioClient {
+public class ActividadClient {
   private final WebTarget webTarget;
 
-  public UsuarioClient() {
+  public ActividadClient() {
     Client client = ClientBuilder.newClient();
     this.webTarget = client.target("http://localhost:8081/WebServiceVN/api/");
   }
 
-  public Set<Usuario> todos() {
-    return new HashSet<Usuario>(Arrays.asList(webTarget.path("usuario")
+  public Set<Actividad> todos() {
+    return new HashSet<Actividad>(Arrays.asList(webTarget.path("actividad")
         .request(MediaType.APPLICATION_JSON)
-        .get(Usuario[].class)));
+        .get(Actividad[].class)));
+  }
+  public Actividad buscaPorID(Integer id) {
+    return webTarget.path("actividad/" + id)
+        .request(MediaType.APPLICATION_JSON)
+        .get(Actividad.class);
   }
 
-  public Usuario buscaPorID(Integer id) {
-    return webTarget.path("usuario/" + id)
+  public boolean crear(Actividad actividad) {
+    webTarget.path("actividad")
         .request(MediaType.APPLICATION_JSON)
-        .get(Usuario.class);
-  }
-
-  public boolean crear(Usuario usuario) {
-    webTarget.path("usuario")
-        .request(MediaType.APPLICATION_JSON)
-        .get(Usuario.class);
+        .get(Actividad.class);
     return true;
   }
 
-  public boolean modificar(Usuario usuario) {
-    webTarget.path("usuario")
+  public boolean modificar(Actividad actividad) {
+    webTarget.path("actividad")
         .request(MediaType.APPLICATION_JSON)
-        .get(Usuario.class);
+        .get(Actividad.class);
     return true;
   }
 
   public boolean borrar(Integer id) {
-    webTarget.path("usuario/" + id)
+    webTarget.path("actividad/" + id)
         .request(MediaType.APPLICATION_JSON)
-        .get(Usuario.class);
+        .get(Actividad.class);
     return true;
   }
 }

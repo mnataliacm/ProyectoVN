@@ -6,6 +6,7 @@
     Author     : Natalia Castillo Muñoz
 --%>
 <%
+  // TODO: 07/06/2022 Pendiente
   UsuarioService usuarioService = new UsuarioService(new UsuarioManagerImpl());
   boolean confirma;
   int idusu = Integer.parseInt(request.getParameter("IDusu"));

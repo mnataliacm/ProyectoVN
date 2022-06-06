@@ -1,19 +1,14 @@
-package edu.fpdual.proyectovn.main;
+package edu.fpdual.proyectovn;
 
 import edu.fpdual.proyectovn.client.UsuarioClient;
-
-import java.io.FileNotFoundException;
-import java.security.NoSuchAlgorithmException;
-import java.sql.SQLException;
-
 
 public class Main {
 
   public static void main(String[] args) {
 
-    System.out.println(new UsuarioClient().getTodos().size());
-    System.out.println(new UsuarioClient().getTodos());
-    System.out.println(new UsuarioClient().getUsuario(Integer.valueOf(3)));
+    //System.out.println(new UsuarioClient().todos().size());
+    //System.out.println(new UsuarioClient().todos());
+    System.out.println(new UsuarioClient().buscaPorID(Integer.valueOf(3)));
 
     /*
     Connector connector = new Connector();

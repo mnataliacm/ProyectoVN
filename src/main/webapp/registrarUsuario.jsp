@@ -7,6 +7,7 @@
     Author     : Natalia Castillo
 --%>
 <%
+  // TODO: 07/06/2022 Pendiente
   UsuarioService usuarioService = new UsuarioService(new UsuarioManagerImpl());
 
   String nom = request.getParameter("nombre");

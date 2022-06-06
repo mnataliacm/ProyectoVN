@@ -1,12 +1,10 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
-<%@ page import="edu.fpdual.proyectovn.controller.ActividadController" %>
-<%@ page import="edu.fpdual.proyectovn.model.manager.implement.ActividadManagerImpl" %>
-<%@ page import="edu.fpdual.proyectovn.model.dao.Actividad" %>
-<%@ page import="java.sql.SQLException" %>
 <%@ page import="java.util.Set" %>
 <%@ page import="java.util.Comparator" %>
 <%@ page import="java.util.stream.Collectors" %>
 <%@ page import="java.util.LinkedHashSet" %>
+<%@ page import="edu.fpdual.proyectovn.client.ActividadClient" %>
+<%@ page import="edu.fpdual.proyectovn.client.dto.Actividad" %>
 <%--
     Author     : Natalia Castillo
     Author     : Verónica González
@@ -36,13 +34,9 @@
   <!--Barra navegacion-->
   <div id="nav-placeholder"></div>
   <%
-    int total;
-    ActividadController actividadController = new ActividadController(new ActividadManagerImpl());
-    try {
-      total = actividadController.todasActividades().size();
-    } catch (SQLException | ClassNotFoundException e) {
-      throw new RuntimeException(e);
-    }
+    // TODO: 07/06/2022 Se ha descuadrado revisar 
+    ActividadClient actividadClient = new ActividadClient();
+    int total = new ActividadClient().todos().size();
     if (session.getAttribute("usuario") == null) {
   %>
   <div class="container mt-3 text-center">
@@ -59,14 +53,13 @@
           <th>Información</th>
         </tr>
           <%
-          try {
-            Set<Actividad> listado = actividadController.todasActividades()
-                .stream().sorted(Comparator.comparing(Actividad::getIdact))
+            Set<Actividad> listado = actividadClient.todos()
+                .stream().sorted(Comparator.comparing(Actividad::getId))
                 .collect(Collectors.toCollection(LinkedHashSet::new));
             for (Actividad a : listado) {
         %>
         <tr>
-          <td><%=a.getIdact()%>
+          <td><%=a.getId()%>
           </td>
           <td><%=a.getIdcat()%>
           </td>
@@ -83,9 +76,6 @@
     </div>
   </div>
   <%
-      }
-    } catch (SQLException | ClassNotFoundException e) {
-      throw new RuntimeException(e);
     }
   } else if ((session.getAttribute("usuario") != null) && (session.getAttribute("usuario").equals("Admin"))) {
   %>
@@ -134,15 +124,14 @@
           <th>Horario</th>
           <th>Información</th>
         </tr>
-          <%
-            try {
-              Set<Actividad> listado = actividadController.todasActividades()
-                  .stream().sorted(Comparator.comparing(Actividad::getIdact))
-                  .collect(Collectors.toCollection(LinkedHashSet::new));
-              for (Actividad a : listado) {
-          %>
+        <%
+          Set<Actividad> listado = actividadClient.todos()
+              .stream().sorted(Comparator.comparing(Actividad::getId))
+              .collect(Collectors.toCollection(LinkedHashSet::new));
+          for (Actividad a : listado) {
+        %>
         <tr>
-          <td><%=a.getIdact()%>
+          <td><%=a.getId()%>
           </td>
           <td><%=a.getIdcat()%>
           </td>
@@ -161,7 +150,7 @@
             <div class="row">
               <div class="col-6 ">
                 <form method="post" action="#">
-                  <input type="hidden" name="IDact" value="<%=a.getIdact() %>">
+                  <input type="hidden" name="IDact" value="<%=a.getId() %>">
                   <input type="hidden" name="IDcat" value="<%=a.getIdcat() %>">
                   <input type="hidden" name="IDciu" value="<%=a.getIdciu() %>">
                   <input type="hidden" name="NomAct" value="<%=a.getNom() %>">
@@ -175,76 +164,69 @@
               <%--borrar--%>
               <div class="col-6">
                 <form method="post" action="#">
-                  <input type="hidden" name="IDact" value="<%=a.getIdact() %>"/>
+                  <input type="hidden" name="IDact" value="<%=a.getId() %>"/>
                   <button type="submit" class="btn btn-danger"><span class="bi bi-trash-fill"></span> Borrar
                   </button>
                 </form>
               </div>
           </td>
         </tr>
+      </table>
     </div>
   </div>
-</div>
-<%
+  <%
     }
-  } catch (SQLException | ClassNotFoundException e) {
-    throw new RuntimeException(e);
-  }
-} else if (session.getAttribute("usuario") != null) {
-
-%>
-<div class="container mt-3 text-center">
-  <div class=" panel panel-light">
-    <h2 class="panel-heading text-center bg-verde">LISTADO DE ACTIVIDADES</h2>
-    <table class="table table-striped table-verde ">
-      <tr class="table-dark">
-        <th>ID</th>
-        <th>Categ.</th>
-        <th>Ciudad</th>
-        <th>Actividad</th>
-        <th>Empresa</th>
-        <th>Horario</th>
-        <th>Información</th>
-      </tr>
-      <%
-        try {
-          Set<Actividad> listado = actividadController.todasActividades()
-              .stream().sorted(Comparator.comparing(Actividad::getIdact))
+  } else if (session.getAttribute("usuario") != null) {
+  %>
+  <div class="container mt-3 text-center">
+    <div class=" panel panel-light">
+      <h2 class="panel-heading text-center bg-verde">LISTADO DE ACTIVIDADES</h2>
+      <table class="table table-striped table-verde ">
+        <tr class="table-dark">
+          <th>ID</th>
+          <th>Categ.</th>
+          <th>Ciudad</th>
+          <th>Actividad</th>
+          <th>Empresa</th>
+          <th>Horario</th>
+          <th>Información</th>
+        </tr>
+        <%
+          Set<Actividad> listado = actividadClient.todos()
+              .stream().sorted(Comparator.comparing(Actividad::getId))
               .collect(Collectors.toCollection(LinkedHashSet::new));
           for (Actividad a : listado) {
-      %>
-      <tr>
-        <td><%=a.getIdact()%>
-        </td>
-        <td><%=a.getIdcat()%>
-        </td>
-        <td><%=a.getIdciu()%>
-        </td>
-        <td><%=a.getNom()%>
-        </td>
-        <td><%=a.getIdemp()%>
-        </td>
-        <td><%=a.getHorario()%>
-        </td>
-        <td><%=a.getInfo()%>
-        </td>
-        <!-- añadir calendario o a reservas ?? -->
-        <td>
-          <form method="post" action="">
-            <input type="hidden" name="IDact" value="<%=a.getIdact() %>">
-            <input type="hidden" name="IDciu" value="<%=a.getIdciu() %>">
-            <input type="hidden" name="NomAct" value="<%=a.getNom() %>">
-            <button type="submit" class="btn btn-info"><span class="bi bi-plus-circle"> Reservar</span>
-            </button>
-          </form>
-            <%
-                      }
-                    } catch (SQLException | ClassNotFoundException e) {
-                      throw new RuntimeException(e);
-                    }
-                  }
-                %>
-    </table>
+        %>
+        <tr>
+          <td><%=a.getId()%>
+          </td>
+          <td><%=a.getIdcat()%>
+          </td>
+          <td><%=a.getIdciu()%>
+          </td>
+          <td><%=a.getNom()%>
+          </td>
+          <td><%=a.getIdemp()%>
+          </td>
+          <td><%=a.getHorario()%>
+          </td>
+          <td><%=a.getInfo()%>
+          </td>
+          <!-- añadir calendario o a reservas ?? -->
+          <td>
+            <form method="post" action="">
+              <input type="hidden" name="IDact" value="<%=a.getId() %>">
+              <input type="hidden" name="IDciu" value="<%=a.getIdciu() %>">
+              <input type="hidden" name="NomAct" value="<%=a.getNom() %>">
+              <button type="submit" class="btn btn-info"><span class="bi bi-plus-circle"> Reservar</span>
+              </button>
+            </form>
+              <%
+        }
+    }
+            %>
+      </table>
+    </div>
   </div> <!-- cierre container lista -->
 </div> <!-- fin wrapper -->
 <!-- JS bootstrap -->

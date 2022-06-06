@@ -32,7 +32,7 @@
   <!--Barra navegación-->
   <div id="nav-placeholder"></div>
   <%
-    // TODO: 05/06/2022 arreglar 
+    // TODO: 07/06/2022 Pendiente
     Connection con;
     Statement s;
     String nombre = (String) session.getAttribute("usuario");

@@ -5,6 +5,7 @@
     Author     : Natalia Castillo
 --%>
 <%
+  // TODO: 07/06/2022 Pendiente
   Connection con;
   try {
     con = new Connector().getConnection();

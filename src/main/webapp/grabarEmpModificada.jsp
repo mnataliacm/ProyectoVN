@@ -31,6 +31,7 @@
 </head>
 <body>
 <%
+    // TODO: 07/06/2022 Pendiente
     Class.forName("com.mysql.jdbc.Driver");
     Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyectovn","root", "Proyecto.VN");
     Statement s = con.createStatement();
