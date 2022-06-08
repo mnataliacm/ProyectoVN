@@ -1,20 +1,19 @@
 package edu.fpdual.proyectovn.client.dto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.sql.Date;
+import java.sql.Time;
 
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
 @AllArgsConstructor
-@EqualsAndHashCode
-@ToString
-@Builder
+@NoArgsConstructor
 
 public class Reservas {
   private int idUsu;
   private int idAct;
   private Date fecha;
-  private String hora;
+  private Time hora;
 }

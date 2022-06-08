@@ -19,7 +19,7 @@ public class CategoriaClient {
   }
 
   public Set<Categoria> todos() {
-    return new HashSet<Categoria>(Arrays.asList(webTarget.path("categoria")
+    return new HashSet<>(Arrays.asList(webTarget.path("categoria")
         .request(MediaType.APPLICATION_JSON)
         .get(Categoria[].class)));
   }
@@ -51,7 +51,7 @@ public class CategoriaClient {
   }
 
   public Set<Categoria> catConAct(Integer idciu) {
-    return new HashSet<Categoria>(Arrays.asList(webTarget.path("categoria/" + idciu)
+    return new HashSet<>(Arrays.asList(webTarget.path("categoria/" + idciu)
         .request(MediaType.APPLICATION_JSON)
         .get(Categoria[].class)));
   }

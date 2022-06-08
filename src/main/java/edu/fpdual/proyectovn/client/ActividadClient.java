@@ -1,7 +1,6 @@
 package edu.fpdual.proyectovn.client;
 
 import edu.fpdual.proyectovn.client.dto.Actividad;
-import edu.fpdual.proyectovn.client.dto.Usuario;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.WebTarget;
@@ -20,14 +19,13 @@ public class ActividadClient {
   }
 
   public Set<Actividad> todos() {
-    return new HashSet<Actividad>(Arrays.asList(webTarget.path("actividad")
+    return new HashSet<>(Arrays.asList(webTarget.path("actividad")
         .request(MediaType.APPLICATION_JSON)
         .get(Actividad[].class)));
   }
+
   public Actividad buscaPorID(Integer id) {
-    return webTarget.path("actividad/" + id)
-        .request(MediaType.APPLICATION_JSON)
-        .get(Actividad.class);
+    return null;
   }
 
   public boolean crear(Actividad actividad) {
@@ -49,5 +47,11 @@ public class ActividadClient {
         .request(MediaType.APPLICATION_JSON)
         .get(Actividad.class);
     return true;
+  }
+
+  public Set<Actividad> actividadesPorCiudad(Integer id) {
+    return new HashSet<>(Arrays.asList(webTarget.path("actividad/" + id)
+        .request(MediaType.APPLICATION_JSON)
+        .get(Actividad[].class)));
   }
 }

@@ -19,14 +19,14 @@ public class CiudadClient {
   }
 
   public Set<Ciudad> todos() {
-    return new HashSet<Ciudad>(Arrays.asList(webTarget.path("ciudad")
+    return new HashSet<>(Arrays.asList(webTarget.path("ciudad")
         .request(MediaType.APPLICATION_JSON)
         .get(Ciudad[].class)));
   }
-  public String buscaPorID(Integer id) {
+  public Ciudad buscaPorID(Integer id) {
     return webTarget.path("ciudad/" + id)
         .request(MediaType.APPLICATION_JSON)
-        .get(Ciudad.class).getNom();
+        .get(Ciudad.class);
   }
 
   public boolean crear(Ciudad ciudad) {
@@ -48,5 +48,11 @@ public class CiudadClient {
         .request(MediaType.APPLICATION_JSON)
         .get(Ciudad.class);
     return true;
+  }
+
+  public String nombreCiudad(Integer id) {
+    return webTarget.path("ciudad/" + id)
+        .request(MediaType.APPLICATION_JSON)
+        .get(Ciudad.class).getNom();
   }
 }

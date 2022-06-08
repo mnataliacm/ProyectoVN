@@ -49,7 +49,7 @@
             for (Ciudad c : ciudads) {
           %>
           <div class="col">
-            <button class="btn btn-primary btn-lg" type="submit" name="IDciu" value="<%=c.getId()%>"><%=c.getNom()%>>
+            <button class="btn btn-primary btn-lg" type="submit" name="IDciu" value="<%=c.getId()%>"><%=c.getNom()%>
             </button>
           </div>
           <%

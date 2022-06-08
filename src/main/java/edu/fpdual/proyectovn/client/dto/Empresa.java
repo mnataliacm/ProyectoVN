@@ -1,14 +1,13 @@
 package edu.fpdual.proyectovn.client.dto;
 
-import lombok.*;
 
-@Setter
-@Getter
-@NoArgsConstructor
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
 @AllArgsConstructor
-@EqualsAndHashCode
-@ToString
-@Builder
+@NoArgsConstructor
 
 public class Empresa {
   private int id;

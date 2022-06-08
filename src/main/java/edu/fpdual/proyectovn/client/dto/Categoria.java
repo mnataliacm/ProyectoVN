@@ -1,14 +1,12 @@
 package edu.fpdual.proyectovn.client.dto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
 @AllArgsConstructor
-@EqualsAndHashCode
-@ToString
-@Builder
+@NoArgsConstructor
 
 public class Categoria {
   private Integer id;

@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Usuario {
 
+public class Usuario {
   private Integer id;
   private String nom;
   private String ape;
@@ -16,5 +16,4 @@ public class Usuario {
   private String email;
   private String movil;
   private Integer ciu;
-
 }

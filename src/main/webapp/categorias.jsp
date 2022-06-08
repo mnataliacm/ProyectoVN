@@ -2,6 +2,7 @@
 <%@ page import="edu.fpdual.proyectovn.client.dto.Categoria" %>
 <%@ page import="java.util.Set" %>
 <%@ page import="edu.fpdual.proyectovn.client.CiudadClient" %>
+<%@ page import="edu.fpdual.proyectovn.client.ActividadClient" %>
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%--
     Author     : Natalia Castillo
@@ -36,11 +37,15 @@
   <%
     CategoriaClient categoriaClient = new CategoriaClient();
     CiudadClient ciudadClient = new CiudadClient();
+    ActividadClient actividadClient = new ActividadClient();
+    Set<Categoria> categoriaSet;
+    String nombreCiudad;
     Integer idciu = Integer.parseInt(request.getParameter("IDciu"));
-    session.setAttribute("ciudad", idciu);
-    String ciudad = ciudadClient.buscaPorID(idciu);
-    Set<Categoria> categorias = categoriaClient.catConAct(idciu);
-    for (Categoria c : categorias) {
+    int numAct = actividadClient.actividadesPorCiudad(idciu).size();
+    if ((idciu != 0) && (numAct > 0)) {
+      categoriaSet = categoriaClient.catConAct(idciu);
+      nombreCiudad = ciudadClient.nombreCiudad(idciu);
+      for (Categoria c : categoriaSet) {
   %>
       <div class="col m-auto p-2">
         <div class="card">
@@ -53,9 +58,9 @@
             <p class="card-text"></p>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">Ciudad elegida: <%=ciudad %>
+            <li class="list-group-item">Ciudad elegida: <%=nombreCiudad %>
             </li>
-            <li class="list-group-item"> Num actividades: <%=categorias.size()%>
+            <li class="list-group-item"> Num actividades: <%=categoriaSet.size()%>
             </li>
           </ul>
           <div class="card-body">
@@ -65,8 +70,7 @@
       </div>
       <%
         }
-        // TODO: 10/05/2022 A ver si averiguamos por que falla el if...
-        if (categorias.size() == 0) {
+    } else if (numAct == 0){
       %>
       <div class="col m-auto p-5">
         <div class="card pt-3 pb-2">
