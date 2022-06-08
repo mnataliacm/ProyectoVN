@@ -34,7 +34,6 @@
   <!--Barra navegacion-->
   <div id="nav-placeholder"></div>
   <%
-    // TODO: 07/06/2022 Se ha descuadrado revisar 
     ActividadClient actividadClient = new ActividadClient();
     int total = new ActividadClient().todos().size();
     if (session.getAttribute("usuario") == null) {
@@ -73,6 +72,7 @@
           </td>
           <td><%=a.getInfo()%>
           </td>
+        </tr>
     </div>
   </div>
   <%
@@ -83,29 +83,29 @@
     <div class=" panel panel-light">
       <h2 class="panel-heading text-center bg-verde"> LISTADO DE ACTIVIDADES (<%=total %>)</h2>
       <table class="table table-striped table-verde">
-        <form method="post" action="#">
+        <form method="post" action="nuevosRegistros.jsp">
           <tr class="table-warning">
-            <td><label>
-              <input type="text" name="IDact" size="3" placeholder="<%=total + 1%>" readonly>
-            </label></td>
-            <td><label>
-              <input type="text" name="IDcat" size="3" placeholder="IDcat" required>
-            </label></td>
-            <td><label>
-              <input type="text" name="IDciu" size="3" placeholder="IDciu" required>
-            </label></td>
-            <td><label>
-              <input type="text" name="NomAct" size="30" placeholder="Actividad" required>
-            </label></td>
-            <td><label>
-              <input type="text" name="IDemp" size="5" placeholder="Empresa" required>
-            </label></td>
-            <td><label>
-              <textarea name="Horario" rows="1" placeholder="Horario" required></textarea>
-            </label></td>
-            <td><label>
+            <td><label></label>
+              <input type="text" id="IDact" name="IDact" size="3" placeholder="<%=total + 1%>" readonly>
+            </td>
+            <td><label> </label>
+              <input type="text" id="IDcat" name="IDcat" size="3" placeholder="Categ." required>
+           </td>
+            <td><label> </label>
+              <input type="text" id="IDciu" name="IDciu" size="3" placeholder="Ciudad" required>
+           </td>
+            <td><label> </label>
+              <input type="text" id="NomAct" name="NomAct" size="30" placeholder="Actividad" required>
+           </td>
+            <td><label></label>
+              <input type="text" id="IDemp" name="IDemp" size="5" placeholder="Empresa" >
+            </td>
+            <td><label> </label>
+              <textarea name="Horario" rows="1" placeholder="Horario" ></textarea>
+           </td>
+            <td><label></label>
               <textarea name="Info" rows="1" placeholder="Información"></textarea>
-            </label></td>
+            </td>
             <td>
               <button type="submit" value="Añadir" class="btn btn-primary"><span
                   class="bi bi-plus-circle"></span>
@@ -124,7 +124,7 @@
           <th>Horario</th>
           <th>Información</th>
         </tr>
-        <%
+          <%
           Set<Actividad> listado = actividadClient.todos()
               .stream().sorted(Comparator.comparing(Actividad::getId))
               .collect(Collectors.toCollection(LinkedHashSet::new));
@@ -163,15 +163,15 @@
               </div>
               <%--borrar--%>
               <div class="col-6">
-                <form method="post" action="#">
+                <form method="post" action="borrarRegistros.jsp">
                   <input type="hidden" name="IDact" value="<%=a.getId() %>"/>
                   <button type="submit" class="btn btn-danger"><span class="bi bi-trash-fill"></span> Borrar
                   </button>
                 </form>
               </div>
+            </div>
           </td>
         </tr>
-      </table>
     </div>
   </div>
   <%

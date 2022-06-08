@@ -50,7 +50,7 @@ public class ActividadClient {
   }
 
   public Set<Actividad> actividadesPorCiudad(Integer id) {
-    return new HashSet<>(Arrays.asList(webTarget.path("actividad/" + id)
+    return new HashSet<>(Arrays.asList(webTarget.path("actividad/grupo/" + id)
         .request(MediaType.APPLICATION_JSON)
         .get(Actividad[].class)));
   }

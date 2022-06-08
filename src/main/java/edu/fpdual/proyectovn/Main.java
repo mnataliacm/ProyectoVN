@@ -1,14 +1,28 @@
 package edu.fpdual.proyectovn;
 
+import edu.fpdual.proyectovn.client.ActividadClient;
+import edu.fpdual.proyectovn.client.CategoriaClient;
+import edu.fpdual.proyectovn.client.CiudadClient;
 import edu.fpdual.proyectovn.client.UsuarioClient;
+import edu.fpdual.proyectovn.client.dto.Actividad;
+import edu.fpdual.proyectovn.client.dto.Usuario;
 
 public class Main {
 
   public static void main(String[] args) {
-
-    //System.out.println(new UsuarioClient().todos().size());
+    Usuario usuario = new Usuario("tata", "tata", "tata", "tata@email.com", "123", 4);
+    Actividad actividad = new Actividad(4, 4, "tacata", 1, "", "");
+    System.out.println(new UsuarioClient().todos().size());
     //System.out.println(new UsuarioClient().todos());
-    System.out.println(new UsuarioClient().buscaPorID(Integer.valueOf(3)));
+    //System.out.println(new UsuarioClient().crear(usuario));
+    System.out.println(new ActividadClient().todos().size());
+    //System.out.println(new ActividadClient().crear(actividad));
+    System.out.println(new CategoriaClient().todos());
+    System.out.println(new CiudadClient().buscaPorID(23));
+    usuario = new UsuarioClient().buscaPorID(45);
+    System.out.println(usuario);
+
+    System.out.println(new UsuarioClient().borrar(45));
 
     /*
     Connector connector = new Connector();

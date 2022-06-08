@@ -71,7 +71,7 @@
           </td>
           <td><%=u.getMovil()%>
           </td>
-          <td><%=u.getCiu()%>
+          <td><%=u.getIdciu()%>
           </td>
           <!-- modificar -->
           <td>
@@ -84,7 +84,7 @@
                   <input type="hidden" name="PassUsu" value="<%=u.getPass() %>">
                   <input type="hidden" name="Email" value="<%=u.getEmail() %>">
                   <input type="hidden" name="Movil" value="<%=u.getMovil() %>">
-                  <input type="hidden" name="Ciudad" value="<%=u.getCiu() %>">
+                  <input type="hidden" name="Ciudad" value="<%=u.getIdciu() %>">
                   <button type="submit" class="btn btn-info"><span class="bi bi-pencil-fill"> </span>
                     Editar
                   </button>
@@ -92,7 +92,7 @@
               </div>
               <%--borrar--%>
               <div class="col-6">
-                <form method="post" action="borrarUsuario.jsp">
+                <form method="post" action="borrarRegistros.jsp">
                   <input type="hidden" name="IDusu" value="<%=u.getId() %>"/>
                   <button type="submit" class="btn btn-danger"><span class="bi bi-trash-fill"></span>
                     Borrar

@@ -8,8 +8,6 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>Proyecto Vaya plaN</name>
-
-  <!-- FIXME change it to the project's website -->
   <url>http://localhost:8080/ProyectoVN/</url>
 
   <properties>
