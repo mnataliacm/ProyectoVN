@@ -16,8 +16,18 @@ import java.sql.Time;
 @Builder
 
 public class Reservas {
+  private int idRes;
   private int idUsu;
   private int idAct;
   private Date fecha;
   private Time hora;
+
+  public Reservas(String nom, String ape, Time hora, Date fecha, Integer idAct, Integer idUsu) {
+    this.hora = hora;
+    this.fecha = fecha;
+    this.idAct = idAct;
+    this.idUsu = idUsu;
+  }
 }
+
+

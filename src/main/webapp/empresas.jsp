@@ -1,12 +1,11 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
-<%@ page import="edu.fpdual.proyectovn.model.manager.implement.EmpresaManagerImpl" %>
-<%@ page import="edu.fpdual.proyectovn.controller.EmpresaController" %>
-<%@ page import="edu.fpdual.proyectovn.model.dao.Empresa" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="java.util.Set" %>
 <%@ page import="java.util.Comparator" %>
 <%@ page import="java.util.stream.Collectors" %>
 <%@ page import="java.util.LinkedHashSet" %>
+<%@ page import="edu.fpdual.proyectovn.client.EmpresaClient" %>
+<%@ page import="edu.fpdual.proyectovn.client.dto.Empresa" %>
 <%--
     Author     : Natalia Castillo
     Author     : Verónica González
@@ -36,15 +35,10 @@
   <!--Barra navegacion-->
   <div id="nav-placeholder"></div>
   <%
-    // TODO: 07/06/2022 Pendiente de arreglar
+    // TODO: 07/06/2022 Falla String ciudad y total. Arreglar
     if ((session.getAttribute("usuario") != null) && (session.getAttribute("usuario").equals("Admin"))) {
-      EmpresaController empresaController = new EmpresaController(new EmpresaManagerImpl());
-      int total;
-      try {
-        total = empresaController.todasEmpresas().size();
-      } catch (SQLException | ClassNotFoundException e) {
-        throw new RuntimeException(e);
-      }
+      EmpresaClient empresaClient = new EmpresaClient();
+      int total = new EmpresaClient().todos().size();
   %>
   <div class="container mt-3 text-center">
     <div class="panel panel-light">
@@ -71,35 +65,30 @@
           <th>Empresa</th>
         </tr>
         <%
-          Set<Empresa> listado;
-          try {
-            listado = empresaController.todasEmpresas()
-                .stream().sorted(Comparator.comparing(Empresa::getId))
-                .collect(Collectors.toCollection(LinkedHashSet::new));
-          } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
-          }
-          for (Empresa e : listado) {
+          Set<Empresa> empresas = empresaClient.todos()
+                  .stream().sorted(Comparator.comparing(Empresa::getIdEmp))
+                  .collect(Collectors.toCollection(LinkedHashSet::new));
+          for (Empresa e : empresas) {
         %>
         <tr>
-          <td><%=e.getId()%>
+          <td><%=e.getIdEmp()%>
           </td>
-          <td><%=e.getNom()%>
+          <td><%=e.getNomEmp()%>
           </td>
           <!-- modificar -->
           <td>
             <div class="row">
               <div class="col-4 ">
                 <form method="post" action="empresas.jsp">
-                  <input type="hidden" name="IDemp" value="<%=e.getId()%>">
-                  <input type="hidden" name="NomEmp" value="<%=e.getNom()%>">
+                  <input type="hidden" name="IDemp" value="<%=e.getIdEmp()%>">
+                  <input type="hidden" name="NomEmp" value="<%=e.getNomEmp()%>">
                   <button type="submit" class="btn btn-info"><span class="bi bi-pencil-fill"> </span> Editar</button>
                 </form>
               </div>
               <%--borrar--%>
               <div class="col-4">
-                <form method="post" action="empresas.jsp">
-                  <input type="hidden" name="IDemp" value="<%=e.getId()%>"/>
+                <form method="post" action="borrarRegistros.jsp">
+                  <input type="hidden" name="IDemp" value="<%=e.getIdEmp()%>"/>
                   <button type="submit" class="btn btn-danger"><span class="bi bi-trash-fill"></span> Borrar</button>
                 </form>
               </div>

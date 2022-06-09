@@ -7,6 +7,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Date;
+import java.sql.Time;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,6 +17,11 @@ import lombok.NoArgsConstructor;
 @Builder
 
 public class Empresa {
-  private int id;
-  private String nom;
+  private int idEmp;
+  private String nomEmp;
+  public Empresa(String nomEmp,  Integer idEmp) {
+    this.idEmp = idEmp;
+    this.nomEmp = nomEmp;
+
+  }
 }

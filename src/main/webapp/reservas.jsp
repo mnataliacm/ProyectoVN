@@ -1,8 +1,11 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
-<%@ page import="edu.fpdual.proyectovn.controller.ReservaController" %>
-<%@ page import="edu.fpdual.proyectovn.model.manager.implement.ReservasManagerImpl" %>
-<%@ page import="edu.fpdual.proyectovn.model.dao.Reservas" %>
 <%@ page import="java.sql.SQLException" %>
+<%@ page import="edu.fpdual.proyectovn.client.ReservasClient" %>
+<%@ page import="edu.fpdual.proyectovn.client.dto.Reservas" %>
+<%@ page import="java.util.Comparator" %>
+<%@ page import="java.util.Set" %>
+<%@ page import="java.util.stream.Collectors" %>
+<%@ page import="java.util.LinkedHashSet" %>
 <%--
     Author     : Natalia Castillo
     Author     : Verónica González
@@ -32,15 +35,10 @@
   <!--Barra navegacion-->
   <div id="nav-placeholder"></div>
   <%
-    // TODO: 07/06/2022 Pendiente de arreglar
-    int total;
+    // TODO: 07/06/2022 Falla String ciudad y total. Arreglar
     if ((session.getAttribute("usuario") != null) && (session.getAttribute("usuario").equals("Admin"))) {
-      ReservaController reservaController = new ReservaController(new ReservasManagerImpl());
-      try {
-        total = reservaController.todasReservas().size();
-      } catch (SQLException | ClassNotFoundException e) {
-        throw new RuntimeException(e);
-      }
+      ReservasClient reservasClient = new ReservasClient();
+      int total = new ReservasClient().todos().size();
   %>
   <div class="container mt-3 text-center">
     <div class="panel panel-light">
@@ -54,25 +52,38 @@
           <th>Fecha</th>
         </tr>
         <%
-          try {
-            for (Reservas e : reservaController.todasReservas()) {
+          Set<Reservas> reservas = reservasClient.todos()
+                  .stream().sorted(Comparator.comparing(Reservas::getIdRes))
+                  .collect(Collectors.toCollection(LinkedHashSet::new));
+          for (Reservas r : reservas) {
         %>
         <tr>
-          <td><%=e.getIdRes()%>
+          <td><%=r.getIdRes()%>
           </td>
-          <td><%=e.getIdUsu()%>
+          <td><%=r.getIdUsu()%>
           </td>
-          <td><%=e.getIdAct()%>
+          <td><%=r.getIdAct()%>
           </td>
-          <td><%=e.getHora()%>
+          <td><%=r.getHora()%>
           </td>
-          <td><%=e.getFecha()%>
+          <td><%=r.getFecha()%>
           </td>
         </tr>
+        <!-- modificar -->
+        <td>
+          <div class="row">
+            <%--borrar--%>
+            <div class="col-6">
+              <form method="post" action="borrarRegistros.jsp">
+                <input type="hidden" name="IDres" value="<%=r.getIdRes() %>"/>
+                <button type="submit" class="btn btn-danger"><span class="bi bi-trash-fill"></span>
+                  Borrar
+                </button>
+              </form>
+            </div>
+          </div>
+        </td>
         <%
-              }
-            } catch (SQLException | ClassNotFoundException e) {
-              throw new RuntimeException(e);
             }
           } else {
             response.sendRedirect("index.jsp");
