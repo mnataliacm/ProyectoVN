@@ -44,7 +44,8 @@ public class ActividadClient {
     return true;
   }
 
-  public Set<Actividad> actividadesPorCiudad(Integer id) {
+  // TODO: 09/06/2022 ARREGLAR 3.3 
+  public Set<Actividad> actPorCiu(Integer id) {
     return new HashSet<>(Arrays.asList(webTarget.path("actividad/grupo/" + id)
         .request(MediaType.APPLICATION_JSON)
         .get(Actividad[].class)));

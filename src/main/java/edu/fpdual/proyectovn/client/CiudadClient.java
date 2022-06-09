@@ -29,14 +29,14 @@ public class CiudadClient {
         .get(Ciudad.class);
   }
 
-  public boolean crear(Ciudad ciudad) {
+  public boolean crear() {
     webTarget.path("ciudad")
         .request(MediaType.APPLICATION_JSON)
         .get(Ciudad.class);
     return true;
   }
 
-  public boolean modificar(Ciudad ciudad) {
+  public boolean modificar() {
     webTarget.path("ciudad")
         .request(MediaType.APPLICATION_JSON)
         .get(Ciudad.class);
@@ -50,9 +50,10 @@ public class CiudadClient {
     return true;
   }
 
-  public String nombreCiudad(Integer id) {
-    return webTarget.path("ciudad/" + id)
+  // TODO: 09/06/2022 ARREGLAR 2.3
+  public Set<Ciudad> ciuConAct(Integer id) {
+    return new HashSet<>(Arrays.asList(webTarget.path("ciudad/grupo" + id)
         .request(MediaType.APPLICATION_JSON)
-        .get(Ciudad.class).getNom();
+        .get(Ciudad[].class)));
   }
 }

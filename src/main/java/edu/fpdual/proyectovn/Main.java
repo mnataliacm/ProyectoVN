@@ -2,12 +2,25 @@ package edu.fpdual.proyectovn;
 
 import edu.fpdual.proyectovn.client.*;
 import edu.fpdual.proyectovn.client.dto.Actividad;
+import edu.fpdual.proyectovn.client.dto.Categoria;
 import edu.fpdual.proyectovn.client.dto.Usuario;
 
 public class Main {
 
   public static void main(String[] args) {
-    Usuario usuario = new Usuario("tata", "tata", "tata", "tata@email.com", "123", 4);
+
+    ActividadClient actividadClient = new ActividadClient();
+    CategoriaClient categoriaClient = new CategoriaClient();
+    CiudadClient ciudadClient = new CiudadClient();
+    Categoria categoria = new Categoria();
+
+    System.out.println(categoriaClient.catConAct(29));
+    System.out.println(ciudadClient.ciuConAct(29));
+    System.out.println(actividadClient.actPorCiu(29));
+
+
+
+    /*Usuario usuario = new Usuario("tata", "tata", "tata", "tata@email.com", "123", 4);
     Actividad actividad = new Actividad(4, 4, "tacatate", 1, "", "");
     System.out.println(new UsuarioClient().todos().size());
     //System.out.println(new UsuarioClient().todos());
@@ -21,7 +34,7 @@ public class Main {
 
     System.out.println(new UsuarioClient().borrar(45));
 
-    System.out.println(new ActividadClient().modificar(actividad));
+    System.out.println(new ActividadClient().modificar(actividad));*/
     /*
     Connector connector = new Connector();
     Connection con = connector.getConnection();

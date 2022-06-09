@@ -26,20 +26,14 @@ public class EmpresaClient {
                 .get(Empresa[].class)));
     }
 
-    public Empresa buscaPorID(Integer idemp) {
-        return webTarget.path("empresa/" + idemp)
-                .request(MediaType.APPLICATION_JSON)
-                .get(Empresa.class);
-    }
-
-    public boolean crear(Empresa empresa) {
+    public boolean crear() {
         webTarget.path("empresa")
                 .request(MediaType.APPLICATION_JSON)
                 .get(Empresa.class);
         return true;
     }
 
-    public boolean modificar(Empresa empresa) {
+    public boolean modificar() {
         webTarget.path("empresa")
                 .request(MediaType.APPLICATION_JSON)
                 .get(Empresa.class);

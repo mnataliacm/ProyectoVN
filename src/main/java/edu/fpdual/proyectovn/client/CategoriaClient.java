@@ -26,7 +26,7 @@ public class CategoriaClient {
         .get(Categoria[].class)));
   }
 
-  public boolean crear(Categoria categoria) {
+  public boolean crear() {
     webTarget.path("categoria")
         .request(MediaType.APPLICATION_JSON)
         .get(Categoria.class);
@@ -47,8 +47,9 @@ public class CategoriaClient {
     return true;
   }
 
+  // TODO: 09/06/2022 ARREGLAR 1.3 - intentar arreglar alguno de los 3
   public Set<Categoria> catConAct(Integer idciu) {
-    return new HashSet<>(Arrays.asList(webTarget.path("categoria/" + idciu)
+    return new HashSet<>(Arrays.asList(webTarget.path("categoria/grupo" + idciu)
         .request(MediaType.APPLICATION_JSON)
         .get(Categoria[].class)));
   }

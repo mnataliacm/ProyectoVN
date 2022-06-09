@@ -1,7 +1,6 @@
 package edu.fpdual.proyectovn.client;
 
 import edu.fpdual.proyectovn.client.dto.Reservas;
-import edu.fpdual.proyectovn.client.dto.Usuario;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.MediaType;
@@ -26,20 +25,14 @@ public class ReservasClient {
                 .get(Reservas[].class)));
     }
 
-    public Reservas buscaPorID(Integer idres) {
-        return webTarget.path("reserva/" + idres)
-                .request(MediaType.APPLICATION_JSON)
-                .get(Reservas.class);
-    }
-
-    public boolean crear(Reservas usuario) {
+    public boolean crear() {
         webTarget.path("reserva")
                 .request(MediaType.APPLICATION_JSON)
                 .get(Reservas.class);
         return true;
     }
 
-    public boolean modificar(Reservas usuario) {
+    public boolean modificar() {
         webTarget.path("reserva")
                 .request(MediaType.APPLICATION_JSON)
                 .get(Reservas.class);
