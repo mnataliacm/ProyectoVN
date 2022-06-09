@@ -25,10 +25,6 @@ public class ActividadClient {
         .get(Actividad[].class)));
   }
 
-  public Actividad buscaPorID(Integer id) {
-    return null;
-  }
-
   public Actividad crear(Actividad actividad) {
     return webTarget.path("actividad")
         .request(MediaType.APPLICATION_JSON)
@@ -52,5 +48,5 @@ public class ActividadClient {
     return new HashSet<>(Arrays.asList(webTarget.path("actividad/grupo/" + id)
         .request(MediaType.APPLICATION_JSON)
         .get(Actividad[].class)));
-  }
+  } // TODO: 09/06/2022 quitar si al final no lo usamos
 }

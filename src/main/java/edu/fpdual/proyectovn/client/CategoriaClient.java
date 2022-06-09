@@ -21,12 +21,9 @@ public class CategoriaClient {
   public Set<Categoria> todos() {
     return new HashSet<>(Arrays.asList(webTarget.path("categoria")
         .request(MediaType.APPLICATION_JSON)
+
+
         .get(Categoria[].class)));
-  }
-  public Categoria buscaPorID(Integer id) {
-    return webTarget.path("categoria/" + id)
-        .request(MediaType.APPLICATION_JSON)
-        .get(Categoria.class);
   }
 
   public boolean crear(Categoria categoria) {

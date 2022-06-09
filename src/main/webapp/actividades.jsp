@@ -86,26 +86,26 @@
       <table class="table table-striped table-verde">
         <form method="post" action="nuevosRegistros.jsp">
           <tr class="table-warning">
-            <td><label></label>
+            <td><label for="IDact"></label>
               <input type="text" id="IDact" name="IDact" size="3" placeholder="<%=total + 1%>" readonly>
             </td>
-            <td><label> </label>
+            <td><label for="IDcat"> </label>
               <input type="text" id="IDcat" name="IDcat" size="3" placeholder="Categ." required>
            </td>
-            <td><label> </label>
+            <td><label for="IDciu"> </label>
               <input type="text" id="IDciu" name="IDciu" size="3" placeholder="Ciudad" required>
            </td>
-            <td><label> </label>
+            <td><label for="NomAct"> </label>
               <input type="text" id="NomAct" name="NomAct" size="30" placeholder="Actividad" required>
            </td>
-            <td><label></label>
+            <td><label for="IDemp"></label>
               <input type="text" id="IDemp" name="IDemp" size="5" placeholder="Empresa" >
             </td>
-            <td><label> </label>
-              <textarea name="Horario" rows="1" placeholder="Horario" ></textarea>
+            <td><label for="horario"> </label>
+              <textarea id="horario" name="Horario" rows="1" placeholder="Horario" ></textarea>
            </td>
-            <td><label></label>
-              <textarea name="Info" rows="1" placeholder="Información"></textarea>
+            <td><label for="info"></label>
+              <textarea id="info" name="Info" rows="1" placeholder="Información"></textarea>
             </td>
             <td>
               <button type="submit" value="Añadir" class="btn btn-primary"><span

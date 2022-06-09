@@ -1,6 +1,5 @@
 package edu.fpdual.proyectovn.client;
 
-import edu.fpdual.proyectovn.client.dto.Actividad;
 import edu.fpdual.proyectovn.client.dto.Usuario;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.Entity;
