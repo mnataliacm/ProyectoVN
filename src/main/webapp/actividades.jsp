@@ -149,7 +149,7 @@
           <td>
             <div class="row">
               <div class="col-6 ">
-                <form method="post" action="#">
+                <form method="post" action="modificarActividad.jsp">
                   <input type="hidden" name="IDact" value="<%=a.getId() %>">
                   <input type="hidden" name="IDcat" value="<%=a.getIdcat() %>">
                   <input type="hidden" name="IDciu" value="<%=a.getIdciu() %>">

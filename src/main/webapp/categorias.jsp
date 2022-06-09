@@ -41,7 +41,7 @@
     Set<Categoria> categoriaSet;
     String nombreCiudad;
     Integer idciu = Integer.parseInt(request.getParameter("IDciu"));
-    int numAct = actividadClient.actividadesPorCiudad(idciu).size();
+    Integer numAct = 1;  //actividadClient.actividadesPorCiudad(idciu).size();
     if ((idciu != 0) && (numAct > 0)) {
       categoriaSet = categoriaClient.catConAct(idciu);
       nombreCiudad = ciudadClient.nombreCiudad(idciu);

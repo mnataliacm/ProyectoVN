@@ -11,7 +11,7 @@ public class Main {
 
   public static void main(String[] args) {
     Usuario usuario = new Usuario("tata", "tata", "tata", "tata@email.com", "123", 4);
-    Actividad actividad = new Actividad(4, 4, "tacata", 1, "", "");
+    Actividad actividad = new Actividad(4, 4, "tacatate", 1, "", "");
     System.out.println(new UsuarioClient().todos().size());
     //System.out.println(new UsuarioClient().todos());
     //System.out.println(new UsuarioClient().crear(usuario));
@@ -24,6 +24,7 @@ public class Main {
 
     System.out.println(new UsuarioClient().borrar(45));
 
+    System.out.println(new ActividadClient().modificar(actividad));
     /*
     Connector connector = new Connector();
     Connection con = connector.getConnection();

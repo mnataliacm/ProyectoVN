@@ -3,6 +3,7 @@ package edu.fpdual.proyectovn.client;
 import edu.fpdual.proyectovn.client.dto.Actividad;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.MediaType;
 
@@ -28,24 +29,22 @@ public class ActividadClient {
     return null;
   }
 
-  public boolean crear(Actividad actividad) {
-    webTarget.path("actividad")
+  public Actividad crear(Actividad actividad) {
+    return webTarget.path("actividad")
         .request(MediaType.APPLICATION_JSON)
-        .get(Actividad.class);
-    return true;
+        .post(Entity.entity(actividad,MediaType.APPLICATION_JSON), Actividad.class);
   }
 
-  public boolean modificar(Actividad actividad) {
-    webTarget.path("actividad")
+  public Actividad modificar(Actividad actividad) {
+    return webTarget.path("actividad")
         .request(MediaType.APPLICATION_JSON)
-        .get(Actividad.class);
-    return true;
+        .put(Entity.entity("Actividad",MediaType.APPLICATION_JSON), Actividad.class);
   }
 
   public boolean borrar(Integer id) {
     webTarget.path("actividad/" + id)
         .request(MediaType.APPLICATION_JSON)
-        .get(Actividad.class);
+        .delete(Actividad.class);
     return true;
   }
 
