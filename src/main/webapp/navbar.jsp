@@ -35,7 +35,7 @@
       </form>
       <!-- Administrador -->
         <%
-          } else if ((session.getAttribute("usuario") != null) && (user.equals("Admin"))){
+          } else if ((session.getAttribute("usuario") != null) && ((session.getAttribute("usuario").equals("Admin")))) {
         %>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">

@@ -1,48 +1,29 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ page import="java.sql.*" %>
-<%@ page import="edu.fpdual.proyectovn.model.connector.Connector" %>
+<%@ page import="edu.fpdual.proyectovn.client.UsuarioClient" %>
+<%@ page import="edu.fpdual.proyectovn.client.dto.Usuario" %>
 <%-- 
     Author     : Natalia Castillo
 --%>
 <%
   // TODO: 07/06/2022 Pendiente
-  Connection con;
-  try {
-    con = new Connector().getConnection();
-  } catch (ClassNotFoundException | SQLException e) {
-    throw new RuntimeException(e);
-  }
-  String usuario = request.getParameter("usuario");
+  UsuarioClient usuarioClient = new UsuarioClient();
+  String nombre = request.getParameter("usuario");
   String password = request.getParameter("password");
-  String sql = "SELECT * FROM usuario WHERE NomUsu LIKE ?";
-  try (PreparedStatement ps = con.prepareStatement(sql)) {
-    ps.setString(1, request.getParameter("usuario"));
-    ResultSet resultSet = ps.executeQuery();
-    resultSet.next();
-    Integer idusu = resultSet.getInt("IDusu");
-    String user = resultSet.getString("NomUsu");
-    String pass = resultSet.getString("PassUsu");
-    Integer ciudad = resultSet.getInt("IDciu");
-
-    if (usuario.equals(user) && (password.equals(pass))) {
-      if ((usuario.equals("Admin")) && password.equals("admin")) {
-        session.setAttribute("usuario", usuario);
-        response.sendRedirect("actividades.jsp");
-      } else if (usuario.equals("Colaborador") && (password.equals("123456"))) {
-        session.setAttribute("usuario", usuario);
-        response.sendRedirect("perfilEmpresa.jsp");
-      } else {
-        session.setAttribute("idusu", idusu);
-        session.setAttribute("usuario", usuario);
-        session.setAttribute("ciudad", ciudad);
-        response.sendRedirect("ciudades.jsp");
-      }
+  Usuario usuario = usuarioClient.buscaPorNombre(nombre);
+  if (nombre.equals(usuario.getNom()) && (password.equals(usuario.getPass()))) {
+    if ((nombre.equals("Admin")) && (password.equals("admin"))) {
+      session.setAttribute("usuario", usuario);
+      response.sendRedirect("actividades.jsp");
+    } else if (nombre.equals("Colaborador") && (password.equals("123456"))) {
+      session.setAttribute("usuario", usuario);
+      response.sendRedirect("perfilEmpresa.jsp");
     } else {
-      session.setAttribute("error", "Usuario o contraseña incorrecto");
-      response.sendRedirect("formularioLogin.jsp");
+      session.setAttribute("usuario", nombre);
+      session.setAttribute("ciudad", usuario.getIdciu());
+      response.sendRedirect("ciudades.jsp");
     }
-
-  } catch (SQLException e) {
+  } else {
     session.setAttribute("error", "Usuario o contraseña incorrecto");
     response.sendRedirect("formularioLogin.jsp");
   }

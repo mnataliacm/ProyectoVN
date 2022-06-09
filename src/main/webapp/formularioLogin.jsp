@@ -61,7 +61,7 @@
           String user = (String) session.getAttribute("usuario");
           if (session.getAttribute("usuario") != null) {
             if (user.equals("Admin")) {
-              response.sendRedirect("usuarios.jsp");
+              response.sendRedirect("actividades.jsp");
             } else if (user.equals("Colaborador")) {
               response.sendRedirect("perfilEmpresa.jsp");
             } else {

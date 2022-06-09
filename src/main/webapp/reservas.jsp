@@ -1,5 +1,4 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
-<%@ page import="java.sql.SQLException" %>
 <%@ page import="edu.fpdual.proyectovn.client.ReservasClient" %>
 <%@ page import="edu.fpdual.proyectovn.client.dto.Reservas" %>
 <%@ page import="java.util.Comparator" %>
@@ -35,7 +34,6 @@
   <!--Barra navegacion-->
   <div id="nav-placeholder"></div>
   <%
-    // TODO: 07/06/2022 Falla String ciudad y total. Arreglar
     if ((session.getAttribute("usuario") != null) && (session.getAttribute("usuario").equals("Admin"))) {
       ReservasClient reservasClient = new ReservasClient();
       int total = new ReservasClient().todos().size();

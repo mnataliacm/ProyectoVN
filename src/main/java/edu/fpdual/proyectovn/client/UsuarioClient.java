@@ -31,6 +31,12 @@ public class UsuarioClient {
         .get(Usuario.class);
   }
 
+  public Usuario buscaPorNombre(String nom) {
+    return webTarget.path("usuario/login/" + nom)
+        .request(MediaType.APPLICATION_JSON)
+        .get(Usuario.class);
+  }
+
   public boolean crear(Usuario usuario) {
     webTarget.path("usuario")
         .request(MediaType.APPLICATION_JSON)
@@ -51,4 +57,5 @@ public class UsuarioClient {
         .get(Usuario.class);
     return true;
   }
+
 }
