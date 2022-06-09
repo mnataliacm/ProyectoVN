@@ -32,13 +32,13 @@ public class ActividadClient {
   public Actividad crear(Actividad actividad) {
     return webTarget.path("actividad")
         .request(MediaType.APPLICATION_JSON)
-        .post(Entity.entity(actividad,MediaType.APPLICATION_JSON), Actividad.class);
+        .post(Entity.entity(actividad, MediaType.APPLICATION_JSON), Actividad.class);
   }
 
   public Actividad modificar(Actividad actividad) {
     return webTarget.path("actividad")
         .request(MediaType.APPLICATION_JSON)
-        .put(Entity.entity("Actividad",MediaType.APPLICATION_JSON), Actividad.class);
+        .put(Entity.entity(actividad, MediaType.APPLICATION_JSON), Actividad.class);
   }
 
   public boolean borrar(Integer id) {

@@ -11,13 +11,14 @@
       response.sendRedirect("index.jsp");
     } else {
       if (request.getParameter("IDact") != null) {
+        Integer idact = Integer.valueOf(request.getParameter("IDact"));
         Integer idcat = Integer.valueOf(request.getParameter("IDcat"));
         Integer idciu = Integer.valueOf(request.getParameter("IDciu"));
         String nom = request.getParameter("NomAct");
         Integer idemp = Integer.valueOf(request.getParameter("IDemp"));
         String horario = request.getParameter("Horario");
         String info = request.getParameter("Info");
-        Actividad actividad = new Actividad(idcat, idciu, nom, idemp, horario, info);
+        Actividad actividad = new Actividad(idact, idcat, idciu, nom, idemp, horario, info);
         Actividad editaAct = new ActividadClient().modificar(actividad);
         confirma = editaAct != null;
         session.setAttribute("enlace", "actividades.jsp");
@@ -37,3 +38,5 @@
         response.sendRedirect("error.jsp");
       }
     }
+
+%>
