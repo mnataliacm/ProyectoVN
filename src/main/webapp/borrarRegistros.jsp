@@ -7,7 +7,6 @@
     Author     : Verónica González
 --%>
 <%
-  // TODO: 08/06/2022 Falla borrar sin embargo en postman funciona, cuando arreglemos quitar borrarUsuario
   boolean confirma = false;
   if ((session.getAttribute("usuario") == null) || !(session.getAttribute("usuario").equals("Admin"))) {
     response.sendRedirect("index.jsp");
@@ -22,11 +21,11 @@
       confirma = new UsuarioClient().borrar(idusu);
       session.setAttribute("enlace", "usuarios.jsp");
 
-    } /*else if (request.getParameter("IDemp") != null) {
+    } else if (request.getParameter("IDemp") != null) {
       int idusu = Integer.parseInt(request.getParameter("IDusu"));
       confirma = new EmpresaClient().borrar(idusu);
       session.setAttribute("enlace", "empresas.jsp");
-    }*/
+    }
 
     if (confirma) {
       session.setAttribute("icono", "<i class=\"bi bi-check2-circle text-primary fs-1\"></i>");

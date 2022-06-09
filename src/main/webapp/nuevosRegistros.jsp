@@ -6,7 +6,6 @@
     Author     : Verónica González
 --%>
 <%
-  // TODO: 08/06/2022 Falla crear cuando vaya eliminar registrarEmpresa y registrarUsuario
   boolean confirma = false;
   if ((session.getAttribute("usuario") == null) || !(session.getAttribute("usuario").equals("Admin"))) {
     response.sendRedirect("index.jsp");

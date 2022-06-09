@@ -34,7 +34,6 @@
   <!--Barra navegacion-->
   <div id="nav-placeholder"></div>
   <%
-    // TODO: 07/06/2022 Falla String ciudad y total. Arreglar
     if ((session.getAttribute("usuario") != null) && (session.getAttribute("usuario").equals("Admin"))) {
       EmpresaClient empresaClient = new EmpresaClient();
       int total = new EmpresaClient().todos().size();
