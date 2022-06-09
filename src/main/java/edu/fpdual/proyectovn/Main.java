@@ -1,9 +1,6 @@
 package edu.fpdual.proyectovn;
 
-import edu.fpdual.proyectovn.client.ActividadClient;
-import edu.fpdual.proyectovn.client.CategoriaClient;
-import edu.fpdual.proyectovn.client.CiudadClient;
-import edu.fpdual.proyectovn.client.UsuarioClient;
+import edu.fpdual.proyectovn.client.*;
 import edu.fpdual.proyectovn.client.dto.Actividad;
 import edu.fpdual.proyectovn.client.dto.Usuario;
 
@@ -17,7 +14,7 @@ public class Main {
     //System.out.println(new UsuarioClient().crear(usuario));
     System.out.println(new ActividadClient().todos().size());
     //System.out.println(new ActividadClient().crear(actividad));
-    System.out.println(new CategoriaClient().todos());
+    System.out.println(new EmpresaClient().todos());
     System.out.println(new CiudadClient().buscaPorID(23));
     usuario = new UsuarioClient().buscaPorID(45);
     System.out.println(usuario);

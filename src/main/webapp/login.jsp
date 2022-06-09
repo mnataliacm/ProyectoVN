@@ -1,5 +1,4 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
-<%@ page import="java.sql.*" %>
 <%@ page import="edu.fpdual.proyectovn.client.UsuarioClient" %>
 <%@ page import="edu.fpdual.proyectovn.client.dto.Usuario" %>
 <%--

@@ -1,7 +1,9 @@
 package edu.fpdual.proyectovn.client;
 
+import edu.fpdual.proyectovn.client.dto.Actividad;
 import edu.fpdual.proyectovn.client.dto.Usuario;
 import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.MediaType;
 
@@ -37,24 +39,22 @@ public class UsuarioClient {
         .get(Usuario.class);
   }
 
-  public boolean crear(Usuario usuario) {
-    webTarget.path("usuario")
+  public Usuario crear(Usuario usuario) {
+   return webTarget.path("usuario")
         .request(MediaType.APPLICATION_JSON)
-        .get(Usuario.class);
-    return true;
+        .post(Entity.entity(usuario, MediaType.APPLICATION_JSON), Usuario.class);
   }
 
-  public boolean modificar(Usuario usuario) {
-    webTarget.path("usuario")
+  public Usuario modificar(Usuario usuario) {
+    return webTarget.path("usuario")
         .request(MediaType.APPLICATION_JSON)
-        .get(Usuario.class);
-    return true;
+        .put(Entity.entity(usuario, MediaType.APPLICATION_JSON), Usuario.class);
   }
 
   public boolean borrar(Integer id) {
     webTarget.path("usuario/" + id)
         .request(MediaType.APPLICATION_JSON)
-        .get(Usuario.class);
+        .delete(Usuario.class);
     return true;
   }
 

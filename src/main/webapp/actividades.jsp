@@ -34,6 +34,7 @@
   <!--Barra navegacion-->
   <div id="nav-placeholder"></div>
   <%
+
     ActividadClient actividadClient = new ActividadClient();
     int total = new ActividadClient().todos().size();
     if (session.getAttribute("usuario") == null) {

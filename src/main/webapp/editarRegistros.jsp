@@ -1,6 +1,8 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ page import="edu.fpdual.proyectovn.client.dto.Actividad" %>
 <%@ page import="edu.fpdual.proyectovn.client.ActividadClient" %>
+<%@ page import="edu.fpdual.proyectovn.client.dto.Usuario" %>
+<%@ page import="edu.fpdual.proyectovn.client.UsuarioClient" %>
 <%--
     Author     : Natalia Castillo
     Author     : Verónica González
@@ -22,6 +24,20 @@
         Actividad editaAct = new ActividadClient().modificar(actividad);
         confirma = editaAct != null;
         session.setAttribute("enlace", "actividades.jsp");
+
+      } else if (request.getParameter("IDusu") != null) {
+        Integer id = Integer.valueOf(request.getParameter("IDusu"));
+        String nom = request.getParameter("NomUsu");
+        String ape = request.getParameter("ApeUsu");
+        String pass = request.getParameter("PassUsu");
+        String email =request.getParameter("Email");
+        String movil = request.getParameter("Movil");
+        Integer idciu = Integer.valueOf(request.getParameter("IDciu"));
+        Usuario usuario = new Usuario(id, nom, ape, pass, email, movil, idciu);
+        Usuario editaUsu = new UsuarioClient().modificar(usuario);
+        confirma = editaUsu != null;
+        session.setAttribute("enlace", "usuarios.jsp");
+
       } else if (request.getParameter("IDemp") != null) {
 
       }

@@ -16,17 +16,17 @@ import java.sql.Time;
 @Builder
 
 public class Reservas {
-  private int idRes;
-  private int idUsu;
-  private int idAct;
+  private Integer idRes;
+  private Integer idUsu;
+  private Integer idAct;
   private Date fecha;
   private Time hora;
 
-  public Reservas(String nom, String ape, Time hora, Date fecha, Integer idAct, Integer idUsu) {
-    this.hora = hora;
-    this.fecha = fecha;
-    this.idAct = idAct;
+  public Reservas(Integer idUsu, Integer idAct, Date fecha, Time hora) {
     this.idUsu = idUsu;
+    this.idAct = idAct;
+    this.fecha = fecha;
+    this.hora = hora;
   }
 }
 

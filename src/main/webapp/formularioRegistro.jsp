@@ -1,3 +1,6 @@
+<%@ page import="edu.fpdual.proyectovn.client.dto.Ciudad" %>
+<%@ page import="java.util.Set" %>
+<%@ page import="edu.fpdual.proyectovn.client.CiudadClient" %>
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 
 <%--
@@ -59,24 +62,17 @@
           </div>
           <div class="col-md-4">
             <label for="ciudad" class="form-label">Ciudad</label>
-            <select class="form-select rounded-pill" aria-label="Default select example" id="ciudad">
-              <option selected>Elige tu ciudad</option>
-              <%--
-                Set<Ciudad> ciudadSet =  {
-                };
-                for (Ciudad l : ciudadList) {
-              --%>
-              <option value="<%--=l %>"><%=l --%>"></option>
-              <%--
+            <select class="form-select rounded-pill" name="ciudad" aria-label="Default select example" id="ciudad">
+              <option value="1" selected>Elige tu ciudad</option>
+              <%
+                CiudadClient ciudadClient = new CiudadClient();
+                Set<Ciudad> ciudadSet =  ciudadClient.todos();
+                for (Ciudad c : ciudadSet) {
+              %>
+              <option value="<%=c.getId() %>"> <%=c.getNom() %> </option>
+              <%
                 }
-              --%>
-              <option value="4">Almería</option>
-              <option value="18">Granada</option>
-              <option value="29">Málaga</option>
-              <option value="11">Cádiz</option>
-              <option value="21">Huelva</option>
-              <option value="41">Sevilla</option>
-              <option value="23">Jaén</option>
+              %>
             </select>
           </div>
           <div class="col-6 text-center">
