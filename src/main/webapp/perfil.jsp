@@ -1,11 +1,12 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
-<%@ page import="edu.fpdual.proyectovn.model.connector.Connector" %>
-<%@ page import="java.sql.*" %>
-<%@ page import="edu.fpdual.proyectovn.model.dao.Reservas" %>
-<%@ page import="edu.fpdual.proyectovn.controller.ReservaController" %>
-<%@ page import="edu.fpdual.proyectovn.model.manager.implement.ReservasManagerImpl" %>
-<%-- 
+<%@ page import="edu.fpdual.proyectovn.client.UsuarioClient" %>
+<%@ page import="edu.fpdual.proyectovn.client.dto.Usuario" %>
+<%@ page import="edu.fpdual.proyectovn.client.dto.Reservas" %>
+<%@ page import="edu.fpdual.proyectovn.client.ReservasClient" %>
+<%@ page import="java.util.Set" %>
+<%--
     Author     : Natalia Castillo
+    Author     : Verónica González
 --%>
 <!DOCTYPE html>
 <html>
@@ -32,23 +33,15 @@
   <!--Barra navegación-->
   <div id="nav-placeholder"></div>
   <%
-    // TODO: 07/06/2022 Pendiente
-    Connection con;
-    Statement s;
     String nombre = (String) session.getAttribute("usuario");
     String user = nombre.toUpperCase().charAt(0) + nombre.substring(1).toLowerCase();
-    Integer id = (Integer) session.getAttribute("idusu");
-    ReservaController reservaController = new ReservaController(new ReservasManagerImpl());
-    try {
-      con = new Connector().getConnection();
-      s = con.createStatement();
-      ResultSet info;
-      info = s.executeQuery("SELECT * FROM usuario WHERE NomUsu LIKE ('" + nombre + "')");
-      info.next();
-        if (session.getAttribute("usuario") == null) {
-          session.setAttribute("error", "Debe iniciar sesión para acceder a la página de perfil.");
-          response.sendRedirect("formularioLogin.jsp");
-        }
+    UsuarioClient usuarioClient = new UsuarioClient();
+    Usuario usuario = usuarioClient.buscaPorNombre(nombre);
+    String ciudad = String.valueOf(new UsuarioClient().buscaPorID(usuario.getIdciu()));
+    if (session.getAttribute("usuario") == null) {
+      session.setAttribute("error", "Debe iniciar sesión para acceder a la página de perfil.");
+      response.sendRedirect("formularioLogin.jsp");
+    }
   %>
   <div class="container border-danger">
     <div class=" panel mt-5">
@@ -78,16 +71,16 @@
                   </h5>
                   <div class="card-body bg-tostado ">
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item">Usuario: <%=info.getString("NomUsu") %>
+                      <li class="list-group-item">Usuario: <%=usuario.getNom() %>
                       </li>
                       <li class="list-group-item">Nombre
-                        completo: <%=info.getString("NomUsu") %> <%=info.getString("ApeUsu") %>
+                        completo: <%=usuario.getNom() %> <%=usuario.getApe() %>
                       </li>
-                      <li class="list-group-item">Email: <%=info.getString("Email") %>
+                      <li class="list-group-item">Email: <%=usuario.getEmail() %>
                       </li>
-                      <li class="list-group-item">Móvil: <%=info.getString("Movil") %>
+                      <li class="list-group-item">Móvil: <%=usuario.getMovil() %>
                       </li>
-                      <li class="list-group-item">Ciudad favorita: <%%>(<%=info.getInt("IDciu") %>)
+                      <li class="list-group-item">Ciudad favorita: <%=ciudad %>(<%=usuario.getIdciu() %>)
                       </li>
                     </ul>
                   </div>
@@ -131,27 +124,27 @@
                     <th>Fecha</th>
                     <th>Valoración</th>
                   </tr>
+                  <% // TODO: 09/06/2022 Comprobar que va bien el if cuando este arreglado Reservas
+                    ReservasClient reservasClient = new ReservasClient();
+                    Set<Reservas> reservasSet;
+                    reservasSet = reservasClient.todos();
+                    for (Reservas r : reservasSet) {
+                      if (r.getIdUsu().equals(usuario.getId())) {
+                  %>
+                  <tr>
+                    <td><%=r.getIdRes()%>
+                    </td>
+                    <td><%=r.getIdUsu()%>
+                    </td>
+                    <td><%=r.getIdAct()%>
+                    </td>
+                    <td><%=r.getFecha()%>
+                    </td>
+                    <td><%=r.getHora()%>
+                    </td>
+                  </tr>
                   <%
-                        for (Reservas r : reservaController.todasReservas()) {
-                          if (r.getIdUsu() == id) {
-                    %>
-                    <tr>
-                      <td><%=r.getIdRes()%>
-                      </td>
-                      <td><%=r.getIdUsu()%>
-                      </td>
-                      <td><%=r.getIdAct()%>
-                      </td>
-                      <td><%=r.getFecha()%>
-                      </td>
-                      <td><%=r.getHora()%>
-                      </td>
-                    </tr>
-                    <%
-                          }
-                        }
-                      } catch (ClassNotFoundException | SQLException e) {
-                      throw new RuntimeException(e);
+                      }
                     }
                   %>
                 </table>
