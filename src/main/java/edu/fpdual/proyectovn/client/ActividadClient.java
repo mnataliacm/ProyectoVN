@@ -48,5 +48,5 @@ public class ActividadClient {
     return new HashSet<>(Arrays.asList(webTarget.path("actividad/grupo/" + id)
         .request(MediaType.APPLICATION_JSON)
         .get(Actividad[].class)));
-  } // TODO: 09/06/2022 quitar si al final no lo usamos
+  }
 }
