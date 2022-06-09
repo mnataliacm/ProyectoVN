@@ -33,7 +33,7 @@
                 <img src="images/cenefaVerde.png" class="img w-50" alt="tulipanes rojos">
                 <h2 class="bg-tostado text-center py-3">Editar usuario</h2>
               </div>
-              <form method="post" action="editarRegistros.jsp">
+              <form method="post" action="registrosEditar.jsp">
                 <div class="card-body bg-naranja">
                   <div class="row">
                     <div class="col">

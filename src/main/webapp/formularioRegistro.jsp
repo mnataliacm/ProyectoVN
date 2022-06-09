@@ -36,7 +36,7 @@
           <img src="images/icons/logovntrans.png" class="img w-50 h-25" alt="logo vn">
         </div>
         <h2 class="bg-tostado text-center py-3">Nuevo usuario</h2>
-        <form method="post" action="nuevosRegistros.jsp" class="row g-4 p-3 bg-verde">
+        <form method="post" action="registrosNuevos.jsp" class="row g-4 p-3 bg-verde">
           <div class="col-md-6">
             <label for="nombre" class="form-label">Nombre</label>
             <input type="text" name="nombre" class="form-control rounded-pill" id="nombre" required>

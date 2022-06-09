@@ -84,7 +84,7 @@
     <div class=" panel panel-light">
       <h2 class="panel-heading text-center bg-verde"> LISTADO DE ACTIVIDADES (<%=total %>)</h2>
       <table class="table table-striped table-verde">
-        <form method="post" action="nuevosRegistros.jsp">
+        <form method="post" action="registrosNuevos.jsp">
           <tr class="table-warning">
             <td><label for="IDact"></label>
               <input type="text" id="IDact" name="IDact" size="3" placeholder="<%=total + 1%>" readonly>
@@ -150,7 +150,7 @@
           <td>
             <div class="row">
               <div class="col-6 ">
-                <form method="post" action="modificarActividad.jsp">
+                <form method="post" action="formularioActividad.jsp">
                   <input type="hidden" name="IDact" value="<%=a.getId() %>">
                   <input type="hidden" name="IDcat" value="<%=a.getIdcat() %>">
                   <input type="hidden" name="IDciu" value="<%=a.getIdciu() %>">
@@ -164,7 +164,7 @@
               </div>
               <%--borrar--%>
               <div class="col-6">
-                <form method="post" action="borrarRegistros.jsp">
+                <form method="post" action="registrosBorrar.jsp">
                   <input type="hidden" name="IDact" value="<%=a.getId() %>"/>
                   <button type="submit" class="btn btn-danger"><span class="bi bi-trash-fill"></span> Borrar
                   </button>

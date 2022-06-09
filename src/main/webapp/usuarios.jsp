@@ -77,7 +77,7 @@
           <td>
             <div class="row">
               <div class="col-6 ">
-                <form method="post" action="modificarUsuario.jsp">
+                <form method="post" action="formularioUsuario.jsp">
                   <input type="hidden" name="IDusu" value="<%=u.getId() %>">
                   <input type="hidden" name="NomUsu" value="<%=u.getNom() %>">
                   <input type="hidden" name="ApeUsu" value="<%=u.getApe() %>">
@@ -92,7 +92,7 @@
               </div>
               <%--borrar--%>
               <div class="col-6">
-                <form method="post" action="borrarRegistros.jsp">
+                <form method="post" action="registrosBorrar.jsp">
                   <input type="hidden" name="IDusu" value="<%=u.getId() %>"/>
                   <button type="submit" class="btn btn-danger"><span class="bi bi-trash-fill"></span>
                     Borrar

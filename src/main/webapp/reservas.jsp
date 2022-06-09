@@ -72,7 +72,7 @@
           <div class="row">
             <%--borrar--%>
             <div class="col-6">
-              <form method="post" action="borrarRegistros.jsp">
+              <form method="post" action="registrosBorrar.jsp">
                 <input type="hidden" name="IDres" value="<%=r.getIdRes() %>"/>
                 <button type="submit" class="btn btn-danger"><span class="bi bi-trash-fill"></span>
                   Borrar
