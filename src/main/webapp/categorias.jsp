@@ -42,10 +42,12 @@
     String nombreCiudad;
     Integer idciu = Integer.parseInt(request.getParameter("IDciu"));
 
-    //int numAct = actividadClient.actividadesPorCiudad(idciu).size();
-    if ((idciu != 0) /*&& (numAct > 0)*/) {
-      categoriaSet = categoriaClient.catConAct(idciu);
-      nombreCiudad = ciudadClient.nombreCiudad(idciu);
+    categoriaSet = categoriaClient.catConAct(idciu);
+
+    int numAct = actividadClient.actPorCiu(idciu).size();
+    if ((idciu != 0) && (numAct > 0)) {
+      Set ciudadActividad = ciudadClient.ciuConAct(idciu);
+      nombreCiudad = ciudadClient.buscaPorID(idciu).getNom();
       for (Categoria c : categoriaSet) {
   %>
       <div class="col m-auto p-2">
@@ -71,7 +73,7 @@
       </div>
       <%
         }
-    } else /*if (numAct == 0)*/{
+    } else if (numAct == 0){
       %>
       <div class="col m-auto p-5">
         <div class="card pt-3 pb-2">

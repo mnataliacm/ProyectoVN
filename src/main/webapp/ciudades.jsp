@@ -42,7 +42,6 @@
       <form method="post" action="categorias.jsp">
         <div class="row justify-content-around align-items-center gy-5 row-cols-lg-4 mt-5">
           <%
-
             CiudadClient ciudadClient = new CiudadClient();
             Set<Ciudad> ciudads = ciudadClient.todos()
                 .stream().sorted(Comparator.comparing(Ciudad::getId))
@@ -51,7 +50,7 @@
             for (Ciudad c : ciudads) {
           %>
           <div class="col">
-            <button class="btn btn-primary btn-lg" type="submit" name="IDciu" value="<%=c.getId()%>"> <%=c.getNom()%> (<%=ciudadClient.ciuConAct(c.getId()) %>)
+            <button class="btn btn-primary btn-lg" type="submit" name="IDciu" value="<%=c.getId()%>"> <%=c.getNom()%> (<% %>)
             </button>
           </div>
           <%
