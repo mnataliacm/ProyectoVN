@@ -4,7 +4,6 @@
 <%@ page import="java.util.Comparator" %>
 <%@ page import="java.util.stream.Collectors" %>
 <%@ page import="java.util.LinkedHashSet" %>
-<%@ page import="edu.fpdual.proyectovn.client.ActividadClient" %>
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%--
     Author     : Natalia Castillo
@@ -41,17 +40,18 @@
       </div>
       <form method="post" action="categorias.jsp">
         <div class="row justify-content-around align-items-center gy-5 row-cols-lg-4 mt-5">
-          <%
+          <% // TODO: 11/06/2022 CREO QUE ESTE LO PODEMOS QUITAR
             CiudadClient ciudadClient = new CiudadClient();
-            Set<Ciudad> ciudads = ciudadClient.todos()
-                .stream().sorted(Comparator.comparing(Ciudad::getId))
-                .collect(Collectors.toCollection(LinkedHashSet::new));
-            session.setAttribute("ciudad", request.getParameter("IDciu"));
-            for (Ciudad c : ciudads) {
+
+            Set<Ciudad> ciudadSet;
+               ciudadSet = ciudadClient.todos()
+                  .stream().sorted(Comparator.comparing(Ciudad::getId))
+                  .collect(Collectors.toCollection(LinkedHashSet::new));
+              session.setAttribute("ciudad", request.getParameter("IDciu"));
+            for (Ciudad c : ciudadSet) {
           %>
           <div class="col">
-            <button class="btn btn-primary btn-lg" type="submit" name="IDciu" value="<%=c.getId()%>"> <%=c.getNom()%> (<% %>)
-            </button>
+            <button class="btn btn-primary btn-lg" type="submit" name="IDciu" value="<%=c.getId()%>"> <%=c.getNom()%></button>
           </div>
           <%
             }
@@ -61,8 +61,8 @@
       <form method="post" action="actividades.jsp">
         <div class="container-fluid w-50 h-50 m-auto text-center ">
           <div class="panel w-75 m-auto pt-5 mt-5">
-            <h2 class="panel-heading text-center bg-turquesa">Ver todas (<%=ciudadClient.todos().size()%>)</h2>
-            <button class="btn btn-primary btn-lg" type="submit" name="IDciu" value="0">Todas</button>
+            <h2 class="panel-heading text-center bg-turquesa">Ver todas </h2>
+            <button class="btn btn-primary btn-lg" type="submit" name="IDciu" value="0">Todas (<%=ciudadClient.todos().size()%>)</button>
           </div>
         </div>
       </form>

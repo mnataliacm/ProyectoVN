@@ -1,8 +1,10 @@
-<%@ page import="edu.fpdual.proyectovn.client.CategoriaClient" %>
+<%--@ page import="edu.fpdual.proyectovn.client.CategoriaClient" %>
 <%@ page import="edu.fpdual.proyectovn.client.dto.Categoria" %>
 <%@ page import="java.util.Set" %>
 <%@ page import="edu.fpdual.proyectovn.client.CiudadClient" %>
 <%@ page import="edu.fpdual.proyectovn.client.ActividadClient" %>
+<%@ page import="java.util.HashSet" %>
+<%@ page import="edu.fpdual.proyectovn.client.dto.Actividad" %>
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%--
     Author     : Natalia Castillo
@@ -34,21 +36,16 @@
   <div id="nav-placeholder"></div>
   <div id="container" class="container-flex text-center m-auto p-3 d-flex h-auto">
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-auto m-auto">
-  <%
+  <%-- // TODO: 11/06/2022 CREO QUE ESTE LO PODEMOS QUITAR
     CategoriaClient categoriaClient = new CategoriaClient();
-    CiudadClient ciudadClient = new CiudadClient();
     ActividadClient actividadClient = new ActividadClient();
-    Set<Categoria> categoriaSet;
-    String nombreCiudad;
     Integer idciu = Integer.parseInt(request.getParameter("IDciu"));
 
-    categoriaSet = categoriaClient.catConAct(idciu);
+    int numActCiu = actividadClient.actPorCiu(idciu).size();
 
-    int numAct = actividadClient.actPorCiu(idciu).size();
-    if ((idciu != 0) && (numAct > 0)) {
-      Set ciudadActividad = ciudadClient.ciuConAct(idciu);
-      nombreCiudad = ciudadClient.buscaPorID(idciu).getNom();
-      for (Categoria c : categoriaSet) {
+    if ((idciu != 0) && (numActCiu > 0)) {
+      Set<String> categoriaSet =  categoriaClient.catConAct(idciu);
+      for (String c : categoriaSet) {
   %>
       <div class="col m-auto p-2">
         <div class="card">
@@ -61,7 +58,7 @@
             <p class="card-text"></p>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">Ciudad elegida: <%=nombreCiudad %>
+            <li class="list-group-item">Ciudad elegida: <%=c. %>
             </li>
             <li class="list-group-item"> Num actividades: <%=categoriaSet.size()%>
             </li>
@@ -73,7 +70,7 @@
       </div>
       <%
         }
-    } else if (numAct == 0){
+    } else if (numActCiu == 0){
       %>
       <div class="col m-auto p-5">
         <div class="card pt-3 pb-2">

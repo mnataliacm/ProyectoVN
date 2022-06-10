@@ -1,9 +1,8 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ page import="edu.fpdual.proyectovn.client.UsuarioClient" %>
 <%@ page import="edu.fpdual.proyectovn.client.dto.Usuario" %>
-<%@ page import="edu.fpdual.proyectovn.client.dto.Reservas" %>
-<%@ page import="edu.fpdual.proyectovn.client.ReservasClient" %>
-<%@ page import="java.util.Set" %>
+<%@ page import="edu.fpdual.proyectovn.client.CiudadClient" %>
+<%@ page import="edu.fpdual.proyectovn.client.dto.Ciudad" %>
 <%--
     Author     : Natalia Castillo
     Author     : Verónica González
@@ -37,7 +36,7 @@
     String user = nombre.toUpperCase().charAt(0) + nombre.substring(1).toLowerCase();
     UsuarioClient usuarioClient = new UsuarioClient();
     Usuario usuario = usuarioClient.buscaPorNombre(nombre);
-    String ciudad = String.valueOf(new UsuarioClient().buscaPorID(usuario.getIdciu()));
+    Ciudad ciudad = new CiudadClient().buscaPorID(usuario.getIdciu());
     if (session.getAttribute("usuario") == null) {
       session.setAttribute("error", "Debe iniciar sesión para acceder a la página de perfil.");
       response.sendRedirect("formularioLogin.jsp");
@@ -80,12 +79,12 @@
                       </li>
                       <li class="list-group-item">Móvil: <%=usuario.getMovil() %>
                       </li>
-                      <li class="list-group-item">Ciudad favorita: <%=ciudad %>(<%=usuario.getIdciu() %>)
+                      <li class="list-group-item">Ciudad favorita: <%=ciudad.getNom() %>
                       </li>
                     </ul>
                   </div>
                   <div class="card-footer text-center p-3 m-3">
-                    <a href="ciudades.jsp" class="btn btn-primary m-2">Volver</a>
+                    <a href="actividades.jsp" class="btn btn-primary m-2">Volver</a>
                     <button type="button" class="btn btn-primary m-3" data-bs-toggle="modal"
                             data-bs-target="#staticBackdrop">
                       Mis Reservas
@@ -124,7 +123,7 @@
                     <th>Fecha</th>
                     <th>Valoración</th>
                   </tr>
-                  <% // TODO: 09/06/2022 Comprobar que va bien el if cuando este arreglado Reservas
+                  <%-- // TODO: 09/06/2022 Descomentar y Comprobar que va bien el if cuando este arreglado Reservas
                     ReservasClient reservasClient = new ReservasClient();
                     Set<Reservas> reservasSet;
                     reservasSet = reservasClient.todos();
@@ -146,7 +145,7 @@
                   <%
                       }
                     }
-                  %>
+                  --%>
                 </table>
               </div>
             </div> <!-- cierre container lista -->

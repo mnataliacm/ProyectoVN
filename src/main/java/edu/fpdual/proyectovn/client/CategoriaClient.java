@@ -1,14 +1,13 @@
 package edu.fpdual.proyectovn.client;
 
 import edu.fpdual.proyectovn.client.dto.Categoria;
+import edu.fpdual.proyectovn.client.dto.Usuario;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.MediaType;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class CategoriaClient {
   private final WebTarget webTarget;
@@ -21,9 +20,13 @@ public class CategoriaClient {
   public Set<Categoria> todos() {
     return new HashSet<>(Arrays.asList(webTarget.path("categoria")
         .request(MediaType.APPLICATION_JSON)
-
-
         .get(Categoria[].class)));
+  }
+
+  public Categoria buscaPorID(Integer id) {
+    return webTarget.path("categoria/" + id)
+        .request(MediaType.APPLICATION_JSON)
+        .get(Categoria.class);
   }
 
   public boolean crear() {
@@ -48,9 +51,9 @@ public class CategoriaClient {
   }
 
   // TODO: 09/06/2022 ARREGLAR 1.3 - intentar arreglar alguno de los 3
-  public Set<Categoria> catConAct(Integer idciu) {
-    return new HashSet<>(Arrays.asList(webTarget.path("categoria/grupo" + idciu)
+  public Set<String> catConAct(Integer idciu) {
+    return new TreeSet<>(Collections.singleton(String.valueOf(Arrays.asList(webTarget.path("categoria/grupo" + idciu)
         .request(MediaType.APPLICATION_JSON)
-        .get(Categoria[].class)));
+        .get(Categoria[].class)))));
   }
 }
