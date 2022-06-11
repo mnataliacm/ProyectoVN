@@ -18,8 +18,13 @@
     String movil = request.getParameter("movil");
     Integer idciu = Integer.parseInt(request.getParameter("ciudad"));
     Usuario usuario = new Usuario(nom, ape, pass, email, movil, idciu);
-    Usuario editaUsu = new UsuarioClient().crear(usuario);
-    confirma = editaUsu != null;
+    Usuario nuevoUsu = new UsuarioClient().crear(usuario);
+    if (request.getParameter("email") != null) {
+      UsuarioClient usuarioClient = new UsuarioClient();
+      Usuario emailInfo = usuarioClient.buscaPorNombre(nom);
+      usuarioClient.enviarEmail(emailInfo.getId());
+    }
+    confirma = nuevoUsu != null;
     session.setAttribute("enlace", "formularioLogin.jsp");
 
   } else if ((session.getAttribute("usuario") == null) || !(session.getAttribute("usuario").equals("Admin"))) {

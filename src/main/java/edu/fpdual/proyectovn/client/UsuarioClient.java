@@ -57,4 +57,9 @@ public class UsuarioClient {
     return true;
   }
 
+  public void enviarEmail(Integer id) {
+    webTarget.path("usuario/email/" + id)
+        .request(MediaType.APPLICATION_JSON)
+        .get();
+  }
 }
