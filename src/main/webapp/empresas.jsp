@@ -46,8 +46,8 @@
             <td><label for="IDemp"></label>
               <input type="hidden" id="IDemp" name="IDemp" size="1" readonly>
             </td>
-            <td><label for="NomAct"> </label>
-              <input type="text" id="NomAct" name="NomAct" size="25" placeholder="Nombre de la Empresa" required>
+            <td><label for="NomEmp"> </label>
+              <input type="text" id="NomEmp" name="NomEmp" size="25" placeholder="Nombre de la Empresa" required>
             </td>
             <td>
               <button type="submit" value="Añadir" class="btn btn-primary"><span class="bi bi-plus-circle"></span>
