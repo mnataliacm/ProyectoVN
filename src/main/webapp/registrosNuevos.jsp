@@ -36,7 +36,7 @@
   } else if ((session.getAttribute("usuario") == null) || !(session.getAttribute("usuario").equals("Admin"))) {
     response.sendRedirect("index.jsp");
 
-  } else if (request.getParameter("IDact") != null) {
+  } else if (request.getParameter("IDact") != null && request.getParameter("IDciu") !=null) {
     Integer idcat = Integer.valueOf(request.getParameter("IDcat"));
     Integer idciu = Integer.valueOf(request.getParameter("IDciu"));
     String nom = request.getParameter("NomAct");
