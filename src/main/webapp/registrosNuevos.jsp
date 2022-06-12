@@ -36,8 +36,7 @@
   } else if ((session.getAttribute("usuario") == null) || !(session.getAttribute("usuario").equals("Admin"))) {
     response.sendRedirect("index.jsp");
 
-  } else {
-    if (request.getParameter("IDact") != null) {
+  } else if (request.getParameter("IDact") != null) {
       Integer idcat = Integer.valueOf(request.getParameter("IDcat"));
       Integer idciu = Integer.valueOf(request.getParameter("IDciu"));
       String nom = request.getParameter("NomAct");
@@ -68,7 +67,7 @@
       session.setAttribute("enlace", "reservas.jsp");
 
     }
-  }
+
 
     if (confirma) {
       session.setAttribute("icono", "<i class=\"bi bi-check2-circle text-primary fs-1\"></i>");
