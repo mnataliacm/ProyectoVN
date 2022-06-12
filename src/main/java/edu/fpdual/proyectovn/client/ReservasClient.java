@@ -1,7 +1,11 @@
 package edu.fpdual.proyectovn.client;
 
+import edu.fpdual.proyectovn.client.dto.Actividad;
+import edu.fpdual.proyectovn.client.dto.Empresa;
 import edu.fpdual.proyectovn.client.dto.Reservas;
 import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.MediaType;
 
@@ -15,7 +19,7 @@ public class ReservasClient {
     private final WebTarget webTarget;
 
     public ReservasClient() {
-        Client client = newClient();
+        Client client = ClientBuilder.newClient();
         this.webTarget = client.target("http://localhost:8081/WebServiceVN/api/");
     }
 
@@ -25,25 +29,23 @@ public class ReservasClient {
                 .get(Reservas[].class)));
     }
 
-    public boolean crear() {
-        webTarget.path("reserva")
+    public Reservas crear(Reservas reservas) {
+        return webTarget.path("reserva")
                 .request(MediaType.APPLICATION_JSON)
-                .get(Reservas.class);
-        return true;
+                .post(Entity.entity(reservas, MediaType.APPLICATION_JSON), Reservas.class);
     }
 
-    public boolean modificar() {
-        webTarget.path("reserva")
+    public Reservas modificar(Reservas reservas) {
+        return webTarget.path("reserva")
                 .request(MediaType.APPLICATION_JSON)
-                .get(Reservas.class);
-        return true;
+                .put(Entity.entity(reservas, MediaType.APPLICATION_JSON), Reservas.class);
     }
 
-    public boolean borrar(Integer idres) {
-        webTarget.path("reserva/" + idres)
+    public boolean borrar(Integer id) {
+        webTarget.path("reserva/" + id)
                 .request(MediaType.APPLICATION_JSON)
-                .get(Reservas.class);
+                .delete(Reservas.class);
         return true;
     }
 }
-// TODO: 08/06/2022 Pendiente de arreglar
+

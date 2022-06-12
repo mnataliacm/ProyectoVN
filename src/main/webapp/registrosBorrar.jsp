@@ -1,6 +1,7 @@
 <%@ page import="edu.fpdual.proyectovn.client.ActividadClient" %>
 <%@ page import="edu.fpdual.proyectovn.client.UsuarioClient" %>
 <%@ page import="edu.fpdual.proyectovn.client.EmpresaClient" %>
+<%@ page import="edu.fpdual.proyectovn.client.ReservasClient" %>
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%--
     Author     : Natalia Castillo
@@ -22,9 +23,15 @@
       session.setAttribute("enlace", "usuarios.jsp");
 
     } else if (request.getParameter("IDemp") != null) {
-      int idusu = Integer.parseInt(request.getParameter("IDusu"));
-      confirma = new EmpresaClient().borrar(idusu);
+      int idemp = Integer.parseInt(request.getParameter("IDemp"));
+      confirma = new EmpresaClient().borrar(idemp);
       session.setAttribute("enlace", "empresas.jsp");
+
+
+    }else if (request.getParameter("IDres") != null) {
+      int idres = Integer.parseInt(request.getParameter("IDres"));
+      confirma = new ReservasClient().borrar(idres);
+      session.setAttribute("enlace", "reservas.jsp");
     }
 
     if (confirma) {

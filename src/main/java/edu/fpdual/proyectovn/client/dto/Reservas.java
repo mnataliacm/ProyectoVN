@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
+import java.sql.ResultSet;
 import java.sql.Time;
 
 @Data
@@ -22,12 +23,7 @@ public class Reservas {
   private Date fecha;
   private Time hora;
 
-  public Reservas(Integer idUsu, Integer idAct, Date fecha, Time hora) {
-    this.idUsu = idUsu;
-    this.idAct = idAct;
-    this.fecha = fecha;
-    this.hora = hora;
-  }
+
 }
 
 

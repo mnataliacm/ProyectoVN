@@ -13,7 +13,8 @@ import lombok.NoArgsConstructor;
 @Builder
 
 public class Empresa {
-  private Integer idEmp;
+  private Integer id;
   private String nomEmp;
+
 
 }

@@ -1,8 +1,9 @@
 package edu.fpdual.proyectovn.client;
 
 import edu.fpdual.proyectovn.client.dto.Empresa;
-import edu.fpdual.proyectovn.client.dto.Usuario;
 import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.MediaType;
 
@@ -16,7 +17,7 @@ public class EmpresaClient {
     private final WebTarget webTarget;
 
     public EmpresaClient() {
-        Client client = newClient();
+        Client client = ClientBuilder.newClient();
         this.webTarget = client.target("http://localhost:8081/WebServiceVN/api/");
     }
 
@@ -26,25 +27,23 @@ public class EmpresaClient {
                 .get(Empresa[].class)));
     }
 
-    public boolean crear() {
-        webTarget.path("empresa")
+    public Empresa crear(Empresa empresa) {
+        return webTarget.path("empresa")
                 .request(MediaType.APPLICATION_JSON)
-                .get(Empresa.class);
-        return true;
+                .post(Entity.entity(empresa, MediaType.APPLICATION_JSON), Empresa.class);
     }
 
-    public boolean modificar() {
-        webTarget.path("empresa")
+    public Empresa modificar(Empresa empresa) {
+        return webTarget.path("empresa")
                 .request(MediaType.APPLICATION_JSON)
-                .get(Empresa.class);
-        return true;
+                .put(Entity.entity(empresa, MediaType.APPLICATION_JSON), Empresa.class);
     }
 
-    public boolean borrar(Integer idemp) {
-        webTarget.path("empresa/" + idemp)
+    public boolean borrar(Integer id) {
+        webTarget.path("empresa/" + id)
                 .request(MediaType.APPLICATION_JSON)
-                .get(Usuario.class);
+                .delete(Empresa.class);
         return true;
     }
 }
-// TODO: 08/06/2022 Pendiente de arreglar
+

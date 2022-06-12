@@ -3,6 +3,8 @@
 <%@ page import="edu.fpdual.proyectovn.client.ActividadClient" %>
 <%@ page import="edu.fpdual.proyectovn.client.dto.Usuario" %>
 <%@ page import="edu.fpdual.proyectovn.client.UsuarioClient" %>
+<%@ page import="edu.fpdual.proyectovn.client.dto.Empresa" %>
+<%@ page import="edu.fpdual.proyectovn.client.EmpresaClient" %>
 <%--
     Author     : Natalia Castillo
     Author     : Verónica González
@@ -39,7 +41,12 @@
         session.setAttribute("enlace", "usuarios.jsp");
 
       } else if (request.getParameter("IDemp") != null) {
-
+        Integer id= Integer.valueOf(request.getParameter("IDemp"));
+        String nom = request.getParameter("NomEmp");
+        Empresa empresa = new Empresa(id, nom);
+        Empresa editaEmp = new EmpresaClient().modificar(empresa);
+        confirma = editaEmp != null;
+        session.setAttribute("enlace", "empresas.jsp");
       }
 
       if (confirma) {

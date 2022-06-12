@@ -36,20 +36,19 @@
   <%
     if ((session.getAttribute("usuario") != null) && (session.getAttribute("usuario").equals("Admin"))) {
       EmpresaClient empresaClient = new EmpresaClient();
-      int total = new EmpresaClient().todos().size();
   %>
   <div class="container mt-3 text-center">
     <div class="panel panel-light">
-      <h2 class="panel-heading text-center bg-verde">BASE DE DATOS DE EMPRESAS (<%=total %>)</h2>
+      <h2 class="panel-heading text-center bg-verde">BASE DE DATOS DE EMPRESAS </h2>
       <table class="table table-striped table-verde">
-        <form method="post" action="empresas.jsp">
+        <form method="post" action="registrosNuevos.jsp">
           <tr class="table-warning">
-            <td><label>
-              <input type="text" name="IDemp" size="5" placeholder="<%=total + 1%>" disabled>
-            </label></td>
-            <td><label>
-              <input type="text" name="NomEmp" size="60" placeholder="Nombre empresa" required>
-            </label></td>
+            <td><label for="IDemp"></label>
+              <input type="hidden" id="IDemp" name="IDemp" size="1" readonly>
+            </td>
+            <td><label for="NomAct"> </label>
+              <input type="text" id="NomAct" name="NomAct" size="25" placeholder="Nombre de la Empresa" required>
+            </td>
             <td>
               <button type="submit" value="Añadir" class="btn btn-primary"><span class="bi bi-plus-circle"></span>
               </button>
@@ -64,12 +63,12 @@
         </tr>
         <%
           Set<Empresa> empresas = empresaClient.todos()
-                  .stream().sorted(Comparator.comparing(Empresa::getIdEmp))
+                  .stream().sorted(Comparator.comparing(Empresa::getId))
                   .collect(Collectors.toCollection(LinkedHashSet::new));
           for (Empresa e : empresas) {
         %>
         <tr>
-          <td><%=e.getIdEmp()%>
+          <td><%=e.getId()%>
           </td>
           <td><%=e.getNomEmp()%>
           </td>
@@ -77,8 +76,8 @@
           <td>
             <div class="row">
               <div class="col-4 ">
-                <form method="post" action="empresas.jsp">
-                  <input type="hidden" name="IDemp" value="<%=e.getIdEmp()%>">
+                <form method="post" action="formularioEmpresa.jsp">
+                  <input type="hidden" name="IDemp" value="<%=e.getId()%>">
                   <input type="hidden" name="NomEmp" value="<%=e.getNomEmp()%>">
                   <button type="submit" class="btn btn-info"><span class="bi bi-pencil-fill"> </span> Editar</button>
                 </form>
@@ -86,7 +85,7 @@
               <%--borrar--%>
               <div class="col-4">
                 <form method="post" action="registrosBorrar.jsp">
-                  <input type="hidden" name="IDemp" value="<%=e.getIdEmp()%>"/>
+                  <input type="hidden" name="IDemp" value="<%=e.getId()%>"/>
                   <button type="submit" class="btn btn-danger"><span class="bi bi-trash-fill"></span> Borrar</button>
                 </form>
               </div>

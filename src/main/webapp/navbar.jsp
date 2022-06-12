@@ -15,7 +15,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <!-- sin registro -->
-        <% // TODO: 01/05/2022 intentar reducir código con if y variables
+        <% // TODO: 01/05/2022 intentar reducir código con if y variables, eliminar las zonas comunes, y reparar buscador
          String user = (String) session.getAttribute("usuario");
          if (session.getAttribute("usuario") == null) {
         %>
@@ -35,7 +35,7 @@
       </form>
       <!-- Administrador -->
         <%
-          } else if ((session.getAttribute("usuario") != null) && (user.equals("Admin"))) {
+          } else if ((session.getAttribute("usuario") != null) && ((session.getAttribute("usuario").equals("Admin")))) {
         %>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">

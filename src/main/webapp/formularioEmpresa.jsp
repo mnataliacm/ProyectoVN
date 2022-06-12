@@ -41,14 +41,14 @@
             <div class="card-body bg-naranja">
               <div class="row">
                 <div class="col">
+                  <label>ID <input type="text" size="5" name="IDemp" value="<%= request.getParameter("IDemp") %>" readonly></label>
+                </div>
+                <div class="col">
                   <label>Empresa:
                     <input type="text" size="35" name="NomEmp" value="<%= request.getParameter("NomEmp") %>" required>
                   </label>
                 </div>
-                <div class="col">
-                  <label>Ciudad: <input type="text" size="35" name="IDciu" value="<%= request.getParameter("IDciu") %>"
-                                        required></label>
-                </div>
+
               </div>
             </div>
             <div class="card-footer text-center">

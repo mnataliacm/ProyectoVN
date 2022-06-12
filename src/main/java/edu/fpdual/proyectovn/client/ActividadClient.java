@@ -1,6 +1,7 @@
 package edu.fpdual.proyectovn.client;
 
 import edu.fpdual.proyectovn.client.dto.Actividad;
+import edu.fpdual.proyectovn.client.dto.Categoria;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.Entity;
@@ -49,5 +50,11 @@ public class ActividadClient {
     return new HashSet<>(Arrays.asList(webTarget.path("actividad/grupo/" + id)
         .request(MediaType.APPLICATION_JSON)
         .get(Actividad[].class)));
+  }
+
+  public Actividad buscaPorID(Integer id) {
+    return webTarget.path("actividad/" + id)
+            .request(MediaType.APPLICATION_JSON)
+            .get(Actividad.class);
   }
 }
