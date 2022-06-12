@@ -5,6 +5,10 @@
 <%@ page import="edu.fpdual.proyectovn.client.UsuarioClient" %>
 <%@ page import="edu.fpdual.proyectovn.client.dto.Empresa" %>
 <%@ page import="edu.fpdual.proyectovn.client.EmpresaClient" %>
+<%@ page import="java.sql.Time" %>
+<%@ page import="java.sql.Date" %>
+<%@ page import="edu.fpdual.proyectovn.client.dto.Reservas" %>
+<%@ page import="edu.fpdual.proyectovn.client.ReservasClient" %>
 <%--
     Author     : Natalia Castillo
     Author     : Verónica González
@@ -46,13 +50,22 @@
       session.setAttribute("enlace", "actividades.jsp");
 
     } else if (request.getParameter("IDemp") != null) {
-      String nom = request.getParameter("NomEmp");
-      Empresa empresa = new Empresa(nom, tlf);
+      String nomEmp = request.getParameter("NomEmp");
+      Empresa empresa = new Empresa(nomEmp);
       Empresa nuevaEmp = new EmpresaClient().crear(empresa);
       confirma = nuevaEmp != null;
       session.setAttribute("enlace", "empresas.jsp");
 
     } else if (request.getParameter("IDres") != null) {
+      Integer idusu = Integer.valueOf(request.getParameter("IDusu"));
+      Integer idact = Integer.valueOf(request.getParameter("IDact"));
+      Time hora = Time.valueOf(request.getParameter("Hora"));
+      Date fecha = Date.valueOf(request.getParameter("Fecha"));
+
+      Reservas reservas = new Reservas(idusu, idact, fecha, hora);
+      Reservas nuevaRes = new ReservasClient().crear(reservas);
+      confirma = nuevaRes != null;
+      session.setAttribute("enlace", "reservas.jsp");
 
     }
   }

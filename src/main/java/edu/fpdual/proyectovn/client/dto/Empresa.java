@@ -16,5 +16,7 @@ public class Empresa {
   private Integer id;
   private String nomEmp;
 
-
+  public Empresa(String nomEmp) {
+    this.nomEmp = nomEmp;
+  }
 }

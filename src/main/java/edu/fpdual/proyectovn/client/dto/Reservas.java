@@ -23,6 +23,12 @@ public class Reservas {
   private Date fecha;
   private Time hora;
 
+  public Reservas(Integer idUsu, Integer idAct, Date fecha, Time hora) {
+    this.idUsu = idUsu;
+    this.idAct = idAct;
+    this.fecha = fecha;
+    this.hora = hora;
+  }
 
 }
 
