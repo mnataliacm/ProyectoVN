@@ -55,7 +55,7 @@
             </td>
             <td><label for="IDusu" class="form-label"></label>
               <select class="form-select" name="IDusu" aria-label="Default select example" id="IDusu">
-                <option value="1" selected>Usuario</option>
+                <option value="0" selected>Usuario</option>
                 <%
                   Set<Usuario> usuarioSet =  usuarioClient.todos()
                           .stream().sorted(Comparator.comparing(Usuario::getNom))
@@ -70,7 +70,7 @@
             </td>
             <td><label for="IDact" class="form-label"></label>
               <select class="form-select" name="IDact" aria-label="Default select example" id="IDact">
-                <option value="1" selected>Actividad</option>
+                <option value="0" selected>Actividad</option>
                 <%
                   Set<Actividad> actividadSet =  actividadClient.todos()
                           .stream().sorted(Comparator.comparing(Actividad::getNom))
@@ -83,16 +83,14 @@
                 %>
               </select>
             </td>
-
-
-            <td><label for="Hora"> </label>
-              <input type="time" id="Hora" name="Hora" size="25" placeholder="hora" required>
+            <td><label for="Hora" > </label>
+              <input type="time" id="Hora" name="Hora"  placeholder="hora" class="mt-4" required>
             </td>
             <td><label for="Fecha"> </label>
-              <input type="date" id="Fecha" name="Fecha" size="25" placeholder="fecha" required>
+              <input type="date" id="Fecha" name="Fecha"  placeholder="fecha" class="mt-4" required>
             </td>
             <td>
-              <button type="submit" value="Añadir" class="btn btn-primary"><span
+              <button type="submit" value="Añadir" class="btn btn-primary mt-4"><span
                       class="bi bi-plus-circle"></span>
               </button>
             </td>
@@ -124,7 +122,6 @@
           </td>
           <td><%=new SimpleDateFormat("dd-MM-yyyy").format(r.getFecha())%>
           </td>
-        </tr>
         <td>
           <div class="row">
             <%--borrar--%>
@@ -138,6 +135,7 @@
             </div>
           </div>
         </td>
+      </tr>
         <%
             }
           } else {
