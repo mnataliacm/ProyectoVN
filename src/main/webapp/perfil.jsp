@@ -3,6 +3,9 @@
 <%@ page import="edu.fpdual.proyectovn.client.dto.Usuario" %>
 <%@ page import="edu.fpdual.proyectovn.client.CiudadClient" %>
 <%@ page import="edu.fpdual.proyectovn.client.dto.Ciudad" %>
+<%@ page import="edu.fpdual.proyectovn.client.ReservasClient" %>
+<%@ page import="edu.fpdual.proyectovn.client.dto.Reservas" %>
+<%@ page import="java.util.Set" %>
 <%--
     Author     : Natalia Castillo
     Author     : Verónica González
@@ -123,7 +126,7 @@
                     <th>Fecha</th>
                     <th>Valoración</th>
                   </tr>
-                  <%-- // TODO: 09/06/2022 Descomentar y Comprobar que va bien el if cuando este arreglado Reservas
+                  <%
                     ReservasClient reservasClient = new ReservasClient();
                     Set<Reservas> reservasSet;
                     reservasSet = reservasClient.todos();
@@ -145,7 +148,7 @@
                   <%
                       }
                     }
-                  --%>
+                  %>
                 </table>
               </div>
             </div> <!-- cierre container lista -->

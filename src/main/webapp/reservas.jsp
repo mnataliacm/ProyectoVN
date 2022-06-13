@@ -7,7 +7,7 @@
 <%@ page import="edu.fpdual.proyectovn.client.*" %>
 <%@ page import="edu.fpdual.proyectovn.client.dto.Actividad" %>
 <%@ page import="edu.fpdual.proyectovn.client.dto.Usuario" %>
-<%@ page import="edu.fpdual.proyectovn.client.dto.Categoria" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%--
     Author     : Natalia Castillo
     Author     : Verónica González
@@ -89,7 +89,7 @@
               <input type="time" id="Hora" name="Hora" size="25" placeholder="hora" required>
             </td>
             <td><label for="Fecha"> </label>
-              <input type="date" id="Fecha" name="Hora" size="25" placeholder="fecha" required>
+              <input type="date" id="Fecha" name="Fecha" size="25" placeholder="fecha" required>
             </td>
             <td>
               <button type="submit" value="Añadir" class="btn btn-primary"><span
@@ -122,7 +122,7 @@
           </td>
           <td><%=r.getHora()%>
           </td>
-          <td><%=r.getFecha()%>
+          <td><%=new SimpleDateFormat("dd-MM-yyyy").format(r.getFecha())%>
           </td>
         </tr>
         <td>

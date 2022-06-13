@@ -6,8 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.ResultSet;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -32,6 +30,4 @@ public class Actividad {
     this.info = info;
   }
 
-  public Actividad(ResultSet resultSet) {
-  }
 }

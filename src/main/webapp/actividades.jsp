@@ -34,7 +34,6 @@
   <link rel="stylesheet" href="style/style.css">
   <!-- javascript para reutilizar navbar -->
   <script src="https://code.jquery.com/jquery.min.js"></script>
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 <body class="bg-fondo">
 <div id="wrapper" class="container-flex">
@@ -54,23 +53,18 @@
     <div class=" panel panel-light">
       <h2 class="panel-heading text-center bg-verde"> LISTADO DE ACTIVIDADES (<%=total %>) </h2>
       <div class="row">
-        <div class="col-lg-4 col-lg-offset-4">
-          <label for="search"></label>
-          <input type="search" id="search" value="" class="form-control" placeholder="buscador ...">
-        </div>
-        <div class="row">
-      <table class="table table-striped table-verde">
-        <thead>
-        <tr class="table-dark">
-          <th>ID</th>
-          <th>Categoría</th>
-          <th>Ciudad</th>
-          <th>Actividad</th>
-          <th>Horario</th>
-          <th>Información</th>
-        </tr>
-        </thead>
-          <%
+        <table class="table table-striped table-verde">
+          <thead>
+          <tr class="table-dark">
+            <th>ID</th>
+            <th>Categoría</th>
+            <th>Ciudad</th>
+            <th>Actividad</th>
+            <th>Horario</th>
+            <th>Información</th>
+          </tr>
+          </thead>
+            <%
             Set<Actividad> listado = actividadClient.todos()
                 .stream().sorted(Comparator.comparing(Actividad::getId))
                 .collect(Collectors.toCollection(LinkedHashSet::new));
@@ -78,24 +72,23 @@
               ciudad = ciudadClient.buscaPorID(a.getIdciu());
               categoria = categoriaClient.buscaPorID(a.getIdcat());
         %>
-        <tbody>
-        <tr>
-          <td><%=a.getId()%>
-          </td>
-          <td><%=categoria.getNom()%>
-          </td>
-          <td><%=ciudad.getNom()%>
-          </td>
-          <td><%=a.getNom()%>
-          </td>
-          <td><%=a.getHorario()%>
-          </td>
-          <td><%=a.getInfo()%>
-          </td>
-        </tr>
-        </tbody>
-        </div>
-    </div>
+          <tbody>
+          <tr>
+            <td><%=a.getId()%>
+            </td>
+            <td><%=categoria.getNom()%>
+            </td>
+            <td><%=ciudad.getNom()%>
+            </td>
+            <td><%=a.getNom()%>
+            </td>
+            <td><%=a.getHorario()%>
+            </td>
+            <td><%=a.getInfo()%>
+            </td>
+          </tr>
+          </tbody>
+      </div>
     </div>
   </div>
   <%
@@ -115,12 +108,14 @@
               <select class="form-select" name="IDciu" aria-label="Default select example" id="IDciu">
                 <option value="1" selected>Ciudad</option>
                 <%
-                  Set<Ciudad> ciudadSet =  ciudadClient.todos()
+                  Set<Ciudad> ciudadSet = ciudadClient.todos()
                       .stream().sorted(Comparator.comparing(Ciudad::getNom))
-                      .collect(Collectors.toCollection(LinkedHashSet::new));;
+                      .collect(Collectors.toCollection(LinkedHashSet::new));
+                  ;
                   for (Ciudad ci : ciudadSet) {
                 %>
-                <option value="<%=ci.getId() %>"> <%=ci.getNom() %> </option>
+                <option value="<%=ci.getId() %>"><%=ci.getNom() %>
+                </option>
                 <%
                   }
                 %>
@@ -130,38 +125,40 @@
               <select class="form-select" name="IDcat" aria-label="Default select example" id="IDcat">
                 <option value="1" selected>Categ.</option>
                 <%
-                  Set<Categoria> categoriaSet =  categoriaClient.todos()
+                  Set<Categoria> categoriaSet = categoriaClient.todos()
                       .stream().sorted(Comparator.comparing(Categoria::getNom))
                       .collect(Collectors.toCollection(LinkedHashSet::new));
                   for (Categoria ca : categoriaSet) {
                 %>
-                <option value="<%=ca.getId() %>"> <%=ca.getNom() %> </option>
+                <option value="<%=ca.getId() %>"><%=ca.getNom() %>
+                </option>
                 <%
                   }
                 %>
               </select>
-          </td>
+            </td>
             <td><label for="NomAct"> </label>
               <input type="text" id="NomAct" name="NomAct" size="25" placeholder="Nombre de la Actividad" required>
-           </td>
+            </td>
             <td><label for="IDemp" class="form-label"></label>
               <select class="form-select" name="IDemp" aria-label="Default select example" id="IDemp">
                 <option value="1" selected>Empresa</option>
-                <%-- // TODO: 11/06/2022 DESCOMENTAR cuando vaya empresa
-                  Set<Empresa> empresaSet =  empresaClient.todos()
-                  .stream().sorted(Comparator.comparing(Empresa::getNom))
-              .collect(Collectors.toCollection(LinkedHashSet::new));
+                <%
+                  Set<Empresa> empresaSet = empresaClient.todos()
+                      .stream().sorted(Comparator.comparing(Empresa::getNomEmp))
+                      .collect(Collectors.toCollection(LinkedHashSet::new));
                   for (Empresa e : empresaSet) {
                 %>
-                <option value="<%=e.getId() %>"> <%=e.getNom() %> </option>
+                <option value="<%=e.getId() %>"><%=e.getNomEmp() %>
+                </option>
                 <%
                   }
-                --%>
+                %>
               </select>
             </td>
             <td><label for="horario"> </label>
               <input type="text" id="horario" name="Horario" placeholder="Horario" size="25">
-           </td>
+            </td>
             <td><label for="info"></label>
               <input type="text" id="info" name="Info" placeholder="Información" size="25">
             </td>
@@ -295,8 +292,6 @@
         crossorigin="anonymous"></script>
 <!-- JS mio -->
 <script src="javascript/javascript.js"></script>
-<!-- buscador -->
-<script src="//rawgithub.com/stidges/jquery-searchable/master/dist/jquery.searchable-1.0.0.min.js"></script>
 </body>
 </html>
 

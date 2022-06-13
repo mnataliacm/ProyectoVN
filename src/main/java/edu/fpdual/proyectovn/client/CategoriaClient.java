@@ -1,7 +1,6 @@
 package edu.fpdual.proyectovn.client;
 
 import edu.fpdual.proyectovn.client.dto.Categoria;
-import edu.fpdual.proyectovn.client.dto.Usuario;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.WebTarget;
@@ -36,7 +35,7 @@ public class CategoriaClient {
     return true;
   }
 
-  public boolean modificar(Categoria categoria) {
+  public boolean modificar() {
     webTarget.path("categoria")
         .request(MediaType.APPLICATION_JSON)
         .get(Categoria.class);
@@ -50,10 +49,4 @@ public class CategoriaClient {
     return true;
   }
 
-  // TODO: 09/06/2022 ARREGLAR 1.3 - intentar arreglar alguno de los 3
-  public Set<String> catConAct(Integer idciu) {
-    return new TreeSet<>(Collections.singleton(String.valueOf(Arrays.asList(webTarget.path("categoria/grupo" + idciu)
-        .request(MediaType.APPLICATION_JSON)
-        .get(Categoria[].class)))));
-  }
 }

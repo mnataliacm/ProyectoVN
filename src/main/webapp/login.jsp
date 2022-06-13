@@ -20,7 +20,7 @@
     } else {
       session.setAttribute("usuario", nombre);
       session.setAttribute("ciudad", usuario.getIdciu());
-      response.sendRedirect("ciudades.jsp");
+      response.sendRedirect("actividades.jsp");
     }
   } else {
     session.setAttribute("error", "Usuario o contraseña incorrecto");

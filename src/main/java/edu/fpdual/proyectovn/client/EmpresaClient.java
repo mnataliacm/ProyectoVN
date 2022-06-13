@@ -11,8 +11,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import static jakarta.ws.rs.client.ClientBuilder.newClient;
-
 public class EmpresaClient {
     private final WebTarget webTarget;
 

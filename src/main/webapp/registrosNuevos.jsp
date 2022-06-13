@@ -6,9 +6,12 @@
 <%@ page import="edu.fpdual.proyectovn.client.dto.Empresa" %>
 <%@ page import="edu.fpdual.proyectovn.client.EmpresaClient" %>
 <%@ page import="java.sql.Time" %>
-<%@ page import="java.sql.Date" %>
+<%@ page import="java.util.Date" %>
 <%@ page import="edu.fpdual.proyectovn.client.dto.Reservas" %>
 <%@ page import="edu.fpdual.proyectovn.client.ReservasClient" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.time.LocalTime" %>
+<%@ page import="java.text.ParseException" %>
 <%--
     Author     : Natalia Castillo
     Author     : Verónica González
@@ -58,8 +61,13 @@
   } else if (request.getParameter("IDres") != null) {
     Integer idusu = Integer.valueOf(request.getParameter("IDusu"));
     Integer idact = Integer.valueOf(request.getParameter("IDact"));
-    Time hora = Time.valueOf(request.getParameter("Hora"));
-    Date fecha = Date.valueOf(request.getParameter("Fecha"));
+    Time hora = Time.valueOf(LocalTime.parse(request.getParameter("Hora")));
+    Date fecha;
+    try {
+      fecha = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("Fecha"));
+    } catch (ParseException e) {
+      throw new RuntimeException(e);
+    }
 
     Reservas reservas = new Reservas(idusu, idact, fecha, hora);
     Reservas nuevaRes = new ReservasClient().crear(reservas);

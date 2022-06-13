@@ -50,10 +50,4 @@ public class CiudadClient {
     return true;
   }
 
-  // TODO: 09/06/2022 ARREGLAR 2.3
-  public Set<Ciudad> ciuConAct(Integer id) {
-    return new HashSet<>(Arrays.asList(webTarget.path("ciudad/grupo" + id)
-        .request(MediaType.APPLICATION_JSON)
-        .get(Ciudad[].class)));
-  }
 }
