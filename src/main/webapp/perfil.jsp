@@ -6,6 +6,7 @@
 <%@ page import="edu.fpdual.proyectovn.client.ReservasClient" %>
 <%@ page import="edu.fpdual.proyectovn.client.dto.Reservas" %>
 <%@ page import="java.util.Set" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%--
     Author     : Natalia Castillo
     Author     : Verónica González
@@ -140,9 +141,9 @@
                     </td>
                     <td><%=r.getIdAct()%>
                     </td>
-                    <td><%=r.getFecha()%>
-                    </td>
                     <td><%=r.getHora()%>
+                    </td>
+                    <td><%=new SimpleDateFormat("dd-MM-yyyy").format(r.getFecha())%>
                     </td>
                   </tr>
                   <%
